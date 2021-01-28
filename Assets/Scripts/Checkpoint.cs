@@ -15,7 +15,7 @@ public class Checkpoint : MonoBehaviour
 
     public float speed;
     private static string savefile = System.IO.Directory.GetCurrentDirectory() + "\\PlayerSave.json";
-    private playersave psave;
+    private static playersave psave;
 
 
     public class playersave
@@ -26,28 +26,52 @@ public class Checkpoint : MonoBehaviour
 
         public playersave()
         {
-
+            load();
         }
 
-        public void set(int world, int level, int checkpoint)
+        public void setWorld(int world)
         {
             this.world = world;
-            this.level = level;
-            this.checkpoint = checkpoint;
+            save();
         }
+        public void setLevel(int level)
+        {
+            this.level = level;
+            save();
+        }
+        public void setCheckpoint(int checkpoint)
+        {
+            this.checkpoint = checkpoint;
+            save();
+        }
+        public void incrementCheckpoint()
+        {
+            this.checkpoint++;
+            save();
+        }
+
         public void load()
         {
             if (System.IO.File.Exists(savefile))
             {
-                playersave data = JsonUtility.FromJson<playersave>(System.IO.File.ReadAllText(savefile));
-                this.world = data.world;
-                this.level = data.level;
-                this.checkpoint = data.checkpoint;
+                 string json = System.IO.File.ReadAllText(savefile);
+                 JsonUtility.FromJsonOverwrite(json, this);
+                 Debug.Log("Save Loaded");
+            }
+            else
+            {
+                Debug.Log("Save Not found");
             }
         }
         public void save()
         {
+            string json = JsonUtility.ToJson(psave);
 
+            using (System.IO.StreamWriter sw = System.IO.File.CreateText(savefile))
+            {
+                sw.Write(json);
+                sw.Close();
+            }
         }
     }
 
@@ -72,7 +96,7 @@ public class Checkpoint : MonoBehaviour
         if (collision.gameObject == checkpoint1)
         {
             Debug.Log("Collison Checkpoint 1");
-            psave.checkpoint++;
+            psave.incrementCheckpoint();
         }
 
         Debug.Log("Checkpoint Data: " + psave.checkpoint);
