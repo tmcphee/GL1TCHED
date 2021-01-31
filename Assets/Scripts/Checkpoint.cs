@@ -7,22 +7,22 @@ public class Checkpoint : MonoBehaviour
     private Rigidbody2D rb2D;
     public GameObject[] checkpoints;
 
-    public float speed;
     private static string savefile = System.IO.Directory.GetCurrentDirectory() + "\\PlayerSave.json";
     private static playersave psave;
 
 
     public class playersave
     {
-        public int world = 0;
-        public int level = 0;
-        public int checkpoint = 0;
+        private int world = 0;
+        private int level = 0;
+        private int checkpoint = 0;
 
         public playersave()
         {
             load();
         }
 
+        //Sets Level data
         public void setWorld(int world)
         {
             this.world = world;
@@ -44,6 +44,22 @@ public class Checkpoint : MonoBehaviour
             save();
         }
 
+        //Returns Level data
+        public int getWorld()
+        {
+            return this.world;
+        }
+        public int getLevel()
+        {
+            return this.level;
+        }
+        public int getCheckpoint()
+        {
+            return this.checkpoint;
+        }
+
+
+        //Loads level data from file
         public void load()
         {
             if (System.IO.File.Exists(savefile))
@@ -57,6 +73,7 @@ public class Checkpoint : MonoBehaviour
                 Debug.Log("Save Not found");
             }
         }
+        //Saves level data to file
         public void save()
         {
             string json = JsonUtility.ToJson(psave);
@@ -67,6 +84,21 @@ public class Checkpoint : MonoBehaviour
                 sw.Close();
             }
         }
+    }
+
+    //Finds an checkpoint object index in checkpoints array
+    public int find_checkpoint_index(GameObject checkpoint)
+    {
+        int index = 0;
+        foreach (GameObject obj in checkpoints)
+        {
+            if (obj == checkpoint)
+            {
+                return index;
+            }
+            index++;
+        }
+        return -1;
     }
 
     // Start is called before the first frame update
@@ -89,25 +121,17 @@ public class Checkpoint : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    /*void Update()
-    {
-        
-    }*/
-
+    //Checks if the player touched a checkpoint
     void OnTriggerEnter2D(Collider2D Collider)
     {
-        int index = 0;
         foreach (GameObject obj in checkpoints)
         {
             if (Collider.gameObject == obj)
             {
-                Debug.Log("Collison Checkpoint " + index);
+                Debug.Log("Collison Checkpoint: " + find_checkpoint_index(obj) + "\nCheckpoint Data: " + psave.getCheckpoint());
                 psave.incrementCheckpoint();
             }
-            index++;
         }
-        Debug.Log("Checkpoint Data: " + psave.checkpoint);
     }
 
 
