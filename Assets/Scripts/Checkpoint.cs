@@ -5,13 +5,7 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     private Rigidbody2D rb2D;
-    public GameObject checkpoint1;
-    /*public gameObject checkpoint2;
-    public gameObject checkpoint3;
-    public gameObject checkpoint4;
-    public gameObject checkpoint5;
-
-    public gameObject FinishCheckPoint;*/
+    public GameObject[] checkpoints;
 
     public float speed;
     private static string savefile = System.IO.Directory.GetCurrentDirectory() + "\\PlayerSave.json";
@@ -78,11 +72,21 @@ public class Checkpoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         psave = new playersave();
         psave.load();
+        
 
         Debug.Log("Start");
+
+        foreach(GameObject obj in checkpoints)
+        {
+            if (obj != null)
+            {
+                BoxCollider2D c = obj.AddComponent<BoxCollider2D>() as BoxCollider2D;
+                c.isTrigger = true;
+            }
+        }
+        
     }
 
     // Update is called once per frame
@@ -91,16 +95,21 @@ public class Checkpoint : MonoBehaviour
         
     }*/
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D Collider)
     {
-        if (collision.gameObject == checkpoint1)
+        int index = 0;
+        foreach (GameObject obj in checkpoints)
         {
-            Debug.Log("Collison Checkpoint 1");
-            psave.incrementCheckpoint();
+            if (Collider.gameObject == obj)
+            {
+                Debug.Log("Collison Checkpoint " + index);
+                psave.incrementCheckpoint();
+            }
+            index++;
         }
-
         Debug.Log("Checkpoint Data: " + psave.checkpoint);
     }
+
 
     void FixedUpdate()
     {
