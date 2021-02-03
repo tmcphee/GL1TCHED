@@ -8,13 +8,12 @@ public class Movement : MonoBehaviour
     public float magnitude;
     public float topSpeed;
     public bool infiniteJump;
-    public GameObject ground;
     private bool onGround = false;
 
     //checks if player is touching the ground object
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.Equals(ground))
+        if (collision.gameObject.tag.Equals("Ground"))
         {
             onGround = true;
         }
