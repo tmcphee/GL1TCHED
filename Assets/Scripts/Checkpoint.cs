@@ -5,6 +5,7 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     public bool UseCheckpointGlitch = false;
+    public bool ResetCheckpointOnStart = false;
     public GameObject[] checkpoints;
     public GameObject FinishCheckpoint;
     
@@ -128,19 +129,17 @@ public class Checkpoint : MonoBehaviour
         {
             lastcheckpoint = checkpoints.Length - 1;
         }
-        return checkpoints[lastcheckpoint].transform.position;
+        //return checkpoints[lastcheckpoint].transform.position;
+        return new Vector3(checkpoints[lastcheckpoint].transform.position.x, checkpoints[lastcheckpoint].transform.position.y, 0);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         psave = new playersave();
         psave.load();
-        
-        Debug.Log("Start");
 
         //Loop though all the defined checkpoint objects and add a BoxCollider2D with isTrigger set
-        foreach(GameObject obj in checkpoints)
+        foreach (GameObject obj in checkpoints)
         {
             if (obj != null)
             {
@@ -156,7 +155,16 @@ public class Checkpoint : MonoBehaviour
             fc.isTrigger = true;
         }
 
-        psave.resetdata();
+        if (ResetCheckpointOnStart)
+        {
+            psave.resetdata();
+        }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
     //Checks if the player touched a checkpoint
@@ -184,7 +192,7 @@ public class Checkpoint : MonoBehaviour
                 {
                     psave.setCheckpoint(hit_checkpoint);
                 }
-                Debug.Log("Hit Checkpoint: " + find_checkpoint_index(obj));
+                //Debug.Log("Hit Checkpoint: " + find_checkpoint_index(obj));
                 return;
             }
         }

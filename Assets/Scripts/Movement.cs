@@ -10,6 +10,11 @@ public class Movement : MonoBehaviour
     public bool infiniteJump;
     private bool onGround = false;
 
+    void Start()
+    {
+        r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
+    }
+
     //checks if player is touching the ground object
     private void OnCollisionEnter2D(Collision2D collision)
     {
