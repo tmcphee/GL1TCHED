@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 471129711754711438}
   m_Layer: 0
   m_Name: Glitchwall
-  m_TagString: Untagged
+  m_TagString: Glitchwall
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +95,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07495724, y: 0.16682398}
+  m_Offset: {x: 0.07602963, y: 0.16682398}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -106,7 +106,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8504137, y: 0.6915605}
+  m_Size: {x: 0.8482689, y: 0.6915605}
   m_EdgeRadius: 0.05
 --- !u!50 &471129711754711435
 Rigidbody2D:
@@ -142,6 +142,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5247114, y: 0.014347412}
+  m_Offset: {x: -0.51699287, y: 0.012754778}
   serializedVersion: 2
-  m_Radius: 0.036860224
+  m_Radius: 0.04457924

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Checkpoint
+  - Glitchwall
   layers:
   - Default
   - TransparentFX

@@ -28,6 +28,15 @@ public class Movement : MonoBehaviour
             onGround = true;
         }
         else onGround = false;
+
+        if (collision.gameObject.tag.Equals("Glitchwall"))
+        {
+            //if the player collides with a glitchwall, applies a sizeable force to help push them through
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                r.AddForce(magnitude * 10 * -contact.normal, ForceMode2D.Impulse);
+            }
+        }
     }
 
     // Update is called once per frame
