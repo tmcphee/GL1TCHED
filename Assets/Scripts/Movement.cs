@@ -15,6 +15,11 @@ public class Movement : MonoBehaviour
         r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
     }
 
+    public void SetPlayerLastCheckpoint()
+    {
+        r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
+    }
+
     //checks if player is touching the ground object
     private void OnCollisionEnter2D(Collision2D collision)
     {
