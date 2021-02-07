@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     public float magnitude;
     public float topSpeed;
     public bool infiniteJump;
+    public Transform lastCheckpoint;
     private bool onGround = false;
 
     void Start()
@@ -57,6 +58,11 @@ public class Movement : MonoBehaviour
                 onGround = false;
                 r.AddForce(new Vector2(1f, magnitude * 1.75f), ForceMode2D.Impulse);
             }
+        }
+
+        if(r.position.y < -15)
+        {
+            r.transform.position = lastCheckpoint.position;
         }
     }
 }
