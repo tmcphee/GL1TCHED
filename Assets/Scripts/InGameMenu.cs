@@ -6,8 +6,7 @@ public class InGameMenu : MonoBehaviour
 {
 
     public GameObject InGameMenuCanvas;
-    //public Scene GameScene;
-    public GameObject PlayerObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +15,7 @@ public class InGameMenu : MonoBehaviour
 
     public void RestartFromLastCheckpoint_Click()
     {
-        PlayerObject.GetComponent<Movement>().SetPlayerLastCheckpoint();
+        this.GetComponent<Checkpoint>().SetPlayerLastCheckpoint();
         InGameMenuCanvas.SetActive(false);
     }
 

@@ -6,6 +6,8 @@ public class Checkpoint : MonoBehaviour
 {
     public bool UseCheckpointGlitch = false;
     public bool ResetCheckpointOnStart = false;
+    public bool CheckpointVelocityGlitch = false;
+    public Rigidbody2D r;
     public GameObject[] checkpoints;
     public GameObject FinishCheckpoint;
     
@@ -120,6 +122,16 @@ public class Checkpoint : MonoBehaviour
         return -1;
     }
 
+    public void SetPlayerLastCheckpoint()
+    {
+        r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
+        if (CheckpointVelocityGlitch == false)
+        {
+            r.velocity = new Vector3(0, 0, 0);
+        }
+        
+    }
+
     //Gets the position of the last checkpoint
     public Vector3 GetLastCheckpointPosition()
     {
@@ -137,6 +149,11 @@ public class Checkpoint : MonoBehaviour
     {
         psave = new playersave();
         psave.load();
+
+        if(checkpoints.Length < 1)
+        {
+            Debug.Log("Checkpoints ERROR: Minimum 1 checkpoint needs to be set");
+        }
 
         //Loop though all the defined checkpoint objects and add a BoxCollider2D with isTrigger set
         foreach (GameObject obj in checkpoints)

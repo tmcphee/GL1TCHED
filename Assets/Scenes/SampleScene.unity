@@ -1160,7 +1160,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604674831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.967, y: -2.552, z: -0.09}
+  m_LocalPosition: {x: -0.967, y: -2.552, z: 5}
   m_LocalScale: {x: 0.5031531, y: 2.674377, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1317,6 +1317,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UseCheckpointGlitch: 0
   ResetCheckpointOnStart: 1
+  CheckpointVelocityGlitch: 0
+  r: {fileID: 1791309460}
   checkpoints:
   - {fileID: 1604674831}
   FinishCheckpoint: {fileID: 0}
