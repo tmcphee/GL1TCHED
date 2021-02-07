@@ -190,9 +190,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba92afa9c267b91409d0daf3476d8ad0, type: 3}
+--- !u!50 &402346981 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 1734061884721887811, guid: 28d588df200a4674c8e6721d17ff7124,
+    type: 3}
+  m_PrefabInstance: {fileID: 2052857620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &531260067 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4213158864382055191, guid: ba92afa9c267b91409d0daf3476d8ad0,
+    type: 3}
+  m_PrefabInstance: {fileID: 220019226}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &531260070 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4213158864382055178, guid: ba92afa9c267b91409d0daf3476d8ad0,
     type: 3}
   m_PrefabInstance: {fileID: 220019226}
   m_PrefabAsset: {fileID: 0}
@@ -1336,12 +1348,17 @@ PrefabInstance:
         type: 3}
       propertyPath: lastCheckpoint
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 531260070}
     - target: {fileID: 1734061884721887813, guid: 28d588df200a4674c8e6721d17ff7124,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1734061884721887822, guid: 28d588df200a4674c8e6721d17ff7124,
+        type: 3}
+      propertyPath: r
+      value: 
+      objectReference: {fileID: 402346981}
     - target: {fileID: 1734061884721887822, guid: 28d588df200a4674c8e6721d17ff7124,
         type: 3}
       propertyPath: FinishCheckpoint
