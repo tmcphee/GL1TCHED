@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Checkpoint : MonoBehaviour
 {
@@ -9,10 +10,14 @@ public class Checkpoint : MonoBehaviour
     public bool CheckpointVelocityGlitch = false;
     public Rigidbody2D r;
     public GameObject[] checkpoints;
-    public GameObject FinishCheckpoint;
-    
+    public GameObject FinishCheckpoint; 
+    public TMP_Text timeText;
+
     private static string savefile = System.IO.Directory.GetCurrentDirectory() + "\\PlayerSave.json";
     private static playersave psave;
+    private float levelTime;
+    private int minutes = 1;
+    private bool finished = false;
 
 
     public class playersave
@@ -181,7 +186,8 @@ public class Checkpoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        levelTime = 0f;
+        timeText.text = "Elapsed Time:\t" + levelTime;
     }
 
     //Checks if the player touched a checkpoint
@@ -190,6 +196,7 @@ public class Checkpoint : MonoBehaviour
         if(Collider.gameObject == FinishCheckpoint)
         {
             Debug.Log("Player Finished Level");
+            finished = true;
             psave.incrementLevel();
             psave.setCheckpoint(0);
             return;
@@ -212,12 +219,26 @@ public class Checkpoint : MonoBehaviour
                 //Debug.Log("Hit Checkpoint: " + find_checkpoint_index(obj));
                 return;
             }
-        }
+        }        
     }
 
 
-    void FixedUpdate()
+    void Update()
     {
+        if (!finished)
+        {
+            levelTime += Time.deltaTime;
+            minutes = (int) levelTime / 60;
+            if(levelTime > 60)
+            {
+                timeText.text = "Elapsed Time:\t" + minutes + ":" + TimerRounding(levelTime % 60);
+            } else timeText.text = "Elapsed Time:\t" + TimerRounding(levelTime);
+        }
+    }
 
+    //custom rounding function to display the time to 3 decimal places
+    private float TimerRounding(float time)
+    {
+        return Mathf.Round(time * 10.0f) / 10.0f;
     }
 }
