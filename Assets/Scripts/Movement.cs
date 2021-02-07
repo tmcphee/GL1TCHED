@@ -8,7 +8,6 @@ public class Movement : MonoBehaviour
     public float magnitude;
     public float topSpeed;
     public bool infiniteJump;
-    public Transform lastCheckpoint;
     private bool onGround = false;
 
     void Start()
@@ -62,7 +61,7 @@ public class Movement : MonoBehaviour
 
         if(r.transform.position.y < -15)
         {
-            r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
+            r.GetComponent<Checkpoint>().SetPlayerLastCheckpoint();
         }
     }
 }
