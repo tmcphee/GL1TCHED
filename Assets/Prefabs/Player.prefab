@@ -135,8 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   r: {fileID: 1734061884721887811}
   magnitude: 2750
-  topSpeed: 32
-  infiniteJump: 0
+  topSpeed: 15
+  infiniteJump: 1
 --- !u!114 &1734061884721887822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,9 +151,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UseCheckpointGlitch: 0
   ResetCheckpointOnStart: 1
+  CheckpointVelocityGlitch: 0
+  r: {fileID: 1734061884721887811}
   checkpoints:
   - {fileID: 0}
   FinishCheckpoint: {fileID: 0}
+  timeText: {fileID: 0}
 --- !u!114 &1734061884721887821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,4 +170,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InGameMenuCanvas: {fileID: 0}
-  PlayerObject: {fileID: 1734061884721887813}
