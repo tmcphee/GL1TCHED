@@ -60,9 +60,9 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if(r.position.y < -15)
+        if(r.transform.position.y < -15)
         {
-            r.transform.position = lastCheckpoint.position;
+            r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
         }
     }
 }
