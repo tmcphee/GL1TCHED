@@ -225,18 +225,21 @@ public class Checkpoint : MonoBehaviour
 
     void Update()
     {
+        //if the player hasn't reached the finish, update the timer; else set it to green
         if (!finished)
         {
             levelTime += Time.deltaTime;
-            minutes = (int) levelTime / 60;
-            if(levelTime > 60)
+            minutes = (int)levelTime / 60;
+            if (levelTime > 60)
             {
                 timeText.text = "Elapsed Time:\t" + minutes + ":" + TimerRounding(levelTime % 60);
-            } else timeText.text = "Elapsed Time:\t" + TimerRounding(levelTime);
+            }
+            else timeText.text = "Elapsed Time:\t" + TimerRounding(levelTime);
         }
+        else timeText.color = new Vector4(0f, 1.0f, 0f, 1.0f);
     }
 
-    //custom rounding function to display the time to 3 decimal places
+    //custom rounding function to display the time to 1 decimal place
     private float TimerRounding(float time)
     {
         return Mathf.Round(time * 10.0f) / 10.0f;
