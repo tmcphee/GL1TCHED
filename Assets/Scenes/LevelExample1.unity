@@ -442,7 +442,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2052857620}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 808643689}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfd253b00e27d7943a1726cb0a0e3d86, type: 3}
@@ -1126,6 +1126,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46b7f5813ef6992419fa0084a802bf9e, type: 3}
+--- !u!1 &808643689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1734061884721887813, guid: 28d588df200a4674c8e6721d17ff7124,
+    type: 3}
+  m_PrefabInstance: {fileID: 2052857620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &829099711
 GameObject:
   m_ObjectHideFlags: 0
@@ -2864,6 +2870,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1734061884721887821, guid: 28d588df200a4674c8e6721d17ff7124,
+        type: 3}
+      propertyPath: r
+      value: 
+      objectReference: {fileID: 808643689}
     - target: {fileID: 1734061884721887821, guid: 28d588df200a4674c8e6721d17ff7124,
         type: 3}
       propertyPath: InGameMenuCanvas
