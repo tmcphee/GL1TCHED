@@ -6,7 +6,7 @@ using UnityEngine;
 public class SkyboxColorChanger : MonoBehaviour
 {
     Camera cam;
-
+    public Vector4 Test = new Vector4(1f, 1f, 1f, 1f);
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +16,9 @@ public class SkyboxColorChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Color mutator = new Vector4(RandomFloat(10000), RandomFloat(10000), RandomFloat(10000), 1f);
-        cam.backgroundColor += (mutator * 4) * Time.deltaTime;
-
+        //Color mutator = new Vector4(RandomFloat(10000), RandomFloat(10000), RandomFloat(10000), 1f);
+        //cam.backgroundColor += (mutator * 4) * Time.deltaTime;
+        cam.backgroundColor = Test;
         //Debug.Log(mutator + "\t" + cam.backgroundColor);
     }
 
