@@ -282,7 +282,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 251790902}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1030900565}
+        m_MethodName: ContinueBtn_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &251790902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,7 +412,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 350331956}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1030900565}
+        m_MethodName: QuitBtn_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &350331956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,7 +475,7 @@ GameObject:
   - component: {fileID: 1030900561}
   - component: {fileID: 1030900565}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MainCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -507,8 +529,8 @@ Canvas:
   m_GameObject: {fileID: 1030900560}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1327111049}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -517,7 +539,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1030900564
 RectTransform:
@@ -555,6 +577,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e89fb7f20473b44c94d5561d5f33ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MenuCanvas: {fileID: 1030900560}
+  Continue_BTN: {fileID: 251790899}
+  NewGame_BTN: {fileID: 1222420621}
+  Settings_BTN: {fileID: 1220595755}
+  Quit_BTN: {fileID: 350331953}
 --- !u!1 &1134770004
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +744,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1220595758}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1030900565}
+        m_MethodName: SettingsBtn_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1220595758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -836,7 +874,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1222420624}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1030900565}
+        m_MethodName: NewGameBtn_Clicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1222420624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -900,7 +949,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1327111046}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -908,8 +957,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 554.5, y: 263.5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0.00004011991, y: 0}
+  m_SizeDelta: {x: 196.70438, y: 101.2505}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!81 &1327111048
 AudioListener:
