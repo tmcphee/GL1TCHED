@@ -12,6 +12,9 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
+        /*  Tyler McPhee
+         *  Sets the players postion to spawn on the first checkpoint
+         */
         r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
     }
 

@@ -19,7 +19,11 @@ public class Checkpoint : MonoBehaviour
     private int minutes = 1;
     private bool finished = false;
 
-    //Finds an checkpoint object index in checkpoints array
+    /*  Tyler McPhee
+     *  Finds a given checkpoint object in the checkpoints array
+     *  INPUT: GameObject checkpoint
+     *  OUTPUT: Index value in checkpoints array
+     */
     public int find_checkpoint_index(GameObject checkpoint)
     {
         int index = 0;
@@ -34,6 +38,10 @@ public class Checkpoint : MonoBehaviour
         return -1;
     }
 
+    /*  Tyler McPhee
+     *  Gets the postiton of the last checkpoint and sets its value to the player
+     *  Optional glitch of not resetting the players velocity
+     */
     public void SetPlayerLastCheckpoint()
     {
         r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
@@ -44,7 +52,11 @@ public class Checkpoint : MonoBehaviour
         
     }
 
-    //Gets the position of the last checkpoint
+    /*  Tyler McPhee
+     *  Gets the index of the last checkpoint the player passed though.
+     *  Checks to see of the index is in the checkpoints array. If not use the closet checkpoint index
+     *  OUTPUT: Vector3 -> Position of last checkpoint found in checkpoints array
+     */
     public Vector3 GetLastCheckpointPosition()
     {
         //Make sure the last checkpoint is in range of array
@@ -53,10 +65,10 @@ public class Checkpoint : MonoBehaviour
         {
             lastcheckpoint = checkpoints.Length - 1;
         }
-        //return checkpoints[lastcheckpoint].transform.position;
         return new Vector3(checkpoints[lastcheckpoint].transform.position.x, checkpoints[lastcheckpoint].transform.position.y, 0);
     }
 
+    //On Script load
     void Awake()
     {
         psave = new playersave();
@@ -67,7 +79,9 @@ public class Checkpoint : MonoBehaviour
             Debug.Log("Checkpoints ERROR: Minimum 1 checkpoint needs to be set");
         }
 
-        //Loop though all the defined checkpoint objects and add a BoxCollider2D with isTrigger set
+        /*  Tyler McPhee
+         *  Loop though all the checkpoint objects in the cehckpoints array and add a BoxCollider2D with isTrigger set
+         */
         foreach (GameObject obj in checkpoints)
         {
             if (obj != null)
@@ -77,13 +91,18 @@ public class Checkpoint : MonoBehaviour
             }
         }
 
-        //adds a BoxCollider2D with isTrigger set to the finished checkpoint if exists
+        /*  Tyler McPhee
+         *  Adds a BoxCollider2D with isTrigger set to the finished checkpoint if exists
+         */
         if (FinishCheckpoint != null)
         {
             BoxCollider2D fc = FinishCheckpoint.AddComponent<BoxCollider2D>() as BoxCollider2D;
             fc.isTrigger = true;
         }
 
+        /*  Tyler McPhee
+         *  Optional clear player data on start
+         */
         if (ResetCheckpointOnStart)
         {
             psave.resetdata();
@@ -97,10 +116,13 @@ public class Checkpoint : MonoBehaviour
         timeText.text = "Elapsed Time:\t" + levelTime;
     }
 
-    //Checks if the player touched a checkpoint
     void OnTriggerEnter2D(Collider2D Collider)
     {
-        if(Collider.gameObject == FinishCheckpoint)
+        /*  Tyler McPhee
+         *  Checks to see if the player hit the finished checkpoint
+         *  If so increments the level and resets the checkpoint data
+         */
+        if (Collider.gameObject == FinishCheckpoint)
         {
             Debug.Log("Player Finished Level");
             finished = true;
@@ -109,21 +131,27 @@ public class Checkpoint : MonoBehaviour
             return;
         }
 
+        /*  Tyler McPhee
+         *  Loops though all checkpoints and see if the checkpont the player hit is in the checkpoints array
+         *  If so either increments the checkpoint data
+         */
         foreach (GameObject obj in checkpoints)
         {
             if (Collider.gameObject == obj)
             {
                 int hit_checkpoint = find_checkpoint_index(obj);
                 int last_checkpoint = psave.getCheckpoint();
-                if (UseCheckpointGlitch)//If defined then increment checkpoint else only increment if checkpoint is the next
+
+                //If defined then increment checkpoint else only increment if checkpoint is the next
+                if (UseCheckpointGlitch)
                 {
                     psave.incrementCheckpoint();
                 }
+                //Check if the checkpoint has already been passed though
                 else if (hit_checkpoint > last_checkpoint)
                 {
                     psave.setCheckpoint(hit_checkpoint);
                 }
-                //Debug.Log("Hit Checkpoint: " + find_checkpoint_index(obj));
                 return;
             }
         }        
