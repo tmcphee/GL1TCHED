@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 using playersave = PlayerSave.playersave;
 
 public class Checkpoint : MonoBehaviour
@@ -128,6 +129,7 @@ public class Checkpoint : MonoBehaviour
             finished = true;
             psave.incrementLevel();
             psave.setCheckpoint(0);
+            SceneManager.LoadScene("PatchNotes");
             return;
         }
 
