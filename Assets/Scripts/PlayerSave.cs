@@ -128,8 +128,12 @@ namespace PlayerSave
          */
         private void ApplyResolution()
         {
+            int width = 1920;
+            int height = 1080;
             string[] res = this.Resolution.Split('x');
-            //Screen.SetResolution(res[0], res[1], this.Fullscreen);
+            int.TryParse(res[0], out width);
+            int.TryParse(res[1], out height);
+            Screen.SetResolution(width, height, this.Fullscreen);
         }
 
         /*  Tyler McPhee

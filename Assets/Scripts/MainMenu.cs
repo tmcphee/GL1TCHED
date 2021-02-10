@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using playersave = PlayerSave.playersave;
 
@@ -11,6 +12,18 @@ public class MainMenu : MonoBehaviour
     private GameObject MainPanel;
     private GameObject SettingsPanel;
     private GameObject VideoPanel;
+
+    /*  Tyler McPhee
+     *  Loads the values from the Player Save File and updates the value in the settings menu
+     */
+    private void initilize_settings()
+    {
+        //Gets the Resolution dropdown and sets its value to the resolution matiching the saved resolution
+        Dropdown Resdrop = GameObject.Find("VideoPanel/ResolutionDropdown").GetComponent<Dropdown>();
+        Resdrop.value = Resdrop.options.FindIndex(option => option.text == psave.getResolution());
+
+
+    }
 
     /* MAIN MENU
      * 
@@ -60,10 +73,31 @@ public class MainMenu : MonoBehaviour
     /* Video MENU
      * 
      */
+
     public void VideoBackBtn_Clicked()
     {
         VideoPanel.SetActive(false);
         SettingsPanel.SetActive(true);
+    }
+
+    /*  Tyler McPhee
+     *  Saves the specified resulution selected in the dropdown to disk when changed
+     */
+    public void Resolution_Dropdown_OnValueChanged(Dropdown change)
+    {
+        psave.setResolution("" + change.captionText.text);
+    }
+
+    public void VSYNC_Toggle_OnValueChanged()
+    {
+        Toggle vtog = GameObject.Find("VideoPanel/VSYNC_Toggle").GetComponent<Toggle>();
+        psave.setVsync(vtog.isOn);
+    }
+
+    public void Fullscreen_Toggle_OnValueChanged()
+    {
+        Toggle vtog = GameObject.Find("VideoPanel/Fullscreen_Toggle").GetComponent<Toggle>();
+        psave.setFullscreen(vtog.isOn);
     }
 
     void Start()
@@ -78,6 +112,8 @@ public class MainMenu : MonoBehaviour
 
             GameObject.Find("MainPanel/ContinueGameBtn").SetActive(false);
         }
+
+        initilize_settings();
 
         SettingsPanel.SetActive(false);
         VideoPanel.SetActive(false);
