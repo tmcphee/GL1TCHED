@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class InGameMenu : MonoBehaviour
@@ -56,6 +57,11 @@ public class InGameMenu : MonoBehaviour
     {
         unfreezeplayer();
         InGameMenuCanvas.SetActive(false);
+    }
+
+    public void mainMenuBtn_Click()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     // Update is called once per frame

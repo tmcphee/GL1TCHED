@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using playersave = PlayerSave.playersave;
 
 public class MainMenu : MonoBehaviour
@@ -31,17 +32,23 @@ public class MainMenu : MonoBehaviour
         Fullscreentog.isOn = psave.getFullscreen();
     }
 
+    private void loadscene()
+    {
+        SceneManager.LoadScene("PatchNotes");
+    }
+
     /* MAIN MENU
      * 
      */
     public void ContinueBtn_Clicked()
     {
-
+        loadscene();
     }
 
     public void NewGameBtn_Clicked()
     {
         psave.resetdata();
+        loadscene();
     }
 
     public void SettingsBtn_Clicked()
