@@ -22,7 +22,13 @@ public class MainMenu : MonoBehaviour
         Dropdown Resdrop = GameObject.Find("VideoPanel/ResolutionDropdown").GetComponent<Dropdown>();
         Resdrop.value = Resdrop.options.FindIndex(option => option.text == psave.getResolution());
 
+        //Gets the VSYNC toggle and sets its value to the VSYNC bool matiching the saved VSYNC state
+        Toggle VSYNCtog = GameObject.Find("VideoPanel/VSYNC_Toggle").GetComponent<Toggle>();
+        VSYNCtog.isOn = psave.getVsync();
 
+        //Gets the Fullscreen toggle and sets its value to the Fullscreen bool matiching the saved Fullscreen state
+        Toggle Fullscreentog = GameObject.Find("VideoPanel/Fullscreen_Toggle").GetComponent<Toggle>();
+        Fullscreentog.isOn = psave.getFullscreen();
     }
 
     /* MAIN MENU
