@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     public bool infiniteJump;
     public AudioSource hitSound;
     public AudioSource jumpSound;
+
     private bool onGround = false;
 
     void Start()
@@ -20,7 +21,11 @@ public class Movement : MonoBehaviour
         r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
     }
 
-    //checks if player is touching the ground object
+
+    /*  Andrew Greer
+        - checks if player collides with ground or glitchwall
+        - plays an impact sound if player collides with something  
+    */
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag.Equals("Ground"))
@@ -44,7 +49,11 @@ public class Movement : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+
+    /*  Andrew Greer
+     *   - called once every frame
+     *   - handles jumping, movement, and player rotation
+     */
     void Update()
     {
         //self-righting force; returns player to vertical by 0.75 degrees/frame
@@ -59,7 +68,7 @@ public class Movement : MonoBehaviour
             r.AddForce(new Vector2(Input.GetAxis("Horizontal") * magnitude * 1.75f, 1f));
         }
 
-        //checks if either player is on the ground or infiniteJump is active
+        //checks if either player is on the ground or infiniteJump glitch is active; plays a jumping sound
         if (Input.GetButtonDown("Jump"))
         {
             if(onGround || infiniteJump)
@@ -70,6 +79,7 @@ public class Movement : MonoBehaviour
             }
         }
 
+        //if player falls off the map, spawn them at the last checkpoint
         if(r.transform.position.y < -15)
         {
             r.GetComponent<Checkpoint>().SetPlayerLastCheckpoint();
