@@ -14,6 +14,7 @@ public class Checkpoint : MonoBehaviour
     public GameObject[] checkpoints;
     public GameObject FinishCheckpoint; 
     public TMP_Text timeText;
+    public AudioSource checkpointSound;
 
     private static playersave psave;
     private float levelTime;
@@ -127,6 +128,7 @@ public class Checkpoint : MonoBehaviour
         {
             Debug.Log("Player Finished Level");
             finished = true;
+            checkpointSound.Play();
             psave.incrementLevel();
             psave.setCheckpoint(0);
             SceneManager.LoadScene("PatchNotes");
@@ -148,11 +150,13 @@ public class Checkpoint : MonoBehaviour
                 if (UseCheckpointGlitch)
                 {
                     psave.incrementCheckpoint();
+                    checkpointSound.Play();
                 }
                 //Check if the checkpoint has already been passed though
                 else if (hit_checkpoint > last_checkpoint)
                 {
                     psave.setCheckpoint(hit_checkpoint);
+                    checkpointSound.Play();
                 }
                 return;
             }

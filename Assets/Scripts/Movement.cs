@@ -8,6 +8,8 @@ public class Movement : MonoBehaviour
     public float magnitude;
     public float topSpeed;
     public bool infiniteJump;
+    public AudioSource hitSound;
+    public AudioSource jumpSound;
     private bool onGround = false;
 
     void Start()
@@ -35,6 +37,11 @@ public class Movement : MonoBehaviour
                 r.AddForce(magnitude * 25 * -contact.normal, ForceMode2D.Impulse);
             }
         }
+
+        if(collision.relativeVelocity.magnitude > topSpeed/2)
+        {
+            hitSound.Play();
+        }
     }
 
     // Update is called once per frame
@@ -59,6 +66,7 @@ public class Movement : MonoBehaviour
             {
                 onGround = false;
                 r.AddForce(new Vector2(1f, magnitude * 1.75f), ForceMode2D.Impulse);
+                jumpSound.Play();
             }
         }
 
