@@ -8,17 +8,30 @@ public class Movement : MonoBehaviour
     public float magnitude;
     public float topSpeed;
     public bool infiniteJump;
+    public bool screenWarp;
     public AudioSource hitSound;
     public AudioSource jumpSound;
 
     private bool onGround = false;
 
+    private bool isWrappingX = false;
+    private bool isWrappingY = false;
+    
+
+    Renderer[] renderers;
+
+
     void Start()
     {
         /*  Tyler McPhee
-         *  Sets the players postion to spawn on the first checkpoint
+         *      -Sets the players postion to spawn on the first checkpoint
+         *  Troy Walther
+         *      -Store character renderer(s) in array
          */
         r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
+
+        renderers = GetComponentsInChildren<Renderer>();
+
     }
 
 
@@ -80,9 +93,73 @@ public class Movement : MonoBehaviour
         }
 
         //if player falls off the map, spawn them at the last checkpoint
-        if(r.transform.position.y < -15)
+        if(r.transform.position.y < -50)
         {
             r.GetComponent<Checkpoint>().SetPlayerLastCheckpoint();
         }
+
+        //if player is off screen and screen warp is enabled, wrap player to opposite side of screen
+        if ((!onScreen()) && screenWarp)
+        {
+            wrapScreen();
+        }
+        else 
+        {
+            isWrappingY = false;
+            isWrappingX = false;
+        }
+    }
+
+    /*Troy Walther
+     * -Check if character is on screen
+     * -Return: True if character is on screen, false if character is off screen
+     */
+    private bool onScreen() 
+    {
+        //loop through all children components
+        foreach (var renderer in renderers)
+        {
+            // If at least one render is visible, return true
+            if (renderer.isVisible)
+            {
+                return true;
+            }
+        }
+        // Otherwise, the object is invisible
+        return false;
+    }
+
+    /*Troy Walther
+     * -Teleport character to different region of screen
+     */
+    private void wrapScreen() 
+    {
+        //if the character is already wrapping don't do it again
+        if (isWrappingX && isWrappingY) 
+        {
+            return;
+        }
+
+        //get main camera Veiwport coordinate (0,0 - 1,1) and get current transform position
+        Camera cam = Camera.main;
+        Vector3 viewPos = cam.WorldToViewportPoint(transform.position);
+        Vector3 newPos  = transform.position;
+
+        //if the character is outside the screen on the X plane, inverse the X value, and set WrappingY = true
+        if (!isWrappingX && (viewPos.x > 1 || viewPos.x < 0)) 
+        {
+            newPos.x = newPos.x * -1;
+            isWrappingX = true;
+        }
+
+        //if the character is outside the screen on the Y plane, inverse the Y value, and set WrappingY = true
+        if (!isWrappingY && (viewPos.y > 1 || viewPos.y < 0))
+        {
+            newPos.y = newPos.y * -1;
+            isWrappingY = true;
+        }
+
+        //apply the transformation, if you haven't wrapped, nothing will happen here
+        transform.position = newPos;
     }
 }
