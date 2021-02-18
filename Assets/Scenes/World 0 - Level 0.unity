@@ -254,7 +254,8 @@ AudioSource:
   m_GameObject: {fileID: 30734385}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2203721571041907709, guid: f38376dc6aa01e948bb34c01580c9568,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 1487ac74fe99eea4aa91c45ab49e629a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1052,7 +1053,8 @@ AudioSource:
   m_GameObject: {fileID: 981042424}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2203721571041907709, guid: f38376dc6aa01e948bb34c01580c9568,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 922837d0ba4e8c740a0dfec4e9557ab0, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -1338,7 +1340,8 @@ AudioSource:
   m_GameObject: {fileID: 1178619941}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2203721571041907709, guid: f38376dc6aa01e948bb34c01580c9568,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: bae8d2381857c5f40854eb7dd173ce5f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1594,8 +1597,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a8ff9919cb0664fb59eb3f25a28a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colors: []
-  Test: {x: 0, y: 0, z: 0.2, w: 1}
+  colors:
+  - {x: 0, y: 0, z: 0.2, w: 1}
+  - {x: 0, y: 0, z: 0.8, w: 1}
+  - {x: 0.8, y: 0, z: 0.4, w: 1}
+  changeSpeed: 0.4
 --- !u!81 &1376775290
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2465,6 +2471,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 30734387, guid: 28d588df200a4674c8e6721d17ff7124, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 2203721571041907709, guid: f38376dc6aa01e948bb34c01580c9568,
+        type: 2}
+    - target: {fileID: 981042425, guid: 28d588df200a4674c8e6721d17ff7124, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 2203721571041907709, guid: f38376dc6aa01e948bb34c01580c9568,
+        type: 2}
+    - target: {fileID: 1178619942, guid: 28d588df200a4674c8e6721d17ff7124, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 2203721571041907709, guid: f38376dc6aa01e948bb34c01580c9568,
+        type: 2}
     - target: {fileID: 1734061884721887811, guid: 28d588df200a4674c8e6721d17ff7124,
         type: 3}
       propertyPath: m_LinearDrag

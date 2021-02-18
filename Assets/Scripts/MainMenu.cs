@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     private GameObject MainPanel;
     private GameObject SettingsPanel;
     private GameObject VideoPanel;
+    private GameObject SoundPanel;
 
     /*  Tyler McPhee
      *  Loads the values from the Player Save File and updates the value in the settings menu
@@ -79,9 +80,19 @@ public class MainMenu : MonoBehaviour
 
     public void SoundBtn_Clicked()
     {
-
+        SettingsPanel.SetActive(false);
+        SoundPanel.SetActive(true);
     }
 
+    /*
+     *Sound Menu
+     */
+
+    public void SoundBackBtn_Clicked()
+    {
+        SoundPanel.SetActive(false);
+        SettingsPanel.SetActive(true);
+    }
 
     /* Video MENU
      * 
@@ -118,6 +129,7 @@ public class MainMenu : MonoBehaviour
         MainPanel = GameObject.Find("MainPanel");
         SettingsPanel = GameObject.Find("SettingsPanel");
         VideoPanel = GameObject.Find("VideoPanel");
+        SoundPanel = GameObject.Find("SoundPanel");
 
         psave = new playersave();
         if (!psave.SaveExists())
@@ -130,6 +142,7 @@ public class MainMenu : MonoBehaviour
 
         SettingsPanel.SetActive(false);
         VideoPanel.SetActive(false);
+        SoundPanel.SetActive(false);
 
     }
 
