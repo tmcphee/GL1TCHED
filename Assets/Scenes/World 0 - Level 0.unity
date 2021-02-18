@@ -1594,6 +1594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a8ff9919cb0664fb59eb3f25a28a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colors: []
   Test: {x: 0, y: 0, z: 0.2, w: 1}
 --- !u!81 &1376775290
 AudioListener:
@@ -2484,6 +2485,11 @@ PrefabInstance:
       propertyPath: jumpSound
       value: 
       objectReference: {fileID: 30734387}
+    - target: {fileID: 1734061884721887812, guid: 28d588df200a4674c8e6721d17ff7124,
+        type: 3}
+      propertyPath: screenWarp
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887812, guid: 28d588df200a4674c8e6721d17ff7124,
         type: 3}
       propertyPath: infiniteJump
