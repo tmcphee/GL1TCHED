@@ -10,6 +10,7 @@ public class Checkpoint : MonoBehaviour
     public bool UseCheckpointGlitch = false;
     public bool ResetCheckpointOnStart = false;
     public bool CheckpointVelocityGlitch = false;
+    public bool isEndofWorld = false;
     public Rigidbody2D r;
     public GameObject[] checkpoints;
     public GameObject FinishCheckpoint; 
@@ -63,7 +64,7 @@ public class Checkpoint : MonoBehaviour
     {
         //Make sure the last checkpoint is in range of array
         int lastcheckpoint = psave.getCheckpoint();
-        if (lastcheckpoint > checkpoints.Length)
+        if (lastcheckpoint >= checkpoints.Length)
         {
             lastcheckpoint = checkpoints.Length - 1;
         }
@@ -129,8 +130,19 @@ public class Checkpoint : MonoBehaviour
             Debug.Log("Player Finished Level");
             finished = true;
             checkpointSound.Play();
-            psave.incrementLevel();
             psave.setCheckpoint(0);
+
+            //If its the end of the world levels increment the world and reset checkpoints and levels
+            if (isEndofWorld)
+            {
+                psave.incrementWorld();
+                psave.setLevel(0);
+
+            }
+            else
+            {
+                psave.incrementLevel();
+            }
             SceneManager.LoadScene("PatchNotes");
             return;
         }

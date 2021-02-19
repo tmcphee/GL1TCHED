@@ -7,12 +7,14 @@ public class Movement : MonoBehaviour
     public Rigidbody2D r;
     public float magnitude;
     public float topSpeed;
+    public float topclimbspeed;
     public bool infiniteJump;
     public bool screenWarp;
     public AudioSource hitSound;
     public AudioSource jumpSound;
 
     private bool onGround = false;
+    private bool onClimbable = false;
 
     private bool isWrappingX = false;
     private bool isWrappingY = false;
@@ -62,6 +64,32 @@ public class Movement : MonoBehaviour
         }
     }
 
+    /*  Tyler McPhee
+     *  When the player is in an object that has trigger enabled
+     */
+    void OnTriggerStay2D(Collider2D Collider)
+    { 
+        //Check if the object has climbable in its tag. If so allow the player to climb
+        if(Collider.tag == "Climbable")
+        {
+            onClimbable = true;
+        }
+    
+    }
+
+    /*  Tyler McPhee
+     *  When the player leaves an object that has trigger enabled
+     */
+    void OnTriggerExit2D(Collider2D Collider)
+    {
+        //Check if the object has climbable in its tag. Stop the player from climbing
+        if (Collider.tag == "Climbable")
+        {
+            onClimbable = false;
+        }
+
+    }
+
 
     /*  Andrew Greer
      *   - called once every frame
@@ -79,6 +107,15 @@ public class Movement : MonoBehaviour
         if (Mathf.Abs(r.velocity.x) < topSpeed)
         {
             r.AddForce(new Vector2(Input.GetAxis("Horizontal") * magnitude * 1.75f, 1f));
+        }
+
+        /*  Tyler McPhee
+         *  Apply force for climbable objects
+         *  Recycled and modified code from Andrew
+         */
+        if (Mathf.Abs(r.velocity.y) < topclimbspeed && onClimbable)
+        {
+            r.AddForce(new Vector2(1f, Input.GetAxis("Vertical") * magnitude * 1.25f));
         }
 
         //checks if either player is on the ground or infiniteJump glitch is active; plays a jumping sound
