@@ -65,6 +65,17 @@ public class Movement : MonoBehaviour
     }
 
     /*  Tyler McPhee
+     *  When the player enters an object that has trigger enabled
+     */
+    void OnTriggerEnter2D(Collider2D Collider)
+    {
+        if (Collider.tag == "Spike")
+        {
+            r.GetComponent<Checkpoint>().SetPlayerLastCheckpoint();
+        }
+    }
+
+    /*  Tyler McPhee
      *  When the player is in an object that has trigger enabled
      */
     void OnTriggerStay2D(Collider2D Collider)
