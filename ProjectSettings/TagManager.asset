@@ -8,6 +8,7 @@ TagManager:
   - Checkpoint
   - Glitchwall
   - Climbable
+  - Spike
   layers:
   - Default
   - TransparentFX
