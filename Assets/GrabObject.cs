@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+
+/* NOTE:
+ * In order for this script to work properly, the bottom left of the camera's view should be near (0, 0, 0) in the level's worldspace */
 public class GrabObject : MonoBehaviour
 {
     public Rigidbody2D player;
@@ -12,9 +15,11 @@ public class GrabObject : MonoBehaviour
 
     private Vector3 m;
     private Vector3 cameraPos;
+    private Vector3 originalPos;
     private Rigidbody2D box;
     private float m_Angle;
     private float boxDistance;
+
 
     // instantiates some variables like the camera position and this box object
     void Start()
@@ -22,7 +27,9 @@ public class GrabObject : MonoBehaviour
         cameraPos = cam.GetComponent<Transform>().position;
         cameraPos[2] = 0;
         box = GetComponent<Rigidbody2D>();
+        originalPos = box.position;
     }
+    
 
     /* Andrew Greer 
      *  - for every frame, calculates the mouse position in worldspace coordinates
@@ -39,7 +46,7 @@ public class GrabObject : MonoBehaviour
 
 
         // if player clicks, the box is close to the player, and the box is close to the cursor
-        if (Input.GetMouseButton(0) && boxDistance < GrabDistance * 2f && Vector2.Distance(box.position, new Vector2(m[0], m[1])) < GrabDistance * 2f)
+        if (Input.GetMouseButton(0) && boxDistance < GrabDistance * 2f && Vector2.Distance(box.position, new Vector2(m[0], m[1])) < GrabDistance)
         {
             if (GlitchMode)
             {
@@ -52,16 +59,13 @@ public class GrabObject : MonoBehaviour
         // if box falls below the map
         if(box.position.y < -10f)
         {
-            box.position = new Vector3(7f, 2f, 0f);
+            ResetPosition();
         }
-
-        //Debug.Log((m, playerPos, DegreesToRadians(m_Angle)));
     }
 
 
     /* Andrew Greer
-     * - takes a Vector3 of screenspace coordinates (pixel position) and converts them to worldspace coordinates
-     */
+     * - takes a Vector3 of screenspace coordinates (pixel position) and converts them to worldspace coordinates */
     Vector3 ScreenSpaceToWorldSpace(Vector3 coordinates)
     {
         return new Vector3((coordinates[0] / Screen.width) * cam.orthographicSize * 4, (coordinates[1] / Screen.height) * cam.orthographicSize * 2, 0);
@@ -69,7 +73,11 @@ public class GrabObject : MonoBehaviour
 
 
     /* Andrew Greer
-     *  - simple degrees to radians conversion method
-     */
+     *  - simple degrees to radians conversion method */
     float DegreesToRadians(float angle) { return angle * (Mathf.PI / 180); }
+
+
+    /* Andrew Greer
+     *  - resets the box position to where it was when the level started (level restart) */
+    void ResetPosition() { box.position = originalPos; }
 }
