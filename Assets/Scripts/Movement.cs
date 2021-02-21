@@ -43,13 +43,13 @@ public class Movement : MonoBehaviour
     */
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Ground"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
             onGround = true;
         }
         else onGround = false;
 
-        if (collision.gameObject.tag.Equals("Glitchwall"))
+        if (collision.gameObject.CompareTag("Glitchwall"))
         {
             //if the player collides with a glitchwall, applies a sizeable force to help push them through
             foreach (ContactPoint2D contact in collision.contacts)
@@ -69,7 +69,7 @@ public class Movement : MonoBehaviour
      */
     void OnTriggerEnter2D(Collider2D Collider)
     {
-        if (Collider.tag.Equals("Spike"))
+        if (Collider.CompareTag("Spike"))
         {
             r.GetComponent<Checkpoint>().SetPlayerLastCheckpoint();
         }
@@ -81,7 +81,7 @@ public class Movement : MonoBehaviour
     void OnTriggerStay2D(Collider2D Collider)
     { 
         //Check if the object has climbable in its tag. If so allow the player to climb
-        if(Collider.tag.Equals("Climbable"))
+        if(Collider.CompareTag("Climbable"))
         {
             onClimbable = true;
         }
@@ -94,7 +94,7 @@ public class Movement : MonoBehaviour
     void OnTriggerExit2D(Collider2D Collider)
     {
         //Check if the object has climbable in its tag. Stop the player from climbing
-        if (Collider.tag.Equals("Climbable"))
+        if (Collider.CompareTag("Climbable"))
         {
             onClimbable = false;
         }
@@ -196,14 +196,14 @@ public class Movement : MonoBehaviour
         //if the character is outside the screen on the X plane, inverse the X value, and set WrappingY = true
         if (!isWrappingX && (viewPos.x > 1 || viewPos.x < 0)) 
         {
-            newPos.x = newPos.x * -1;
+            newPos.x *= -1;
             isWrappingX = true;
         }
 
         //if the character is outside the screen on the Y plane, inverse the Y value, and set WrappingY = true
         if (!isWrappingY && (viewPos.y > 1 || viewPos.y < 0))
         {
-            newPos.y = newPos.y * -1;
+            newPos.y *= -1;
             isWrappingY = true;
         }
 
