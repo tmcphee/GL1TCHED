@@ -69,7 +69,7 @@ public class Movement : MonoBehaviour
      */
     void OnTriggerEnter2D(Collider2D Collider)
     {
-        if (Collider.tag == "Spike")
+        if (Collider.tag.Equals("Spike"))
         {
             r.GetComponent<Checkpoint>().SetPlayerLastCheckpoint();
         }
@@ -81,7 +81,7 @@ public class Movement : MonoBehaviour
     void OnTriggerStay2D(Collider2D Collider)
     { 
         //Check if the object has climbable in its tag. If so allow the player to climb
-        if(Collider.tag == "Climbable")
+        if(Collider.tag.Equals("Climbable"))
         {
             onClimbable = true;
         }
@@ -94,7 +94,7 @@ public class Movement : MonoBehaviour
     void OnTriggerExit2D(Collider2D Collider)
     {
         //Check if the object has climbable in its tag. Stop the player from climbing
-        if (Collider.tag == "Climbable")
+        if (Collider.tag.Equals("Climbable"))
         {
             onClimbable = false;
         }
