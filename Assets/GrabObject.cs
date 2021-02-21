@@ -45,15 +45,17 @@ public class GrabObject : MonoBehaviour
         boxDistance = Vector2.Distance(new Vector2(playerPos[0], playerPos[1]), box.position);
 
 
-        // if player clicks, the box is close to the player, and the box is close to the cursor
-        if (Input.GetMouseButton(0) && boxDistance < GrabDistance * 2f && Vector2.Distance(box.position, new Vector2(m[0], m[1])) < GrabDistance)
+        // if player clicks and the box is close to the player
+        if (Input.GetMouseButton(0) && boxDistance < GrabDistance * 2f)
         {
             if (GlitchMode)
             {
-                m_Angle = Vector3.SignedAngle(playerPos, m - playerPos, Vector3.up);
-                box.position = new Vector2(playerPos[0] + (GrabDistance * Mathf.Cos(m_Angle)), playerPos[1] + (GrabDistance * Mathf.Sin(m_Angle)));
+                m_Angle = DegreesToRadians(Vector3.SignedAngle(playerPos, m - playerPos, Vector3.up));
+                Debug.Log(m_Angle);
+                box.position = new Vector2(playerPos[0] - (GrabDistance * Mathf.Cos(m_Angle)), playerPos[1] - (GrabDistance * Mathf.Sin(m_Angle)));
 
-            } else box.position = new Vector2(m[0], m[1]);
+            } else if (Vector2.Distance(box.position, new Vector2(m[0], m[1])) < GrabDistance) { box.position = new Vector2(m[0], m[1]); }
+                    // ^ if box is close to the cursor
         }
 
         // if box falls below the map
@@ -74,7 +76,7 @@ public class GrabObject : MonoBehaviour
 
     /* Andrew Greer
      *  - simple degrees to radians conversion method */
-    float DegreesToRadians(float angle) { return angle * (Mathf.PI / 180); }
+    float DegreesToRadians(float angle) { return angle * (2 * Mathf.PI / 180); }
 
 
     /* Andrew Greer
