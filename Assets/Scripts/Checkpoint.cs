@@ -15,6 +15,7 @@ public class Checkpoint : MonoBehaviour
     public GameObject[] checkpoints;
     public GameObject FinishCheckpoint; 
     public TMP_Text timeText;
+    public TMP_Text BestTimeText;
     public AudioSource checkpointSound;
 
     private static playersave psave;
@@ -117,6 +118,11 @@ public class Checkpoint : MonoBehaviour
     {
         levelTime = 0f;
         timeText.text = "Elapsed Time:\t" + levelTime;
+        if(BestTimeText != null)
+        {
+            BestTimeText.text = "Best Time:\t" + psave.getBestTime();
+        }
+        
     }
 
     void OnTriggerEnter2D(Collider2D Collider)
@@ -128,6 +134,7 @@ public class Checkpoint : MonoBehaviour
         if (Collider.gameObject == FinishCheckpoint)
         {
             Debug.Log("Player Finished Level");
+            psave.saveBestTime(parseTime(levelTime));
             finished = true;
             checkpointSound.Play();
             psave.setCheckpoint(0);
@@ -143,6 +150,7 @@ public class Checkpoint : MonoBehaviour
             {
                 psave.incrementLevel();
             }
+            
             SceneManager.LoadScene("PatchNotes");
             return;
         }
@@ -176,20 +184,31 @@ public class Checkpoint : MonoBehaviour
     }
 
 
+    private string parseTime(float levelTime)
+    {
+        string timeString = "0.0";
+        minutes = (int)levelTime / 60;
+        if (levelTime > 60)
+        {
+            timeString = minutes + ":" + TimerRounding(levelTime % 60);
+        }
+        else timeString = "" + TimerRounding(levelTime);
+        return timeString;
+    }
+
+
     void Update()
     {
         //if the player hasn't reached the finish, update the timer; else set it to green
         if (!finished)
         {
             levelTime += Time.deltaTime;
-            minutes = (int)levelTime / 60;
-            if (levelTime > 60)
-            {
-                timeText.text = "Elapsed Time:\t" + minutes + ":" + TimerRounding(levelTime % 60);
-            }
-            else timeText.text = "Elapsed Time:\t" + TimerRounding(levelTime);
+            string timeString = parseTime(levelTime);
+            timeText.text = "Elapsed Time:\t" + timeString;
         }
         else timeText.color = new Vector4(0f, 1.0f, 0f, 1.0f);
+
+        
     }
 
     //custom rounding function to display the time to 1 decimal place
