@@ -113,13 +113,17 @@ namespace PlayerSave
         {
             return this.Fullscreen;
         }
-        public string getBestTime()
+        public float getBestTime()
         {
             if(this.world < BestTimes.GetLength(0) && this.level < BestTimes.GetLength(1))
             {
-                return BestTimes[this.world, this.level];
+                if(BestTimes[this.world, this.level] == null)
+                {
+                    return -1f;
+                }
+                return float.Parse(BestTimes[this.world, this.level]);
             }
-            return "0.0";
+            return -1f;
             
         }
 
@@ -196,13 +200,16 @@ namespace PlayerSave
             }
         }
 
-        public void saveBestTime(string time)
+        public void saveBestTime(float time)
         {
-            addBestTime(time);
-            writeBestTime();
+            if(time < getBestTime())
+            {
+                addBestTime(time);
+                writeBestTime();
+            }
         }
 
-        private void addBestTime(string time, int world=-1, int level=-1)
+        private void addBestTime(float time, int world=-1, int level=-1)
         {
             if(world == -1)
             {
@@ -237,7 +244,7 @@ namespace PlayerSave
                 Array.Copy(temparr, 0, BestTimes, 0, temparr.Length);
             }
             
-            BestTimes[world, level] = time;
+            BestTimes[world, level] = "" + time;
         }
 
         private void writeBestTime()
@@ -271,7 +278,7 @@ namespace PlayerSave
                     int.TryParse(leveldata[0], out w);
                     int.TryParse(leveldata[1], out l);
 
-                    addBestTime(data[1], w, l);
+                    addBestTime(float.Parse(data[1]), w, l);
                 }
                 file.Close();
             }

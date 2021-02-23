@@ -120,7 +120,7 @@ public class Checkpoint : MonoBehaviour
         timeText.text = "Elapsed Time:\t" + levelTime;
         if(BestTimeText != null)
         {
-            BestTimeText.text = "Best Time:\t" + psave.getBestTime();
+            BestTimeText.text = "Best Time:\t" + parseTime(psave.getBestTime());
         }
         
     }
@@ -134,7 +134,7 @@ public class Checkpoint : MonoBehaviour
         if (Collider.gameObject == FinishCheckpoint)
         {
             Debug.Log("Player Finished Level");
-            psave.saveBestTime(parseTime(levelTime));
+            psave.saveBestTime(levelTime);
             finished = true;
             checkpointSound.Play();
             psave.setCheckpoint(0);
@@ -186,6 +186,10 @@ public class Checkpoint : MonoBehaviour
 
     private string parseTime(float levelTime)
     {
+        if(levelTime == -1)
+        {
+            return "NA";
+        }
         string timeString = "0.0";
         minutes = (int)levelTime / 60;
         if (levelTime > 60)
