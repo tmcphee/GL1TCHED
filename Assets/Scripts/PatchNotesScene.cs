@@ -20,6 +20,7 @@ public class PatchNotesScene : MonoBehaviour
         pnotes = new patchnotes();
 
         GameObject.Find("PatchText").GetComponent<Text>().text = pnotes.getNote(psave.getWorld(), psave.getLevel());
+        GameObject.Find("Version").GetComponent<Text>().text = psave.getWorld() + "." + psave.getLevel();
     }
 
     /*  Tyler McPhee

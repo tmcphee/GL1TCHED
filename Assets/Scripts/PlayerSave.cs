@@ -8,7 +8,7 @@ namespace PlayerSave
     public class playersave
     {
         //Default Values
-        private static string savefile = System.IO.Directory.GetCurrentDirectory() + "\\PlayerSave.json";
+        private static string savefile = System.IO.Directory.GetCurrentDirectory() + "\\PlayerSave.Gl1";
         private static string BestTimeSave = System.IO.Directory.GetCurrentDirectory() + "\\BestTimes.Gl1";
         public int world = 0;
         public int level = 0;
