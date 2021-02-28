@@ -33,12 +33,9 @@
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			// Compile multiple versions of this shader depending on lighting settings.
 			#pragma multi_compile_fwdbase
 			
 			#include "UnityCG.cginc"
-			// Files below include macros and functions to assist
-			// with lighting and shadows.
 			#include "Lighting.cginc"
 			#include "AutoLight.cginc"
 
@@ -55,9 +52,7 @@
 				float3 worldNormal : NORMAL;
 				float2 uv : TEXCOORD0;
 				float3 viewDir : TEXCOORD1;	
-				// Macro found in Autolight.cginc. Declares a vector4
-				// into the TEXCOORD2 semantic with varying precision 
-				// depending on platform target.
+				
 				SHADOW_COORDS(2)
 			};
 
@@ -71,8 +66,7 @@
 				o.worldNormal = UnityObjectToWorldNormal(v.normal);		
 				o.viewDir = WorldSpaceViewDir(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				// Defined in Autolight.cginc. Assigns the above shadow coordinate
-				// by transforming the vertex from world space to shadow-map space.
+				// Defined in Autolight.cginc. Assigns the above shadow coordinate by transforming the vertex from world space to shadow-map space.
 				TRANSFER_SHADOW(o)
 				return o;
 			}
@@ -108,8 +102,7 @@
 				// Calculate specular reflection.
 				float3 halfVector = normalize(_WorldSpaceLightPos0 + viewDir);
 				float NdotH = dot(normal, halfVector);
-				// Multiply _Glossiness by itself to allow artist to use smaller
-				// glossiness values in the inspector.
+				// Multiply _Glossiness by itself to allow better granularity with smaller values
 				float specularIntensity = pow(NdotH * lightIntensity, _Glossiness * _Glossiness);
 				float specularIntensitySmooth = smoothstep(0.005, 0.01, specularIntensity);
 				float4 specular = specularIntensitySmooth * _SpecularColor;				
