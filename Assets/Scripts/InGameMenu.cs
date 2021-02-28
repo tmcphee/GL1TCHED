@@ -40,7 +40,7 @@ public class InGameMenu : MonoBehaviour
     public void RestartFromLastCheckpoint_Click()
     {
         unfreezeplayer();
-        this.GetComponent<Checkpoint>().SetPlayerLastCheckpoint();
+        GetComponent<Checkpoint>().SetPlayerLastCheckpoint();
         InGameMenuCanvas.SetActive(false);
     }
 

@@ -35,6 +35,7 @@ public class Checkpoint : MonoBehaviour
         {
             if (obj == checkpoint)
             {
+                Debug.Log(index);
                 return index;
             }
             index++;
@@ -48,7 +49,7 @@ public class Checkpoint : MonoBehaviour
      */
     public void SetPlayerLastCheckpoint()
     {
-        r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
+        r.transform.position = GetLastCheckpointPosition();
         if (CheckpointVelocityGlitch == false)
         {
             r.velocity = new Vector3(0, 0, 0);
