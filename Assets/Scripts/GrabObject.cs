@@ -19,6 +19,7 @@ public class GrabObject : MonoBehaviour
     private Rigidbody2D box;
     private float m_Angle;
     private float boxDistance;
+    private bool GrabToggle;
 
 
     // instantiates some variables like the camera position and this box object
@@ -28,6 +29,7 @@ public class GrabObject : MonoBehaviour
         cameraPos[2] = 0;
         box = GetComponent<Rigidbody2D>();
         originalPos = box.position;
+        GrabToggle = false;
     }
     
 
@@ -44,9 +46,14 @@ public class GrabObject : MonoBehaviour
         m = ScreenSpaceToWorldSpace(Input.mousePosition);
         boxDistance = Vector2.Distance(new Vector2(playerPos[0], playerPos[1]), box.position);
 
+        if (Input.GetKey(KeyCode.E))
+        {
+            GrabToggle = !GrabToggle;
+        }
+
 
         // if player clicks and the box is close to the player
-        if (Input.GetMouseButton(0) && boxDistance < GrabDistance * 2f)
+        if ((Input.GetMouseButton(0) || GrabToggle) && boxDistance < GrabDistance * 2f)
         {
             if (GlitchMode)
             {
@@ -55,7 +62,9 @@ public class GrabObject : MonoBehaviour
                 box.position = new Vector2(playerPos[0] - (GrabDistance * Mathf.Cos(m_Angle)), playerPos[1] - (GrabDistance * Mathf.Sin(m_Angle)));
 
             } else if (Vector2.Distance(box.position, new Vector2(m[0], m[1])) < GrabDistance) { box.position = new Vector2(m[0], m[1]); }
-                    // ^ if box is close to the cursor
+            // ^ if box is close to the cursor
+
+            Debug.Log((m, box.position));
         }
 
         // if box falls below the map
@@ -70,7 +79,7 @@ public class GrabObject : MonoBehaviour
      * - takes a Vector3 of screenspace coordinates (pixel position) and converts them to worldspace coordinates */
     Vector3 ScreenSpaceToWorldSpace(Vector3 coordinates)
     {
-        return new Vector3((coordinates[0] / Screen.width) * cam.orthographicSize * 4, (coordinates[1] / Screen.height) * cam.orthographicSize * 2, 0);
+        return new Vector3((coordinates[0] / Screen.width) * cam.orthographicSize * 4 - GrabDistance/2, (coordinates[1] / Screen.height) * cam.orthographicSize * 2 - GrabDistance/2, 0);
     }
 
 
