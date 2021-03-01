@@ -115,16 +115,29 @@ namespace PlayerSave
         }
         public float getBestTime()
         {
-            if(this.world < BestTimes.GetLength(0) && this.level < BestTimes.GetLength(1))
+            return FindBestTime(this.world, this.level);
+        }
+        public float getPreviousBestTime()
+        {
+            if(this.level -1 >= 0)
             {
-                if(BestTimes[this.world, this.level] == null)
+                return FindBestTime(this.world, this.level - 1);
+            }
+            return -1f;
+        }
+
+
+        private float FindBestTime(int world, int level)
+        {
+            if (world < BestTimes.GetLength(0) && level < BestTimes.GetLength(1))
+            {
+                if (BestTimes[world, level] == null)
                 {
                     return -1f;
                 }
-                return float.Parse(BestTimes[this.world, this.level]);
+                return float.Parse(BestTimes[world, level]);
             }
             return -1f;
-            
         }
 
         /*  Tyler McPhee
