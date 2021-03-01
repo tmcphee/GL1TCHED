@@ -520,7 +520,7 @@ MonoBehaviour:
   r: {fileID: 1734061884721887811}
   magnitude: 2750
   topSpeed: 15
-  topclimbspeed: 0
+  topclimbspeed: 7
   infiniteJump: 1
   screenWarp: 0
   hitSound: {fileID: 981042425}
