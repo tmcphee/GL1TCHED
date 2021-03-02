@@ -118,7 +118,14 @@ public class Checkpoint : MonoBehaviour
     void Start()
     {
         levelTime = 0f;
-        timeText.text = "Elapsed Time:\t" + levelTime;
+        if (timeText != null)
+        {
+            timeText.text = "Elapsed Time:\t" + levelTime;
+        }
+        else
+        {
+            Debug.Log("timeText Missing");
+        }
         if(BestTimeText != null)
         {
             BestTimeText.text = "Best Time:\t" + parseTime(psave.getBestTime());
@@ -205,13 +212,16 @@ public class Checkpoint : MonoBehaviour
     void Update()
     {
         //if the player hasn't reached the finish, update the timer; else set it to green
-        if (!finished)
+        if (timeText != null)
         {
-            levelTime += Time.deltaTime;
-            string timeString = parseTime(levelTime);
-            timeText.text = "Elapsed Time:\t" + timeString;
+            if (!finished)
+            {
+                levelTime += Time.deltaTime;
+                string timeString = parseTime(levelTime);
+                timeText.text = "Elapsed Time:\t" + timeString;
+            }
+            else timeText.color = new Vector4(0f, 1.0f, 0f, 1.0f);
         }
-        else timeText.color = new Vector4(0f, 1.0f, 0f, 1.0f);
 
         
     }
