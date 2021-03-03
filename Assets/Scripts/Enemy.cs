@@ -10,14 +10,18 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D player;
     private Rigidbody2D enemy;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         enemy = GameObject.Find("Enemy").GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    /* Andrew Greer 
+        - for every frame, if the player is within the enemy's detection radius, it applies a force
+          on the enemy towards the player if the top speed isn't exceeded
+        - also includes recycled movement code for self-righting in case the enemy falls over
+    */
     void Update()
     {
         float distance = Vector3.Distance(enemy.transform.position, player.transform.position);
@@ -28,22 +32,21 @@ public class Enemy : MonoBehaviour
             enemy.MoveRotation(Mathf.Abs(enemy.rotation - 0.75f));
         }
 
+        //if player is within sight of the enemy and the enemy isn't going too fast
         if (distance <= detectionDistance && Mathf.Abs(enemy.velocity.x) <= topSpeed)
         {
-            float angle = DegreesToRadians(Vector3.SignedAngle(enemy.transform.position, player.transform.position, player.transform.position - enemy.transform.position));
-
             float sign;
+
+            //multiplies the force by -1 if the player is to the left of the enemy
             if (player.transform.position[0] < enemy.transform.position[0])
             {
                 sign = -1f;
             }
             else sign = 1f;
 
+            //generates the enemy movement force
             Vector2 forceVector = new Vector2((sign * 900f) + (0.5f / distance) * sign * 2200f, 0f);
-            Debug.Log((angle, forceVector));
             enemy.AddForce(forceVector);
         }
     }
-
-    float DegreesToRadians(float angle) { return angle * (Mathf.PI / 180); }
 }
