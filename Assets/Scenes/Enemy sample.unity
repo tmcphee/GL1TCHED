@@ -918,7 +918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topSpeed: 10
-  detectionDistance: 12
+  detectionDistance: 9
 --- !u!1 &2058995617 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4213158864382055191, guid: ba92afa9c267b91409d0daf3476d8ad0,
