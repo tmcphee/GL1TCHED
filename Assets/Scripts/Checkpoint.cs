@@ -11,13 +11,14 @@ public class Checkpoint : MonoBehaviour
     public bool ResetCheckpointOnStart = false;
     public bool CheckpointVelocityGlitch = false;
     public bool isEndofWorld = false;
-    public Rigidbody2D r;
+    
     public GameObject[] checkpoints;
     public GameObject FinishCheckpoint; 
     public TMP_Text timeText;
     public TMP_Text BestTimeText;
     public AudioSource checkpointSound;
 
+    private Rigidbody2D r;
     private static playersave psave;
     private float levelTime;
     private int minutes = 1;
@@ -117,6 +118,8 @@ public class Checkpoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        r = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+
         levelTime = 0f;
         if (timeText != null)
         {
