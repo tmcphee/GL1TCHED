@@ -79,7 +79,7 @@ public class GrabObject : MonoBehaviour
      * - takes a Vector3 of screenspace coordinates (pixel position) and converts them to worldspace coordinates */
     Vector3 ScreenSpaceToWorldSpace(Vector3 coordinates)
     {
-        return new Vector3((coordinates[0] / Screen.width) * cam.orthographicSize * 4 - GrabDistance/2, (coordinates[1] / Screen.height) * cam.orthographicSize * 2 - GrabDistance/2, 0);
+        return new Vector3((coordinates[0] / Screen.width) * cam.orthographicSize * 4 - GrabDistance, (coordinates[1] / Screen.height) * cam.orthographicSize * 2 - GrabDistance, 0);
     }
 
 
