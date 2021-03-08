@@ -9,12 +9,14 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody2D player;
     private Rigidbody2D enemy;
+    private Vector3 originalPos;
 
     
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         enemy = GameObject.Find("Enemy").GetComponent<Rigidbody2D>();
+        originalPos = enemy.transform.position;
     }
 
     /* Andrew Greer 
@@ -48,5 +50,13 @@ public class Enemy : MonoBehaviour
             Vector2 forceVector = new Vector2((sign * 900f) + (0.5f / distance) * sign * 2200f, 0f);
             enemy.AddForce(forceVector);
         }
+    }
+
+
+    /* Andrew Greer
+       - convenient method for resetting the enemy position (i.e. level restart or respawning) */
+    public void ResetPosition()
+    {
+        enemy.transform.position = originalPos;
     }
 }
