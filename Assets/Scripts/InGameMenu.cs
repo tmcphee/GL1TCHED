@@ -10,7 +10,7 @@ public class InGameMenu : MonoBehaviour
     private float gravityscale;
 
     private GameObject InGameMenuCanvas;
-    private GameObject r;
+    private GameObject r, box;
     private Button LastCheckpointBtn, BackBtn, MainMenuBtn;
 
     /*  Tyler McPhee
@@ -21,6 +21,8 @@ public class InGameMenu : MonoBehaviour
     void Start()
     {
         r = GameObject.Find("Player");
+        box = GameObject.Find("grab box");
+
         InGameMenuCanvas = GameObject.Find("InGameMenuCanvas");
 
         LastCheckpointBtn = GameObject.Find("InGameMenuCanvas/RestartLastCheckpointBtn").GetComponent<Button>();
@@ -64,6 +66,12 @@ public class InGameMenu : MonoBehaviour
     {
         unfreezeplayer();
         GetComponent<Checkpoint>().SetPlayerLastCheckpoint();
+
+        if(box != null)
+        {
+            box.GetComponent<GrabObject>().ResetPosition();
+        }
+
         InGameMenuCanvas.SetActive(false);
     }
 

@@ -90,5 +90,8 @@ public class GrabObject : MonoBehaviour
 
     /* Andrew Greer
      *  - resets the box position to where it was when the level started (level restart) */
-    void ResetPosition() { box.position = originalPos; }
+    public void ResetPosition() { 
+        box.position = originalPos;
+        box.velocity = new Vector2(0f, 0f);
+    }
 }
