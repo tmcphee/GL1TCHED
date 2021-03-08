@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public Rigidbody2D r;
+    private Rigidbody2D r;
     public float magnitude;
     public float topSpeed;
     public float topclimbspeed;
@@ -25,6 +25,8 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
+        r = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+
         /*  Tyler McPhee
          *      -Sets the players postion to spawn on the first checkpoint
          *  Troy Walther

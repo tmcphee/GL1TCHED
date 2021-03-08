@@ -25,6 +25,16 @@ public class Checkpoint : MonoBehaviour
     private bool finished = false;
 
     /*  Tyler McPhee
+     *  Sets the Player checkpoint to the first checkpoint, checkpoint 0
+     *  Respawns the player on the Last checkpoint, checkpoint 0
+     */
+    public void RestartLevel()
+    {
+        psave.setLevel(0);
+        SetPlayerLastCheckpoint();
+    }
+
+    /*  Tyler McPhee
      *  Finds a given checkpoint object in the checkpoints array
      *  INPUT: GameObject checkpoint
      *  OUTPUT: Index value in checkpoints array
