@@ -19,7 +19,8 @@ public class Movement : MonoBehaviour
 
     private bool isWrappingX = false;
     private bool isWrappingY = false;
-    
+
+    public bool canRotate;
 
     Renderer[] renderers;
 
@@ -119,6 +120,10 @@ public class Movement : MonoBehaviour
     /*  Andrew Greer
      *   - called once every frame
      *   - handles jumping, movement, and player rotation
+     *   
+     *   Troy Walther
+     *   - rotation lock for certain levels
+     *   - Fixed control after reaching max speed
      */
     void Update()
     {
@@ -127,12 +132,21 @@ public class Movement : MonoBehaviour
         {
             r.MoveRotation(Mathf.Abs(r.rotation - 0.75f));
         }
+        if (canRotate == false) 
+        {
+            r.rotation = 0;
+        }
 
         //applies force if player hasn't exceeded top speed
         if (Mathf.Abs(r.velocity.x) < topSpeed)
         {
             r.AddForce(new Vector2(Input.GetAxis("Horizontal") * magnitude * 1.75f, 1f));
         }
+        if (Input.GetAxis("Horizontal") * r.velocity.x < 0)
+        {
+            r.AddForce(new Vector2(Input.GetAxis("Horizontal") * magnitude/4 * 1.75f, 1f));
+        }
+
 
         /*  Tyler McPhee
          *  Apply force for climbable objects
