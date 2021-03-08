@@ -58,5 +58,6 @@ public class Enemy : MonoBehaviour
     public void ResetPosition()
     {
         enemy.transform.position = originalPos;
+        enemy.velocity = new Vector2(0f, 0f);
     }
 }

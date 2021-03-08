@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!82 &136022642 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 136022642, guid: dc78df84730009a429dae20a3680b4a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1765307828}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &784072586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -489,12 +495,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1293629453 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5291208691589760660, guid: faf64566a405f4c4580648fedc11b89e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1950699830}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1538218602
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,16 +585,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1734061884721887812, guid: dc78df84730009a429dae20a3680b4a1,
+        type: 3}
+      propertyPath: enemySound
+      value: 
+      objectReference: {fileID: 136022642}
     - target: {fileID: 1734061884721887813, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1734061884721887821, guid: dc78df84730009a429dae20a3680b4a1,
-        type: 3}
-      propertyPath: InGameMenuCanvas
-      value: 
-      objectReference: {fileID: 1293629453}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[0]

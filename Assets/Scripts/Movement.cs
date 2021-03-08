@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
     public bool screenWarp;
     public AudioSource hitSound;
     public AudioSource jumpSound;
+    public AudioSource enemySound;
 
     private bool onGround = false;
     private bool onClimbable = false;
@@ -32,10 +33,10 @@ public class Movement : MonoBehaviour
          *  Troy Walther
          *      -Store character renderer(s) in array
          */
+
         r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
 
         renderers = GetComponentsInChildren<Renderer>();
-
     }
 
 
@@ -49,9 +50,11 @@ public class Movement : MonoBehaviour
          *  Checks if the player collided with an enemy
          *  if true respawn enemy
          */
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             r.GetComponent<Checkpoint>().SetPlayerLastCheckpoint();
+            enemySound.Play();
+            GameObject.Find("Enemy").GetComponent<Enemy>().ResetPosition();
         }
 
         if (collision.gameObject.CompareTag("Ground"))
