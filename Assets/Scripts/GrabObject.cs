@@ -57,8 +57,15 @@ public class GrabObject : MonoBehaviour
         {
             if (GlitchMode)
             {
-                m_Angle = DegreesToRadians(Vector3.SignedAngle(playerPos, m - playerPos, Vector3.up));
+                m_Angle = DegreesToRadians(Vector2.Angle(playerPos, m - playerPos));
+
+                if(m.y > playerPos.y)
+                {
+                    m_Angle *= -1f;
+                }
+
                 Debug.Log(m_Angle);
+                m_Angle = Mathf.Abs(m_Angle - DegreesToRadians(180));
                 box.position = new Vector2(playerPos[0] - (GrabDistance * Mathf.Cos(m_Angle)), playerPos[1] - (GrabDistance * Mathf.Sin(m_Angle)));
 
             } else if (Vector2.Distance(box.position, new Vector2(m[0], m[1])) < GrabDistance) { box.position = new Vector2(m[0], m[1]); }
@@ -85,7 +92,7 @@ public class GrabObject : MonoBehaviour
 
     /* Andrew Greer
      *  - simple degrees to radians conversion method */
-    float DegreesToRadians(float angle) { return angle * (2 * Mathf.PI / 180); }
+    float DegreesToRadians(float angle) { return angle * (Mathf.PI / 180); }
 
 
     /* Andrew Greer
