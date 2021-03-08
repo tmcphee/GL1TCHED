@@ -43,6 +43,15 @@ public class Movement : MonoBehaviour
     */
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        /*  Tyler McPhee
+         *  Checks if the player collided with an enemy
+         *  if true respawn enemy
+         */
+        if (collision.gameObject.tag == "Enemy")
+        {
+            r.GetComponent<Checkpoint>().SetPlayerLastCheckpoint();
+        }
+
         if (collision.gameObject.CompareTag("Ground"))
         {
             onGround = true;
