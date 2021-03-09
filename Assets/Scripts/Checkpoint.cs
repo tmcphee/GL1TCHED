@@ -21,7 +21,7 @@ public class Checkpoint : MonoBehaviour
     private Rigidbody2D r;
     private static playersave psave;
     private float levelTime;
-    private int minutes = 1;
+    //private int minutes = 1;
     private bool finished = false;
 
     /*  Tyler McPhee
@@ -141,7 +141,7 @@ public class Checkpoint : MonoBehaviour
         }
         if(BestTimeText != null)
         {
-            BestTimeText.text = "Best Time:\t" + parseTime(psave.getBestTime());
+            BestTimeText.text = "Best Time:\t" + psave.parseTime(psave.getBestTime());
         }
         
     }
@@ -205,21 +205,7 @@ public class Checkpoint : MonoBehaviour
     }
 
 
-    private string parseTime(float levelTime)
-    {
-        if(levelTime == -1)
-        {
-            return "NA";
-        }
-        string timeString = "0.0";
-        minutes = (int)levelTime / 60;
-        if (levelTime > 60)
-        {
-            timeString = minutes + ":" + TimerRounding(levelTime % 60);
-        }
-        else timeString = "" + TimerRounding(levelTime);
-        return timeString;
-    }
+    
 
 
     void Update()
@@ -230,7 +216,7 @@ public class Checkpoint : MonoBehaviour
             if (!finished)
             {
                 levelTime += Time.deltaTime;
-                string timeString = parseTime(levelTime);
+                string timeString = psave.parseTime(levelTime);
                 timeText.text = "Elapsed Time:\t" + timeString;
             }
             else timeText.color = new Vector4(0f, 1.0f, 0f, 1.0f);
@@ -239,9 +225,5 @@ public class Checkpoint : MonoBehaviour
         
     }
 
-    //custom rounding function to display the time to 1 decimal place
-    private float TimerRounding(float time)
-    {
-        return Mathf.Round(time * 10.0f) / 10.0f;
-    }
+    
 }

@@ -140,6 +140,29 @@ namespace PlayerSave
             return -1f;
         }
 
+        //Andrew
+        //custom rounding function to display the time to 1 decimal place
+        private float TimerRounding(float time)
+        {
+            return Mathf.Round(time * 10.0f) / 10.0f;
+        }
+
+        public string parseTime(float levelTime)
+        {
+            if (levelTime == -1)
+            {
+                return "NA";
+            }
+            string timeString = "0.0";
+            int minutes = (int)levelTime / 60;
+            if (levelTime > 60)
+            {
+                timeString = minutes + ":" + TimerRounding(levelTime % 60);
+            }
+            else timeString = "" + TimerRounding(levelTime);
+            return timeString;
+        }
+
         /*  Tyler McPhee
          *  Checks to see if the Players Save File exists
          *  OUTPUT: true if file exist || false if files does not exist

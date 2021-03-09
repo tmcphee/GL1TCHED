@@ -29,8 +29,8 @@ public class PatchNotesScene : MonoBehaviour
         {
             GameObject.Find("Canvas/WorldPanel").SetActive(false);
             GameObject.Find("LevelText").GetComponent<Text>().text = "Level " + psave.getLevel();
-            float besttime = psave.getPreviousBestTime();
-            if(besttime != -1f)
+            string besttime = psave.parseTime(psave.getPreviousBestTime());
+            if(besttime != "NA")
             {
                 GameObject.Find("BestTime").GetComponent<Text>().text = "Best Time:  " + besttime;
             }
