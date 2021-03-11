@@ -464,13 +464,12 @@ PrefabInstance:
     - target: {fileID: 5636706993476626493, guid: b9c26c189eae4be45b0dc2422095eddb,
         type: 3}
       propertyPath: m_text
-      value: '- NEW: grabbable box (mouseclick or E to grab)
+      value: '
+
+        - fix box being considered ground
 
 
-        - fix box
-        being considered ground
-
-        -fix wall collision'
+        - fix wall collision'
       objectReference: {fileID: 0}
     - target: {fileID: 5636706993893957398, guid: b9c26c189eae4be45b0dc2422095eddb,
         type: 3}
@@ -761,12 +760,12 @@ PrefabInstance:
     - target: {fileID: 4159191919028676911, guid: f22249ab6a16ab840a79983cb20ea57f,
         type: 3}
       propertyPath: m_Size.x
-      value: 0.8000755
+      value: 0.7431041
       objectReference: {fileID: 0}
     - target: {fileID: 4159191919028676911, guid: f22249ab6a16ab840a79983cb20ea57f,
         type: 3}
       propertyPath: m_Offset.x
-      value: -0.099962264
+      value: -0.12844793
       objectReference: {fileID: 0}
     - target: {fileID: 5886391621479937039, guid: f22249ab6a16ab840a79983cb20ea57f,
         type: 3}
