@@ -8,11 +8,11 @@ using UnityEngine.UIElements;
  * In order for this script to work properly, the bottom left of the camera's view should be near (0, 0, 0) in the level's worldspace */
 public class GrabObject : MonoBehaviour
 {
-    public Rigidbody2D player;
-    public Camera cam;
     public float GrabDistance;
     public bool GlitchMode;
 
+    private Rigidbody2D player;
+    private Camera cam;
     private Vector3 m;
     private Vector3 cameraPos;
     private Vector3 originalPos;
@@ -25,8 +25,12 @@ public class GrabObject : MonoBehaviour
     // instantiates some variables like the camera position and this box object
     void Start()
     {
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         cameraPos = cam.GetComponent<Transform>().position;
         cameraPos[2] = 0;
+
+        player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+
         box = GetComponent<Rigidbody2D>();
         originalPos = box.position;
         GrabToggle = false;
@@ -84,15 +88,16 @@ public class GrabObject : MonoBehaviour
 
     /* Andrew Greer
      * - takes a Vector3 of screenspace coordinates (pixel position) and converts them to worldspace coordinates */
-    Vector3 ScreenSpaceToWorldSpace(Vector3 coordinates)
+    private Vector3 ScreenSpaceToWorldSpace(Vector3 coordinates)
     {
-        return new Vector3((coordinates[0] / Screen.width) * cam.orthographicSize * 4 - GrabDistance, (coordinates[1] / Screen.height) * cam.orthographicSize * 2 - GrabDistance, 0);
+        //multiplying x coord by 3.5554 and y coordinate by 2 since the ratio is approx. 16:9
+        return new Vector3((coordinates[0] / Screen.width) * cam.orthographicSize * 3.5554f, (coordinates[1] / Screen.height) * cam.orthographicSize * 2, 0);
     }
 
 
     /* Andrew Greer
      *  - simple degrees to radians conversion method */
-    float DegreesToRadians(float angle) { return angle * (Mathf.PI / 180); }
+    private float DegreesToRadians(float angle) { return angle * (Mathf.PI / 180); }
 
 
     /* Andrew Greer
