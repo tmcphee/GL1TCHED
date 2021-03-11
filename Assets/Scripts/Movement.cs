@@ -55,7 +55,7 @@ public class Movement : MonoBehaviour
         {
             r.GetComponent<Checkpoint>().SetPlayerLastCheckpoint();
             enemySound.Play();
-            GameObject.Find("Enemy").GetComponent<Enemy>().ResetPosition();
+            collision.collider.GetComponent<Enemy>().ResetPosition();
         }
 
         if (collision.gameObject.CompareTag("Ground"))

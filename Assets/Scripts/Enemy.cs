@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
-        enemy = GameObject.Find("Enemy").GetComponent<Rigidbody2D>();
+        enemy = GetComponent<Rigidbody2D>();
         originalPos = enemy.transform.position;
     }
 
