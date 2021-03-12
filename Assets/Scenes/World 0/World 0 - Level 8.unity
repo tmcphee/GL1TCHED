@@ -896,7 +896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 111.3, y: 253}
+  m_AnchoredPosition: {x: -932, y: 239.4}
   m_SizeDelta: {x: 810.4578, y: 91.009094}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &507937583
@@ -2244,7 +2244,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 111.3, y: 288.6}
+  m_AnchoredPosition: {x: -932, y: 275}
   m_SizeDelta: {x: 810.4578, y: 91.009094}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1498863722
@@ -2717,7 +2717,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1853424408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.81, y: 5.74, z: 91}
+  m_LocalPosition: {x: 16.06, y: 7.23, z: 91}
   m_LocalScale: {x: 1.1967998, y: 1.1968006, z: 1}
   m_Children:
   - {fileID: 1767280800}
@@ -2780,7 +2780,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- add a check to see if player is on the ground to prevent infinite jumping'
+  m_text: '- prevent the player from "wrapping around the screen" by walking off
+    the map'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
