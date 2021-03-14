@@ -140,14 +140,16 @@ namespace PlayerSave
             return -1f;
         }
 
-        //Andrew
-        //custom rounding function to display the time to 1 decimal place
-        private float TimerRounding(float time)
+        /* Andrew Greer
+            - method for round a number to a specified number of decimal places
+        */
+        private float TimerRounding(float time, int precision)
         {
-            return Mathf.Round(time * 10.0f) / 10.0f;
+            float roundBy = Mathf.Pow(10, precision);
+            return Mathf.Round(time * roundBy) / roundBy;
         }
 
-        public string parseTime(float levelTime)
+        public string parseTime(float levelTime, int precision)
         {
             if (levelTime == -1)
             {
@@ -157,9 +159,9 @@ namespace PlayerSave
             int minutes = (int)levelTime / 60;
             if (levelTime > 60)
             {
-                timeString = minutes + ":" + TimerRounding(levelTime % 60);
+                timeString = minutes + ":" + TimerRounding(levelTime % 60, precision);
             }
-            else timeString = "" + TimerRounding(levelTime);
+            else timeString = "" + TimerRounding(levelTime, precision);
             return timeString;
         }
 
