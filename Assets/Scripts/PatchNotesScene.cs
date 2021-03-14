@@ -18,9 +18,27 @@ public class PatchNotesScene : MonoBehaviour
     {
         psave = new playersave();
         pnotes = new patchnotes();
+        if (psave.getLevel() == 0)
+        {
+            GameObject.Find("PatchText").GetComponent<Text>().text = pnotes.getNote(psave.getWorld(), psave.getLevel());
+            GameObject.Find("Version").GetComponent<Text>().text = psave.getWorld() + "." + psave.getLevel();
+           
+            GameObject.Find("Canvas/LevelPanel").SetActive(false);
+        }
+        else
+        {
+            GameObject.Find("Canvas/WorldPanel").SetActive(false);
+            GameObject.Find("LevelText").GetComponent<Text>().text = "Level " + psave.getLevel();
+            string besttime = psave.parseTime(psave.getPreviousBestTime());
+            if(besttime != "NA")
+            {
+                GameObject.Find("BestTime").GetComponent<Text>().text = "Best Time:  " + besttime;
+            }
+            
+        }
+        
 
-        GameObject.Find("PatchText").GetComponent<Text>().text = pnotes.getNote(psave.getWorld(), psave.getLevel());
-        GameObject.Find("Version").GetComponent<Text>().text = psave.getWorld() + "." + psave.getLevel();
+        
     }
 
     /*  Tyler McPhee

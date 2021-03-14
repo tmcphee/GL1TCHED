@@ -9,6 +9,8 @@ TagManager:
   - Glitchwall
   - Climbable
   - Spike
+  - Enemy
+  - Music
   layers:
   - Default
   - TransparentFX

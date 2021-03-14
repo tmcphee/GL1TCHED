@@ -11,17 +11,28 @@ public class Checkpoint : MonoBehaviour
     public bool ResetCheckpointOnStart = false;
     public bool CheckpointVelocityGlitch = false;
     public bool isEndofWorld = false;
-    public Rigidbody2D r;
+    
     public GameObject[] checkpoints;
     public GameObject FinishCheckpoint; 
     public TMP_Text timeText;
     public TMP_Text BestTimeText;
     public AudioSource checkpointSound;
 
+    private Rigidbody2D r;
     private static playersave psave;
     private float levelTime;
-    private int minutes = 1;
+    //private int minutes = 1;
     private bool finished = false;
+
+    /*  Tyler McPhee
+     *  Sets the Player checkpoint to the first checkpoint, checkpoint 0
+     *  Respawns the player on the Last checkpoint, checkpoint 0
+     */
+    public void RestartLevel()
+    {
+        psave.setLevel(0);
+        SetPlayerLastCheckpoint();
+    }
 
     /*  Tyler McPhee
      *  Finds a given checkpoint object in the checkpoints array
@@ -35,6 +46,7 @@ public class Checkpoint : MonoBehaviour
         {
             if (obj == checkpoint)
             {
+                Debug.Log(index);
                 return index;
             }
             index++;
@@ -48,7 +60,7 @@ public class Checkpoint : MonoBehaviour
      */
     public void SetPlayerLastCheckpoint()
     {
-        r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
+        r.transform.position = GetLastCheckpointPosition();
         if (CheckpointVelocityGlitch == false)
         {
             r.velocity = new Vector3(0, 0, 0);
@@ -116,11 +128,20 @@ public class Checkpoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        r = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+
         levelTime = 0f;
-        timeText.text = "Elapsed Time:\t" + levelTime;
+        if (timeText != null)
+        {
+            timeText.text = "Elapsed Time:\t" + levelTime;
+        }
+        else
+        {
+            Debug.Log("timeText Missing");
+        }
         if(BestTimeText != null)
         {
-            BestTimeText.text = "Best Time:\t" + parseTime(psave.getBestTime());
+            BestTimeText.text = "Best Time:\t" + psave.parseTime(psave.getBestTime());
         }
         
     }
@@ -184,40 +205,25 @@ public class Checkpoint : MonoBehaviour
     }
 
 
-    private string parseTime(float levelTime)
-    {
-        if(levelTime == -1)
-        {
-            return "NA";
-        }
-        string timeString = "0.0";
-        minutes = (int)levelTime / 60;
-        if (levelTime > 60)
-        {
-            timeString = minutes + ":" + TimerRounding(levelTime % 60);
-        }
-        else timeString = "" + TimerRounding(levelTime);
-        return timeString;
-    }
+    
 
 
     void Update()
     {
         //if the player hasn't reached the finish, update the timer; else set it to green
-        if (!finished)
+        if (timeText != null)
         {
-            levelTime += Time.deltaTime;
-            string timeString = parseTime(levelTime);
-            timeText.text = "Elapsed Time:\t" + timeString;
+            if (!finished)
+            {
+                levelTime += Time.deltaTime;
+                string timeString = psave.parseTime(levelTime);
+                timeText.text = "Elapsed Time:\t" + timeString;
+            }
+            else timeText.color = new Vector4(0f, 1.0f, 0f, 1.0f);
         }
-        else timeText.color = new Vector4(0f, 1.0f, 0f, 1.0f);
 
         
     }
 
-    //custom rounding function to display the time to 1 decimal place
-    private float TimerRounding(float time)
-    {
-        return Mathf.Round(time * 10.0f) / 10.0f;
-    }
+    
 }

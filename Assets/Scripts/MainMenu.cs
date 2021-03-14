@@ -140,6 +140,9 @@ public class MainMenu : MonoBehaviour
 
         initilize_settings();
 
+        /* Andrew Greer - plays music when the game is loaded */
+        GameObject.Find("VolumeController").GetComponent<AudioClass>().PlayMusic();
+
         SettingsPanel.SetActive(false);
         VideoPanel.SetActive(false);
         SoundPanel.SetActive(false);

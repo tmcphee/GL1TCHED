@@ -8,26 +8,32 @@ using UnityEngine.UIElements;
  * In order for this script to work properly, the bottom left of the camera's view should be near (0, 0, 0) in the level's worldspace */
 public class GrabObject : MonoBehaviour
 {
-    public Rigidbody2D player;
-    public Camera cam;
     public float GrabDistance;
     public bool GlitchMode;
 
+    private Rigidbody2D player;
+    private Camera cam;
     private Vector3 m;
     private Vector3 cameraPos;
     private Vector3 originalPos;
     private Rigidbody2D box;
     private float m_Angle;
     private float boxDistance;
+    private bool GrabToggle;
 
 
     // instantiates some variables like the camera position and this box object
     void Start()
     {
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         cameraPos = cam.GetComponent<Transform>().position;
         cameraPos[2] = 0;
+
+        player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+
         box = GetComponent<Rigidbody2D>();
         originalPos = box.position;
+        GrabToggle = false;
     }
     
 
@@ -44,18 +50,32 @@ public class GrabObject : MonoBehaviour
         m = ScreenSpaceToWorldSpace(Input.mousePosition);
         boxDistance = Vector2.Distance(new Vector2(playerPos[0], playerPos[1]), box.position);
 
+        if (Input.GetKey(KeyCode.E))
+        {
+            GrabToggle = !GrabToggle;
+        }
+
 
         // if player clicks and the box is close to the player
-        if (Input.GetMouseButton(0) && boxDistance < GrabDistance * 2f)
+        if ((Input.GetMouseButton(0) || GrabToggle) && boxDistance < GrabDistance * 2f)
         {
             if (GlitchMode)
             {
-                m_Angle = DegreesToRadians(Vector3.SignedAngle(playerPos, m - playerPos, Vector3.up));
+                m_Angle = DegreesToRadians(Vector2.Angle(playerPos, m - playerPos));
+
+                if(m.y > playerPos.y)
+                {
+                    m_Angle *= -1f;
+                }
+
                 Debug.Log(m_Angle);
+                m_Angle = Mathf.Abs(m_Angle - DegreesToRadians(180));
                 box.position = new Vector2(playerPos[0] - (GrabDistance * Mathf.Cos(m_Angle)), playerPos[1] - (GrabDistance * Mathf.Sin(m_Angle)));
 
             } else if (Vector2.Distance(box.position, new Vector2(m[0], m[1])) < GrabDistance) { box.position = new Vector2(m[0], m[1]); }
-                    // ^ if box is close to the cursor
+            // ^ if box is close to the cursor
+
+            Debug.Log((m, box.position));
         }
 
         // if box falls below the map
@@ -68,18 +88,22 @@ public class GrabObject : MonoBehaviour
 
     /* Andrew Greer
      * - takes a Vector3 of screenspace coordinates (pixel position) and converts them to worldspace coordinates */
-    Vector3 ScreenSpaceToWorldSpace(Vector3 coordinates)
+    private Vector3 ScreenSpaceToWorldSpace(Vector3 coordinates)
     {
-        return new Vector3((coordinates[0] / Screen.width) * cam.orthographicSize * 4, (coordinates[1] / Screen.height) * cam.orthographicSize * 2, 0);
+        //multiplying x coord by 3.5554 and y coordinate by 2 since the ratio is approx. 16:9
+        return new Vector3((coordinates[0] / Screen.width) * cam.orthographicSize * 3.5554f, (coordinates[1] / Screen.height) * cam.orthographicSize * 2, 0);
     }
 
 
     /* Andrew Greer
      *  - simple degrees to radians conversion method */
-    float DegreesToRadians(float angle) { return angle * (2 * Mathf.PI / 180); }
+    private float DegreesToRadians(float angle) { return angle * (Mathf.PI / 180); }
 
 
     /* Andrew Greer
      *  - resets the box position to where it was when the level started (level restart) */
-    void ResetPosition() { box.position = originalPos; }
+    public void ResetPosition() { 
+        box.position = originalPos;
+        box.velocity = new Vector2(0f, 0f);
+    }
 }

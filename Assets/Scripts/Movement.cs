@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public Rigidbody2D r;
+    private Rigidbody2D r;
     public float magnitude;
     public float topSpeed;
     public float topclimbspeed;
@@ -12,28 +12,32 @@ public class Movement : MonoBehaviour
     public bool screenWarp;
     public AudioSource hitSound;
     public AudioSource jumpSound;
+    public AudioSource enemySound;
 
     private bool onGround = false;
     private bool onClimbable = false;
 
     private bool isWrappingX = false;
     private bool isWrappingY = false;
-    
+
+    public bool canRotate;
 
     Renderer[] renderers;
 
 
     void Start()
     {
+        r = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+
         /*  Tyler McPhee
          *      -Sets the players postion to spawn on the first checkpoint
          *  Troy Walther
          *      -Store character renderer(s) in array
          */
+
         r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
 
         renderers = GetComponentsInChildren<Renderer>();
-
     }
 
 
@@ -43,6 +47,17 @@ public class Movement : MonoBehaviour
     */
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        /*  Tyler McPhee
+         *  Checks if the player collided with an enemy
+         *  if true respawn enemy
+         */
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            r.GetComponent<Checkpoint>().SetPlayerLastCheckpoint();
+            enemySound.Play();
+            collision.collider.GetComponent<Enemy>().ResetPosition();
+        }
+
         if (collision.gameObject.CompareTag("Ground"))
         {
             onGround = true;
@@ -105,6 +120,10 @@ public class Movement : MonoBehaviour
     /*  Andrew Greer
      *   - called once every frame
      *   - handles jumping, movement, and player rotation
+     *   
+     *   Troy Walther
+     *   - rotation lock for certain levels
+     *   - Fixed control after reaching max speed
      */
     void Update()
     {
@@ -113,12 +132,21 @@ public class Movement : MonoBehaviour
         {
             r.MoveRotation(Mathf.Abs(r.rotation - 0.75f));
         }
+        if (canRotate == false) 
+        {
+            r.rotation = 0;
+        }
 
         //applies force if player hasn't exceeded top speed
         if (Mathf.Abs(r.velocity.x) < topSpeed)
         {
             r.AddForce(new Vector2(Input.GetAxis("Horizontal") * magnitude * 1.75f, 1f));
         }
+        if (Input.GetAxis("Horizontal") * r.velocity.x < 0)
+        {
+            r.AddForce(new Vector2(Input.GetAxis("Horizontal") * magnitude/4 * 1.75f, 1f));
+        }
+
 
         /*  Tyler McPhee
          *  Apply force for climbable objects

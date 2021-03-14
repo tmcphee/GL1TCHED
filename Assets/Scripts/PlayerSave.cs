@@ -115,16 +115,52 @@ namespace PlayerSave
         }
         public float getBestTime()
         {
-            if(this.world < BestTimes.GetLength(0) && this.level < BestTimes.GetLength(1))
+            return FindBestTime(this.world, this.level);
+        }
+        public float getPreviousBestTime()
+        {
+            if(this.level -1 >= 0)
             {
-                if(BestTimes[this.world, this.level] == null)
+                return FindBestTime(this.world, this.level - 1);
+            }
+            return -1f;
+        }
+
+
+        private float FindBestTime(int world, int level)
+        {
+            if (world < BestTimes.GetLength(0) && level < BestTimes.GetLength(1))
+            {
+                if (BestTimes[world, level] == null)
                 {
                     return -1f;
                 }
-                return float.Parse(BestTimes[this.world, this.level]);
+                return float.Parse(BestTimes[world, level]);
             }
             return -1f;
-            
+        }
+
+        //Andrew
+        //custom rounding function to display the time to 1 decimal place
+        private float TimerRounding(float time)
+        {
+            return Mathf.Round(time * 10.0f) / 10.0f;
+        }
+
+        public string parseTime(float levelTime)
+        {
+            if (levelTime == -1)
+            {
+                return "NA";
+            }
+            string timeString = "0.0";
+            int minutes = (int)levelTime / 60;
+            if (levelTime > 60)
+            {
+                timeString = minutes + ":" + TimerRounding(levelTime % 60);
+            }
+            else timeString = "" + TimerRounding(levelTime);
+            return timeString;
         }
 
         /*  Tyler McPhee
@@ -200,53 +236,75 @@ namespace PlayerSave
             }
         }
 
+        /*  Tyler McPhee
+         *  Adds the besttime if the value is the smallest of it not exists (-1)
+         */
         public void saveBestTime(float time)
         {
-            if(time < getBestTime())
+            if(time < getBestTime() || getBestTime() == -1f)
             {
                 addBestTime(time);
                 writeBestTime();
             }
         }
 
+        /*  Tyler McPhee
+         *  Adds a besttime to array
+         *  Increases the size of array if needed
+         */
         private void addBestTime(float time, int world=-1, int level=-1)
         {
+            //if the world is not specified ie -1 then use the class value for world
             if(world == -1)
             {
                 world = this.world;
             }
 
+            //if the level is not specified ie -1 then use the class value for level
             if (level == -1)
             {
                 level = this.level;
             }
 
+            //Get the current array width and length
             int w = BestTimes.GetLength(0);
             int l = BestTimes.GetLength(1);
 
+            //Creates a temp array and copies all contents from BestTimes to temp array
             string[,] temparr = new string[w, l];
             Array.Copy(BestTimes, 0, temparr, 0, BestTimes.Length);
+
             bool trigger = false;
+
+            //If the world size is larger than the current array size incrment the width
             if (world >= w)
             {
                 w = world + 1;
                 trigger = true;
             }
+            //If the level size is larger than the current array size incrment the length
             if (level >= l)
             {
                 l = level + 1;
                 trigger = true;
             }
+
+            //If any width or length was modified we need to make a new array with the new sizes
             if (trigger)
             {
+                //Creates a new array with larger dimensions
                 BestTimes = new string[w, l];
-                //arrayCopy2D(temparr, BestTimes);
+                //Copies all contents from temp array back to the new BestTimes array
                 Array.Copy(temparr, 0, BestTimes, 0, temparr.Length);
             }
-            
+
+            //Add the new best time to the BestTimes array
             BestTimes[world, level] = "" + time;
         }
 
+        /*  Tyler McPhee
+         *  Loops though the BestTimes array and prints to file
+         */
         private void writeBestTime()
         {
             using (System.IO.StreamWriter sw = System.IO.File.CreateText(BestTimeSave))
@@ -262,6 +320,9 @@ namespace PlayerSave
             }
         }
 
+        /*  Tyler McPhee
+         *  Reads the BestTimes from file and stores to array
+         */
         private void readBestTime()
         {
             if (System.IO.File.Exists(BestTimeSave))
