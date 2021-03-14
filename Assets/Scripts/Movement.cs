@@ -152,9 +152,11 @@ public class Movement : MonoBehaviour
          *  Apply force for climbable objects
          *  Recycled and modified code from Andrew
          */
-        if (Mathf.Abs(r.velocity.y) < topclimbspeed && onClimbable)
+        if (Mathf.Abs(r.velocity.y) < topclimbspeed && onClimbable && (Input.GetAxis("Vertical") != 0))
         {
             r.AddForce(new Vector2(1f, Input.GetAxis("Vertical") * magnitude * 1.25f));
+            r.velocity = new Vector3(0, r.velocity.y, 0);
+            onGround = false;
         }
 
         //checks if either player is on the ground or infiniteJump glitch is active; plays a jumping sound
