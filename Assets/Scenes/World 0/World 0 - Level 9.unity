@@ -1236,6 +1236,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameMenuCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6156053768943946637, guid: faf64566a405f4c4580648fedc11b89e,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 478352631}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: faf64566a405f4c4580648fedc11b89e, type: 3}
 --- !u!4 &1173844555 stripped
