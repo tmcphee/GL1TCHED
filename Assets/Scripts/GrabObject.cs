@@ -10,6 +10,7 @@ public class GrabObject : MonoBehaviour
 {
     public float GrabDistance;
     public bool GlitchMode;
+    public bool GrabEnemies;
 
     private Rigidbody2D player;
     private Camera cam;
@@ -20,6 +21,7 @@ public class GrabObject : MonoBehaviour
     private float m_Angle;
     private float boxDistance;
     private bool GrabToggle;
+    private GameObject[] Enemies;
 
 
     // instantiates some variables like the camera position and this box object
@@ -30,6 +32,11 @@ public class GrabObject : MonoBehaviour
         cameraPos[2] = 0;
 
         player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+
+        if (GrabEnemies)
+        {
+            Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        }
 
         box = GetComponent<Rigidbody2D>();
         originalPos = box.position;
@@ -43,6 +50,7 @@ public class GrabObject : MonoBehaviour
      *      - normal mode attaches the box to the cursor
      *      - glitchmode snaps the box to a fixed radius circle around the player based on mouse angle (incredibly glitchy, but in a good way)
      *  - respawns the box if it falls below the map
+     *  - optional mode for grabbing an enemy as well as the box
      */
     void Update()
     {
@@ -53,6 +61,21 @@ public class GrabObject : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
         {
             GrabToggle = !GrabToggle;
+        }
+
+        /* Andrew Greer
+         *  - if grab enemies is enabled for the level and the array of all enemies is not empty, binds the enemy to the mouse position
+         *      (very similar to grabbing a box except there's no check if the player is close tot the enemy)
+         */
+        if(GrabEnemies && Enemies != null)
+        {
+            foreach(GameObject enemy in Enemies)
+            {
+                if((Input.GetMouseButton(0) || GrabToggle) && Vector2.Distance(enemy.transform.position, m) < GrabDistance)
+                {
+                    enemy.transform.position = new Vector2(m[0], m[1]);
+                }
+            }
         }
 
 
