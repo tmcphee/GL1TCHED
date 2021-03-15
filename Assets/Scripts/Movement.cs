@@ -69,11 +69,11 @@ public class Movement : MonoBehaviour
             //if the player collides with a glitchwall, applies a sizeable force to help push them through
             foreach (ContactPoint2D contact in collision.contacts)
             {
-                r.AddForce(magnitude * 25 * -contact.normal, ForceMode2D.Impulse);
+                r.AddForce(magnitude * Time.deltaTime * 25 * -contact.normal, ForceMode2D.Impulse);
             }
         }
 
-        if(collision.relativeVelocity.magnitude > topSpeed/2)
+        if(collision.relativeVelocity.magnitude * Time.deltaTime > topSpeed/2)
         {
             hitSound.Play();
         }
@@ -140,11 +140,11 @@ public class Movement : MonoBehaviour
         //applies force if player hasn't exceeded top speed
         if (Mathf.Abs(r.velocity.x) < topSpeed)
         {
-            r.AddForce(new Vector2(Input.GetAxis("Horizontal") * magnitude * 1.75f, 1f));
+            r.AddForce(new Vector2(Input.GetAxis("Horizontal") * magnitude  * 1.75f * Time.deltaTime, 1f));
         }
         if (Input.GetAxis("Horizontal") * r.velocity.x < 0)
         {
-            r.AddForce(new Vector2(Input.GetAxis("Horizontal") * magnitude/4 * 1.75f, 1f));
+            r.AddForce(new Vector2(Input.GetAxis("Horizontal") * magnitude / 2 * 1.75f * Time.deltaTime, 1f));
         }
 
 
@@ -154,7 +154,7 @@ public class Movement : MonoBehaviour
          */
         if (Mathf.Abs(r.velocity.y) < topclimbspeed && onClimbable && (Input.GetAxis("Vertical") != 0))
         {
-            r.AddForce(new Vector2(1f, Input.GetAxis("Vertical") * magnitude * 1.25f));
+            r.AddForce(new Vector2(1f, Input.GetAxis("Vertical") * magnitude * Time.deltaTime * 1.25f));
             r.velocity = new Vector3(0, r.velocity.y, 0);
             onGround = false;
         }
@@ -165,7 +165,7 @@ public class Movement : MonoBehaviour
             if(onGround || infiniteJump)
             {
                 onGround = false;
-                r.AddForce(new Vector2(1f, magnitude * 1.75f), ForceMode2D.Impulse);
+                r.AddForce(new Vector2(1f, magnitude*2 * Time.deltaTime * 1.75f), ForceMode2D.Impulse);
                 jumpSound.Play();
             }
         }

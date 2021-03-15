@@ -649,7 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 226b527ff4247c8409f25a6feb85504f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magnitude: 2750
+  magnitude: 3000000
   topSpeed: 15
   topclimbspeed: 7
   infiniteJump: 1
