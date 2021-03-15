@@ -18,21 +18,21 @@ public class volumeSlide : MonoBehaviour
     //When the menu is loaded, set audio mixer value to value saved in preferences 
     void Start()
     {
-        Debug.Log(mixGroup.ToString() + ": " + Mathf.Log10(PlayerPrefs.GetFloat(mixGroup.ToString(), 1f)) * 20);
-        mixer.SetFloat(mixGroup.ToString(), Mathf.Log10(PlayerPrefs.GetFloat(mixGroup.ToString(), 1f)) * 20 );
+        Debug.Log(mixGroup.name + ": " + Mathf.Log10(PlayerPrefs.GetFloat(mixGroup.name, 1f)) * 20);
+        mixer.SetFloat(mixGroup.name, Mathf.Log10(PlayerPrefs.GetFloat(mixGroup.name, 1f)) * 20 );
     }
 
     //Called from a slider to lower the volume of a mixer group
     public void SetLevel (float slideValue)
     {
-        mixer.SetFloat(mixGroup.ToString(), Mathf.Log10(slideValue) * 20);
-        PlayerPrefs.SetFloat(mixGroup.ToString(), slideValue);
+        mixer.SetFloat(mixGroup.name, Mathf.Log10(slideValue) * 20);
+        PlayerPrefs.SetFloat(mixGroup.name, slideValue);
     }
 
     // When the slider object becomes visible, set it's value to the saved value from player preferences
     void OnEnable()
     {
-        slider.value = PlayerPrefs.GetFloat(mixGroup.ToString(), 1f);
+        slider.value = PlayerPrefs.GetFloat(mixGroup.name, 1f);
     }
 
 }
