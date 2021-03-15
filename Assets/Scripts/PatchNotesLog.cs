@@ -10,7 +10,8 @@ namespace PatchNotesLog
 
         public notes()
         {
-            PatchNote[0,0] =    "-Added Jumping \n" +
+            PatchNote[0,0] =    "Added my new game to the store, ist new so it may have a fewe bugs :)\n"+
+                                "-Added Jumping \n" +
                                 "-Added Player Movement";
             PatchNote[0, 1] =   "- \n" +
                                 "-";
