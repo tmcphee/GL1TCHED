@@ -18,6 +18,11 @@ public class PatchNotesScene : MonoBehaviour
     {
         psave = new playersave();
         pnotes = new patchnotes();
+
+        /*  Tyler McPhee
+         *  If the level is the first in the world then show the world panel
+         *  else show the level panel
+         */
         if (psave.getLevel() == 0)
         {
             GameObject.Find("PatchText").GetComponent<Text>().text = pnotes.getNote(psave.getWorld(), psave.getLevel());
