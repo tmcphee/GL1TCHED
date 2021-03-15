@@ -140,11 +140,11 @@ public class Movement : MonoBehaviour
         //applies force if player hasn't exceeded top speed
         if (Mathf.Abs(r.velocity.x) < topSpeed)
         {
-            r.AddForce(new Vector2((Input.GetAxis("Horizontal") * magnitude  * 1.75f) / Time.deltaTime, 1f));
+            r.AddForce(new Vector2((Input.GetAxis("Horizontal") * magnitude  * 120000f) * Time.deltaTime, 1f));
         }
         if (Input.GetAxis("Horizontal") * r.velocity.x < 0)
         {
-            r.AddForce(new Vector2((Input.GetAxis("Horizontal") * magnitude / 2 * 1.75f) / Time.deltaTime, 1f));
+            r.AddForce(new Vector2((Input.GetAxis("Horizontal") * magnitude / 2 * 120000f) * Time.deltaTime, 1f));
         }
 
 
@@ -154,7 +154,7 @@ public class Movement : MonoBehaviour
          */
         if (Mathf.Abs(r.velocity.y) < topclimbspeed && onClimbable && (Input.GetAxis("Vertical") != 0))
         {
-            r.AddForce(new Vector2(1f, (Input.GetAxis("Vertical") * magnitude * 1.25f) / Time.deltaTime));
+            r.AddForce(new Vector2(1f, (Input.GetAxis("Vertical") * magnitude * 125000f) * Time.deltaTime));
             r.velocity = new Vector3(0, r.velocity.y, 0);
             onGround = false;
         }

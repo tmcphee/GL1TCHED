@@ -20,6 +20,8 @@ public class MainMenu : MonoBehaviour
      */
     private void initilize_settings()
     {
+        Application.targetFrameRate = 144;
+
         //Gets the Resolution dropdown and sets its value to the resolution matiching the saved resolution
         Dropdown Resdrop = GameObject.Find("VideoPanel/ResolutionDropdown").GetComponent<Dropdown>();
         Resdrop.value = Resdrop.options.FindIndex(option => option.text == psave.getResolution());
