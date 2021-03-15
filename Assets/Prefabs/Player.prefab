@@ -649,7 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 226b527ff4247c8409f25a6feb85504f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magnitude: 3000000
+  magnitude: 27
   topSpeed: 15
   topclimbspeed: 7
   infiniteJump: 1
@@ -671,7 +671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseCheckpointGlitch: 0
-  ResetCheckpointOnStart: 1
+  ResetCheckpointOnStart: 0
   CheckpointVelocityGlitch: 0
   isEndofWorld: 0
   checkpoints:
