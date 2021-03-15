@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
             else sign = 1f;
 
             //generates the enemy movement force
-            Vector2 forceVector = new Vector2((sign * 900f) + (0.5f / distance) * sign * 2200f, 0f);
+            Vector2 forceVector = new Vector2((sign * 900f) + (0.5f / distance) * sign * 2200f * 9000f * Time.deltaTime, 0f);
             enemy.AddForce(forceVector);
         }
     }
