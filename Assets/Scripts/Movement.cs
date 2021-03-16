@@ -62,7 +62,6 @@ public class Movement : MonoBehaviour
         {
             onGround = true;
         }
-        else onGround = false;
 
         if (collision.gameObject.CompareTag("Glitchwall"))
         {
@@ -73,7 +72,7 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if(collision.relativeVelocity.magnitude * Time.deltaTime > topSpeed/2)
+        if(collision.relativeVelocity.magnitude * Time.deltaTime > topSpeed/4)
         {
             hitSound.Play();
         }
@@ -141,10 +140,11 @@ public class Movement : MonoBehaviour
         if (Mathf.Abs(r.velocity.x) < topSpeed)
         {
             r.AddForce(new Vector2((Input.GetAxis("Horizontal") * magnitude  * 120000f) * Time.deltaTime, 1f));
-        }
-        if (Input.GetAxis("Horizontal") * r.velocity.x < 0)
+        } 
+        
+        if (Input.GetAxis("Horizontal") != 0 && Mathf.Sign(r.velocity.x) != Mathf.Sign(Input.GetAxis("Horizontal")))
         {
-            r.AddForce(new Vector2((Input.GetAxis("Horizontal") * magnitude / 2 * 120000f) * Time.deltaTime, 1f));
+            r.AddForce(new Vector2((Input.GetAxis("Horizontal") * magnitude * 120000f) * Time.deltaTime, 1f), ForceMode2D.Impulse);
         }
 
 

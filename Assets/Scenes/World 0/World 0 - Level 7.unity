@@ -394,10 +394,16 @@ PrefabInstance:
     - target: {fileID: 4213158864382055191, guid: ba92afa9c267b91409d0daf3476d8ad0,
         type: 3}
       propertyPath: m_Name
-      value: Checkpoint
+      value: Checkpoint (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba92afa9c267b91409d0daf3476d8ad0, type: 3}
+--- !u!1 &155403337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4213158864382055191, guid: ba92afa9c267b91409d0daf3476d8ad0,
+    type: 3}
+  m_PrefabInstance: {fileID: 155403336}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &286633476
 GameObject:
   m_ObjectHideFlags: 0
@@ -2873,7 +2879,7 @@ PrefabInstance:
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
@@ -2884,7 +2890,7 @@ PrefabInstance:
         type: 3}
       propertyPath: checkpoints.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 155403337}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[2]
@@ -2894,102 +2900,102 @@ PrefabInstance:
         type: 3}
       propertyPath: checkpoints.Array.data[3]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[4]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[5]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[6]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[7]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[8]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[9]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[10]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[11]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[12]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[13]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[14]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[15]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[16]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[17]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[18]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[19]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[20]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[21]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[22]
       value: 
-      objectReference: {fileID: 2121589684}
+      objectReference: {fileID: 0}
     - target: {fileID: 1734061884721887822, guid: dc78df84730009a429dae20a3680b4a1,
         type: 3}
       propertyPath: checkpoints.Array.data[23]
