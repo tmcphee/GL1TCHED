@@ -112,7 +112,15 @@ public class Movement : MonoBehaviour
         {
             onClimbable = false;
         }
+    }
 
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") && !onGround && Mathf.Abs(collision.relativeVelocity.y) < 0.1)
+        {
+            Debug.Log(collision.gameObject.name);
+            onGround = true;
+        }
     }
 
 
@@ -136,15 +144,14 @@ public class Movement : MonoBehaviour
             r.rotation = 0;
         }
 
-        //applies force if player hasn't exceeded top speed
+        //applies force if player hasn't exceeded top speed (or an instantaneous force if the player wants to change direction)
         if (Mathf.Abs(r.velocity.x) < topSpeed)
         {
-            r.AddForce(new Vector2((Input.GetAxis("Horizontal") * magnitude  * 120000f) * Time.deltaTime, 1f));
+            r.AddForce(new Vector2((Input.GetAxis("Horizontal") * magnitude  * 120000f) * Time.deltaTime, 0f));
         } 
-        
         if (Input.GetAxis("Horizontal") != 0 && Mathf.Sign(r.velocity.x) != Mathf.Sign(Input.GetAxis("Horizontal")))
         {
-            r.AddForce(new Vector2((Input.GetAxis("Horizontal") * magnitude * 120000f) * Time.deltaTime, 1f), ForceMode2D.Impulse);
+            r.AddForce(new Vector2(Input.GetAxis("Horizontal") * magnitude * 120000f * Time.deltaTime, 0f), ForceMode2D.Impulse);
         }
 
 
@@ -162,11 +169,11 @@ public class Movement : MonoBehaviour
         //checks if either player is on the ground or infiniteJump glitch is active; plays a jumping sound
         if (Input.GetButtonDown("Jump"))
         {
-            if(onGround || infiniteJump)
+            if (onGround || infiniteJump)
             {
-                onGround = false;
                 r.AddForce(new Vector2(0f, magnitude * 225f), ForceMode2D.Impulse);
                 jumpSound.Play();
+                onGround = false;
             }
         }
 

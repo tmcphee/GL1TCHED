@@ -60,10 +60,12 @@ public class GrabObject : MonoBehaviour
     void Update()
     {
         Vector3 playerPos = new Vector3(player.position.x, player.position.y, 0f);
+
+        // saves the old mouse position before updating to calculate an instaneous "mouse velocity vector"
         old_m = m;
         m = ScreenSpaceToWorldSpace(Input.mousePosition);
 
-        // gets the previous mouse position and saves it before updating it (used for imparting 'momentum' on objects when thrown
+        // uses the previous mouse position for imparting 'momentum vector' on objects when thrown
         if (PreserveMomentum)
         {
             deltaV = m - old_m;
@@ -78,7 +80,7 @@ public class GrabObject : MonoBehaviour
 
         /* Andrew Greer
          *  - if grab enemies is enabled for the level and the array of all enemies is not empty, binds the enemy to the mouse position
-         *      (very similar to grabbing a box except there's no check if the player is close tot the enemy)
+         *      (very similar to grabbing a box except there's no check if the player is close to the enemy)
          */
         if(GrabEnemies && Enemies != null)
         {
@@ -114,6 +116,8 @@ public class GrabObject : MonoBehaviour
             } else if (Vector2.Distance(box.position, new Vector2(m[0], m[1])) < GrabDistance) { box.position = new Vector2(m[0], m[1]); }
             // ^ if box is close to the cursor
 
+
+            // apply momentum vector
             box.velocity = (deltaV * 3f) + (deltaV * box.mass * Time.deltaTime * 25f);
         }
 
