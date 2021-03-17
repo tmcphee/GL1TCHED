@@ -72,7 +72,7 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if(collision.relativeVelocity.magnitude * Time.deltaTime > topSpeed/4)
+        if(collision.relativeVelocity.magnitude * Time.deltaTime * 15f > 4.25f)
         {
             hitSound.Play();
         }
