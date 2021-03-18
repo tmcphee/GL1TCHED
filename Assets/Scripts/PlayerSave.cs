@@ -115,13 +115,13 @@ namespace PlayerSave
         }
         public float getBestTime()
         {
-            return FindBestTime(this.world, this.level);
+            return FindBestTime(this.world - 1, this.level);
         }
         public float getPreviousBestTime()
         {
             if(this.level -1 >= 0)
             {
-                return FindBestTime(this.world, this.level - 1);
+                return FindBestTime(this.world - 1, this.level - 1);
             }
             return -1f;
         }
@@ -259,7 +259,7 @@ namespace PlayerSave
             //if the world is not specified ie -1 then use the class value for world
             if(world == -1)
             {
-                world = this.world;
+                world = this.world - 1;
             }
 
             //if the level is not specified ie -1 then use the class value for level
