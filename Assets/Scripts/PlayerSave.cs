@@ -10,7 +10,7 @@ namespace PlayerSave
         //Default Values
         private static string savefile = System.IO.Directory.GetCurrentDirectory() + "\\PlayerSave.Gl1";
         private static string BestTimeSave = System.IO.Directory.GetCurrentDirectory() + "\\BestTimes.Gl1";
-        public int world = 0;
+        public int world = 1;
         public int level = 0;
         public int checkpoint = 0;
         public string Resolution = "1920x1080";
@@ -63,7 +63,7 @@ namespace PlayerSave
         }
         public void resetdata()
         {
-            this.world = 0;
+            this.world = 1;
             this.level = 0;
             this.checkpoint = 0;
             save();

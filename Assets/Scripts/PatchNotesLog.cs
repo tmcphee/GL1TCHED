@@ -6,22 +6,26 @@ namespace PatchNotesLog
 {
     public class notes
     {
-        string[,] PatchNote = new string[1,2];
+        string[] PatchNote = new string[3];
 
         public notes()
         {
-            PatchNote[0,0] =    "Added my new game to the store, ist new so it may have a fewe bugs :)\n"+
-                                "-Added Jumping \n" +
-                                "-Added Player Movement";
-            PatchNote[0, 1] =   "- \n" +
-                                "-";
+            PatchNote[0] =      "Example Note \n" +
+                                "• example example example";
+
+            PatchNote[1] =      "Added my new game to the store, ist new so it may have a fewe bugs :)\n"+
+                                "• Added Jumping \n" +
+                                "• Added Player Movement";
+
+            PatchNote[2] =      "• \n" +
+                                "• ";
         }
 
         public string getNote(int world, int level)
         {
             try
             {
-                return PatchNote[world, level];
+                return PatchNote[world];
             }
             catch
             {
