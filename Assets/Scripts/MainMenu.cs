@@ -37,7 +37,8 @@ public class MainMenu : MonoBehaviour
 
     private void loadscene()
     {
-        SceneManager.LoadScene("PatchNotes");
+        //SceneManager.LoadScene("PatchNotes");
+        Initiate.Fade("PatchNotes", Color.black, 1.5f);
     }
 
     /* MAIN MENU

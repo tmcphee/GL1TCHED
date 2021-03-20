@@ -21,6 +21,7 @@ public class Movement : MonoBehaviour
     private bool isWrappingY = false;
 
     public bool canRotate;
+    public bool canMove = true;
 
     Renderer[] renderers;
 
@@ -134,6 +135,14 @@ public class Movement : MonoBehaviour
      */
     void Update()
     {
+        /* Tyler McPhee
+         * Check if the player is allowed to move
+         * in not exit
+         */
+        if (!canMove)
+        {
+            return;
+        }
         //self-righting force; returns player to vertical by 0.75 degrees/frame
         if (r.rotation != 0)
         {

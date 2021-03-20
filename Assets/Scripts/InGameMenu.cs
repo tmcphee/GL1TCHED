@@ -41,7 +41,7 @@ public class InGameMenu : MonoBehaviour
      *  Disable Movment of player by disableing the object
      *  Saves player velocity and gravity
      */
-    private void freezeplayer()
+    public void freezeplayer()
     {
         playervelocity = r.GetComponent<Rigidbody2D>().velocity;
         gravityscale = r.GetComponent<Rigidbody2D>().gravityScale;
@@ -95,7 +95,8 @@ public class InGameMenu : MonoBehaviour
 
     public void mainMenuBtn_Click()
     {
-        SceneManager.LoadScene("MainMenu");
+        //SceneManager.LoadScene("MainMenu");
+        Initiate.Fade("MainMenu", Color.black, 1.5f);
     }
 
     /*  Tyler McPhee

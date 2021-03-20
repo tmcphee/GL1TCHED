@@ -171,8 +171,12 @@ public class Checkpoint : MonoBehaviour
             {
                 psave.incrementLevel();
             }
-            
-            SceneManager.LoadScene("PatchNotes");
+
+            //Freeze the player and stop the player from moving
+            r.velocity = new Vector2(0, 0);
+            r.gravityScale = 0;
+            r.GetComponent<Movement>().canMove = false;
+            Initiate.Fade("PatchNotes", Color.black, 1.5f);
             return;
         }
 

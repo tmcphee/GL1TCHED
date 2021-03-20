@@ -54,10 +54,12 @@ public class PatchNotesScene : MonoBehaviour
     {
         string scene = "World " + psave.getWorld() + " - Level " + psave.getLevel();
 
-        SceneManager.LoadScene(scene);
+        //SceneManager.LoadScene(scene);
+        Initiate.Fade(scene, Color.black, 1.5f);
         if (!SceneManager.GetSceneByName(scene).IsValid())
         {
-            SceneManager.LoadScene("MainMenu");
+            //SceneManager.LoadScene("MainMenu");
+            Initiate.Fade("MainMenu", Color.black, 1.5f);
         }
 
     }
