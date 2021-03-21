@@ -211,7 +211,14 @@ public class Movement : MonoBehaviour
     private bool onScreen() 
     {
         //loop through all children components
-        foreach (var renderer in renderers)
+        foreach (Renderer renderer in renderers)
+        {
+            if (renderer == null) 
+            {
+                return false;
+            }
+        }
+            foreach (Renderer renderer in renderers)
         {
             // If at least one render is visible, return true
             if (renderer.isVisible)

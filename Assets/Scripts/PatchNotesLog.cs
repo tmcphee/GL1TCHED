@@ -17,8 +17,7 @@ namespace PatchNotesLog
                                 "• Added Jumping \n" +
                                 "• Added Player Movement";
 
-            PatchNote[2] =      "• \n" +
-                                "• ";
+            PatchNote[2] = "Squashed some bugs and other improvements!";
         }
 
         public string getNote(int world, int level)
