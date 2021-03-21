@@ -85,6 +85,17 @@ public class Fader : MonoBehaviour
                 {
                     startedLoading = true;
                     SceneManager.LoadScene(fadeScene);
+
+
+                    /* Tyler McPhee
+                     * If the level is not found and not loaded
+                     * go back to main menu
+                     */
+                    if (!SceneManager.GetSceneByName(fadeScene).IsValid())
+                    {
+                        fadeScene = "MainMenu";
+                        SceneManager.LoadScene(fadeScene);
+                    }
                 }
 
             }
