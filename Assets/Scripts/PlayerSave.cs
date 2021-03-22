@@ -341,7 +341,11 @@ namespace PlayerSave
                     int.TryParse(leveldata[0], out w);
                     int.TryParse(leveldata[1], out l);
 
-                    addBestTime(float.Parse(data[1]), w, l);
+                    if(data[1] != "")
+                    {
+                        addBestTime(float.Parse(data[1]), w, l);
+                    }
+                    //addBestTime(1f, w, l);
                 }
                 file.Close();
             }
