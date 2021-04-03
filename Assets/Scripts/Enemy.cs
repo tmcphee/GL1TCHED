@@ -27,11 +27,11 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         float distance = Vector3.Distance(enemy.transform.position, player.transform.position);
-
         //self-righting force; returns enemy to vertical by 0.75 degrees/frame
         if (enemy.rotation != 0)
         {
             enemy.MoveRotation(Mathf.Abs(enemy.rotation - 0.75f));
+            enemy.SetRotation(0);
         }
 
         //if player is within sight of the enemy and the enemy isn't going too fast
