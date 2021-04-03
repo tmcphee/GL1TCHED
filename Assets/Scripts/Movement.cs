@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
 
     private bool onGround = false;
     private bool onClimbable = false;
+    private GameObject dummyModel;
 
     private bool isWrappingX = false;
     private bool isWrappingY = false;
@@ -29,6 +30,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         r = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+        dummyModel = GameObject.FindGameObjectWithTag("dummy_mesh");
 
         /*  Tyler McPhee
          *      -Sets the players postion to spawn on the first checkpoint
@@ -175,12 +177,16 @@ public class Movement : MonoBehaviour
             onGround = false;
         }
 
-        //checks if either player is on the ground or infiniteJump glitch is active; plays a jumping sound
+        //checks if either player is on the ground or infiniteJump glitch is active; plays a jumping sound; plays jumping animation if using the v2 character model
         if (Input.GetButtonDown("Jump"))
         {
             if (onGround || infiniteJump)
             {
                 r.AddForce(new Vector2(0f, magnitude * 225f), ForceMode2D.Impulse);
+                if(dummyModel != null)
+                {
+                    dummyModel.GetComponentInChildren<dummyAnimations>().PlayJumpingAnimation();
+                }
                 jumpSound.Play();
                 onGround = false;
             }
@@ -218,7 +224,7 @@ public class Movement : MonoBehaviour
                 return false;
             }
         }
-            foreach (Renderer renderer in renderers)
+        foreach (Renderer renderer in renderers)
         {
             // If at least one render is visible, return true
             if (renderer.isVisible)
@@ -262,5 +268,10 @@ public class Movement : MonoBehaviour
 
         //apply the transformation, if you haven't wrapped, nothing will happen here
         transform.position = newPos;
+    }
+
+    public bool isOnGround()
+    {
+        return onGround;
     }
 }

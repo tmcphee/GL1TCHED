@@ -75,13 +75,12 @@ public class dummyAnimations : MonoBehaviour
         {
             dummy.runtimeAnimatorController = sprint;
         }
+    }
 
-
-        //Andrew Greer: Starts jumping coroutine
-        if (Input.GetButtonDown("Jump"))
-        {
-            StartCoroutine("JumpAnimation");
-        }
+    //Andrew Greer: Exposed method for jumping animation that can be called from movement.cs
+    public void PlayJumpingAnimation()
+    {
+        StartCoroutine("JumpAnimation");
     }
 
 
