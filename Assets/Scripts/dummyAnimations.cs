@@ -58,7 +58,7 @@ public class dummyAnimations : MonoBehaviour
         }
 
 
-        // Andrew Greer: large block for setting aniamtion based on speed
+        // Andrew Greer: large block for setting animation based on speed
         if (Mathf.Abs(player.velocity.x) < 0.5f && dummy.runtimeAnimatorController != jump)
         {
             dummy.runtimeAnimatorController = idle;
