@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Movement : MonoBehaviour
 {
     
@@ -35,10 +36,10 @@ public class Movement : MonoBehaviour
         dummyModel = GameObject.FindGameObjectWithTag("dummy_mesh");
 
         /*  Tyler McPhee
-         *      -Sets the players postion to spawn on the first checkpoint
+         *    - Sets the players postion to spawn on the first checkpoint
          *      
          *  Troy Walther
-         *      -Store character renderer(s) in array
+         *    - Store character renderer(s) in array
          */
 
         r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();

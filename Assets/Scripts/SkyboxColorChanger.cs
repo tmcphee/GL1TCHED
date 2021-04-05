@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 /* Troy Walther
  *  - slightly adjusts the color of the skybox over time between color ranges, if no Colors specified color change is random
  */

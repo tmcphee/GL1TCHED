@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using playersave = PlayerSave.playersave;
 
+
 public class Checkpoint : MonoBehaviour
 {
     public bool UseCheckpointGlitch = false;
@@ -152,8 +153,8 @@ public class Checkpoint : MonoBehaviour
     void OnTriggerEnter2D(Collider2D Collider)
     {
         /*  Tyler McPhee
-         *  Checks to see if the player hit the finished checkpoint
-         *  If so increments the level and resets the checkpoint data
+         *      Checks to see if the player hit the finished checkpoint
+         *      If so increments the level and resets the checkpoint data
          */
         if (Collider.gameObject == FinishCheckpoint)
         {
@@ -210,9 +211,6 @@ public class Checkpoint : MonoBehaviour
             }
         }        
     }
-
-
-    
 
 
     void Update()

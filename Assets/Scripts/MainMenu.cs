@@ -6,14 +6,17 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using playersave = PlayerSave.playersave;
 
+
 public class MainMenu : MonoBehaviour
 {
-    private playersave psave;
     public GameObject Canvas;
+
+    private playersave psave;
     private GameObject MainPanel;
     private GameObject SettingsPanel;
     private GameObject VideoPanel;
     private GameObject SoundPanel;
+
 
     /*  Tyler McPhee
      *      Loads the values from the Player Save File and updates the value in the settings menu

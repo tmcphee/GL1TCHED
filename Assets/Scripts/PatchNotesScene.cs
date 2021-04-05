@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using playersave = PlayerSave.playersave;
 using patchnotes = PatchNotesLog.notes;
 
+
 public class PatchNotesScene : MonoBehaviour
 {
     private playersave psave;
