@@ -13,18 +13,18 @@ public class GrabObject : MonoBehaviour
     public bool GrabEnemies;
     public bool PreserveMomentum;
 
+    private GameObject[] Enemies;
     private Rigidbody2D player;
+    private Rigidbody2D box;
     private Camera cam;
     private Vector3 m;
     private Vector3 old_m;
     private Vector3 deltaV;
     private Vector3 cameraPos;
     private Vector3 originalPos;
-    private Rigidbody2D box;
     private float m_Angle;
     private float boxDistance;
     private bool GrabToggle;
-    private GameObject[] Enemies;
 
 
     // instantiates some variables like the camera position and this box object

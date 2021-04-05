@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 
 /* Troy Walher
- *  change the value of an audio mixers group
+ *   - change the value of an audio mixers group
 */  
 public class volumeSlide : MonoBehaviour
 {

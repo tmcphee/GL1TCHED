@@ -21,12 +21,12 @@ public class Checkpoint : MonoBehaviour
     private Rigidbody2D r;
     private static playersave psave;
     private float levelTime;
-    //private int minutes = 1;
     private bool finished = false;
 
+
     /*  Tyler McPhee
-     *  Sets the Player checkpoint to the first checkpoint, checkpoint 0
-     *  Respawns the player on the Last checkpoint, checkpoint 0
+     *      Sets the Player checkpoint to the first checkpoint, checkpoint 0
+     *      Respawns the player on the Last checkpoint, checkpoint 0
      */
     public void RestartLevel()
     {
@@ -34,10 +34,11 @@ public class Checkpoint : MonoBehaviour
         SetPlayerLastCheckpoint();
     }
 
+
     /*  Tyler McPhee
-     *  Finds a given checkpoint object in the checkpoints array
-     *  INPUT: GameObject checkpoint
-     *  OUTPUT: Index value in checkpoints array
+     *      Finds a given checkpoint object in the checkpoints array
+     *      INPUT: GameObject checkpoint
+     *      OUTPUT: Index value in checkpoints array
      */
     public int find_checkpoint_index(GameObject checkpoint)
     {
@@ -54,9 +55,10 @@ public class Checkpoint : MonoBehaviour
         return -1;
     }
 
+
     /*  Tyler McPhee
-     *  Gets the postiton of the last checkpoint and sets its value to the player
-     *  Optional glitch of not resetting the players velocity
+     *      Gets the postiton of the last checkpoint and sets its value to the player
+     *      Optional glitch of not resetting the players velocity
      */
     public void SetPlayerLastCheckpoint()
     {
@@ -68,10 +70,11 @@ public class Checkpoint : MonoBehaviour
         
     }
 
+
     /*  Tyler McPhee
-     *  Gets the index of the last checkpoint the player passed though.
-     *  Checks to see of the index is in the checkpoints array. If not use the closet checkpoint index
-     *  OUTPUT: Vector3 -> Position of last checkpoint found in checkpoints array
+     *      Gets the index of the last checkpoint the player passed though.
+     *      Checks to see of the index is in the checkpoints array. If not use the closet checkpoint index
+     *      OUTPUT: Vector3 -> Position of last checkpoint found in checkpoints array
      */
     public Vector3 GetLastCheckpointPosition()
     {
@@ -83,6 +86,7 @@ public class Checkpoint : MonoBehaviour
         }
         return new Vector3(checkpoints[lastcheckpoint].transform.position.x, checkpoints[lastcheckpoint].transform.position.y, 0);
     }
+
 
     //On Script load
     void Awake()
@@ -96,7 +100,7 @@ public class Checkpoint : MonoBehaviour
         }
 
         /*  Tyler McPhee
-         *  Loop though all the checkpoint objects in the cehckpoints array and add a BoxCollider2D with isTrigger set
+         *      Loop though all the checkpoint objects in the cehckpoints array and add a BoxCollider2D with isTrigger set
          */
         foreach (GameObject obj in checkpoints)
         {
@@ -108,7 +112,7 @@ public class Checkpoint : MonoBehaviour
         }
 
         /*  Tyler McPhee
-         *  Adds a BoxCollider2D with isTrigger set to the finished checkpoint if exists
+         *      Adds a BoxCollider2D with isTrigger set to the finished checkpoint if exists
          */
         if (FinishCheckpoint != null)
         {
@@ -117,7 +121,7 @@ public class Checkpoint : MonoBehaviour
         }
 
         /*  Tyler McPhee
-         *  Optional clear player data on start
+         *      Optional clear player data on start
          */
         if (ResetCheckpointOnStart)
         {
@@ -125,7 +129,7 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
+
     void Start()
     {
         r = GameObject.Find("Player").GetComponent<Rigidbody2D>();
@@ -145,6 +149,7 @@ public class Checkpoint : MonoBehaviour
         }
         
     }
+
 
     void OnTriggerEnter2D(Collider2D Collider)
     {
@@ -181,8 +186,8 @@ public class Checkpoint : MonoBehaviour
         }
 
         /*  Tyler McPhee
-         *  Loops though all checkpoints and see if the checkpont the player hit is in the checkpoints array
-         *  If so either increments the checkpoint data
+         *      Loops though all checkpoints and see if the checkpont the player hit is in the checkpoints array
+         *      If so either increments the checkpoint data
          */
         foreach (GameObject obj in checkpoints)
         {
@@ -228,6 +233,4 @@ public class Checkpoint : MonoBehaviour
 
         
     }
-
-    
 }

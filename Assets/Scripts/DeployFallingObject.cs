@@ -11,7 +11,7 @@ public class DeployFallingObject : MonoBehaviour
     void Start()
     {
         /* Tyler McPhee
-         * Finds the object of the spawnerbox then starts the coroutine
+         *      Finds the object of the spawnerbox then starts the coroutine
          */
         SpawnerBox = GameObject.Find("FallingObjectSpawner");
         StartCoroutine(ObjectSpawn());
@@ -20,8 +20,8 @@ public class DeployFallingObject : MonoBehaviour
     IEnumerator ObjectSpawn()
     {
         /* Tyler McPhee
-         * Loops to generate infinite objects
-         * Adds a copy of the falling object prefab to the game at the position of the spawner box
+         *      Loops to generate infinite objects
+         *      Adds a copy of the falling object prefab to the game at the position of the spawner box
          */
         while (true)
         {

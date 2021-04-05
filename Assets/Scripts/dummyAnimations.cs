@@ -20,6 +20,7 @@ public class dummyAnimations : MonoBehaviour
     private Rigidbody2D player;
     private bool facingRight = true;
 
+
     private void Start()
     {
         dummy = GameObject.FindGameObjectWithTag("dummy_mesh").GetComponent<Animator>();
@@ -58,7 +59,9 @@ public class dummyAnimations : MonoBehaviour
         }
 
 
-        // Andrew Greer: large block for setting animation based on speed
+        /* Andrew Greer: 
+         * large block for setting animation based on speed 
+         */
         if (Mathf.Abs(player.velocity.x) < 0.5f && dummy.runtimeAnimatorController != jump)
         {
             dummy.runtimeAnimatorController = idle;
@@ -77,14 +80,18 @@ public class dummyAnimations : MonoBehaviour
         }
     }
 
-    //Andrew Greer: Exposed method for jumping animation that can be called from movement.cs
+    /* Andrew Greer: 
+     *   - Exposed method for jumping animation that can be called from movement.cs (that way jump animation is synced with jump logic) */
     public void PlayJumpingAnimation()
     {
         StartCoroutine("JumpAnimation");
     }
 
 
-    //Andrew Greer: couroutine for playing jump animation before transitioning back to running
+    /* Andrew Greer: 
+     *  - couroutine for playing jump animation before transitioning back to running 
+     *      - (useful since jumping needs to interrupt other animations) 
+     */
     IEnumerator JumpAnimation()
     {
         dummy.runtimeAnimatorController = jump;

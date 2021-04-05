@@ -18,8 +18,9 @@ namespace PlayerSave
         public bool Fullscreen = true;
         private string[,] BestTimes = new string[1,1];
 
+
         /*  Tyler McPhee
-         *  Loads Player Save Data on start from disk
+         *      Loads Player Save Data on start from disk
          */
         public playersave()
         {
@@ -27,40 +28,53 @@ namespace PlayerSave
             readBestTime();
         }
 
+
         /*  Tyler McPhee
-         *  Gets the Specified value and saves result to disk.
-         *  INPUT: Setting value
+         *      Gets the Specified value and saves result to disk.
+         *      INPUT: Setting value
          */
         public void setWorld(int world)
         {
             this.world = world;
             save();
         }
+
+
         public void setLevel(int level)
         {
             this.level = level;
             save();
         }
+
+
         public void setCheckpoint(int checkpoint)
         {
             this.checkpoint = checkpoint;
             save();
         }
+
+
         public void incrementCheckpoint()
         {
             this.checkpoint++;
             save();
         }
+
+
         public void incrementLevel()
         {
             this.level++;
             save();
         }
+
+
         public void incrementWorld()
         {
             this.world++;
             save();
         }
+
+
         public void resetdata()
         {
             this.world = 1;
@@ -68,17 +82,23 @@ namespace PlayerSave
             this.checkpoint = 0;
             save();
         }
+
+
         public void setResolution(string Resolution)
         {
             this.Resolution = Resolution;
             ApplyResolution();
             save();
         }
+
+
         public void setVsync(bool state)
         {
             this.VSync = state;
             save();
         }
+
+
         public void setFullscreen(bool state)
         {
             this.Fullscreen = state;
@@ -86,8 +106,9 @@ namespace PlayerSave
             save();
         }
 
+
         /*  Tyler McPhee
-         *  Gets the Specified value and returns result.
+         *      Gets the Specified value and returns result.
          */
         public int getWorld()
         {
@@ -140,6 +161,7 @@ namespace PlayerSave
             return -1f;
         }
 
+
         /* Andrew Greer
             - method for round a number to a specified number of decimal places
         */
@@ -148,6 +170,7 @@ namespace PlayerSave
             float roundBy = Mathf.Pow(10, precision);
             return Mathf.Round(time * roundBy) / roundBy;
         }
+
 
         public string parseTime(float levelTime, int precision)
         {
@@ -165,9 +188,10 @@ namespace PlayerSave
             return timeString;
         }
 
+
         /*  Tyler McPhee
-         *  Checks to see if the Players Save File exists
-         *  OUTPUT: true if file exist || false if files does not exist
+         *      Checks to see if the Players Save File exists
+         *      OUTPUT: true if file exist || false if files does not exist
          */
         public bool SaveExists()
         {
@@ -178,8 +202,9 @@ namespace PlayerSave
             return false;
         }
 
+
         /*  Tyler McPhee
-         *  Sets the Screen Resolution and Fullscreen (True or false) baised on the settings
+         *      Sets the Screen Resolution and Fullscreen (True or false) baised on the settings
          */
         private void ApplyResolution()
         {
@@ -191,8 +216,9 @@ namespace PlayerSave
             Screen.SetResolution(width, height, this.Fullscreen);
         }
 
+
         /*  Tyler McPhee
-         *  Sets the Screen to use the monitors refresh rate or not baised on the settings
+         *      Sets the Screen to use the monitors refresh rate or not baised on the settings
          */
         private void ApplyVsync()
         {
@@ -204,9 +230,10 @@ namespace PlayerSave
             QualitySettings.vSyncCount = type;
         }
 
+
         /*  Tyler McPhee
-         *  Checks to see if the Player Save File exists.
-         *  If exists load the json file into the playersave class
+         *      Checks to see if the Player Save File exists.
+         *      If exists load the json file into the playersave class
          */
         public void load()
         {
@@ -222,9 +249,10 @@ namespace PlayerSave
             }
         }
 
+
         /*  Tyler McPhee
-         *  Converts the playersave class into a json string. 
-         *  Saves the file to disk overriding any existing file
+         *      Converts the playersave class into a json string. 
+         *      Saves the file to disk overriding any existing file
          */
         public void save()
         {
@@ -238,8 +266,9 @@ namespace PlayerSave
             }
         }
 
+
         /*  Tyler McPhee
-         *  Adds the besttime if the value is the smallest of it not exists (-1)
+         *      Adds the besttime if the value is the smallest of it not exists (-1)
          */
         public void saveBestTime(float time)
         {
@@ -250,9 +279,10 @@ namespace PlayerSave
             }
         }
 
+
         /*  Tyler McPhee
-         *  Adds a besttime to array
-         *  Increases the size of array if needed
+         *      Adds a besttime to array
+         *      Increases the size of array if needed
          */
         private void addBestTime(float time, int world=-1, int level=-1)
         {
@@ -304,8 +334,9 @@ namespace PlayerSave
             BestTimes[world, level] = "" + time;
         }
 
+
         /*  Tyler McPhee
-         *  Loops though the BestTimes array and prints to file
+         *      Loops though the BestTimes array and prints to file
          */
         private void writeBestTime()
         {
@@ -322,8 +353,9 @@ namespace PlayerSave
             }
         }
 
+
         /*  Tyler McPhee
-         *  Reads the BestTimes from file and stores to array
+         *      Reads the BestTimes from file and stores to array
          */
         private void readBestTime()
         {
@@ -345,7 +377,6 @@ namespace PlayerSave
                     {
                         addBestTime(float.Parse(data[1]), w, l);
                     }
-                    //addBestTime(1f, w, l);
                 }
                 file.Close();
             }

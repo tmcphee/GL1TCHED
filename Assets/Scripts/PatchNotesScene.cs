@@ -13,15 +13,15 @@ public class PatchNotesScene : MonoBehaviour
     private playersave psave;
     private patchnotes pnotes;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         psave = new playersave();
         pnotes = new patchnotes();
 
         /*  Tyler McPhee
-         *  If the level is the first in the world then show the world panel
-         *  else show the level panel
+         *      If the level is the first in the world then show the world panel
+         *      else show the level panel
          */
         if (psave.getLevel() == 0)
         {
@@ -46,9 +46,10 @@ public class PatchNotesScene : MonoBehaviour
         
     }
 
+
     /*  Tyler McPhee
-     *  Loads the next level if the level exists
-     *  If not go back to the Main Menu
+     *      Loads the next level if the level exists
+     *      If not go back to the Main Menu
      */
     private void loadnextlevel()
     {
@@ -63,20 +64,21 @@ public class PatchNotesScene : MonoBehaviour
 
     }
 
+
     /*  Tyler McPhee
-     *  On continue button click load the next level
+     *      On continue button click load the next level
      */
     public void ContinueBtn_Clicked()
     {
         loadnextlevel();
     }
 
+
     /*  Tyler McPhee
-     *  On quit button click load the Main Menu
+     *      On quit button click load the Main Menu
      */
     public void QuitBtn_Clicked()
     {
         SceneManager.LoadScene("MainMenu");
     }
-
 }

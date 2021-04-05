@@ -27,10 +27,10 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         float distance = Vector3.Distance(enemy.transform.position, player.transform.position);
-        //self-righting force; returns enemy to vertical by 0.75 degrees/frame
+
+        //returns enemy to upright position
         if (enemy.rotation != 0)
         {
-            enemy.MoveRotation(Mathf.Abs(enemy.rotation - 0.75f));
             enemy.SetRotation(0);
         }
 
@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
 
 
     /* Andrew Greer
-       - convenient method for resetting the enemy position (i.e. level restart or respawning) */
+       - convenient public method for resetting the enemy position (i.e. level restart or respawning) */
     public void ResetPosition()
     {
         enemy.transform.position = originalPos;

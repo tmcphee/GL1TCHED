@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private Rigidbody2D r;
+    
     public float magnitude;
     public float topSpeed;
     public float topclimbspeed;
-    public bool infiniteJump;
-    public bool screenWarp;
     public AudioSource hitSound;
     public AudioSource jumpSound;
     public AudioSource enemySound;
 
-    private bool onGround = false;
-    private bool onClimbable = false;
-    private GameObject dummyModel;
+    //public flags
+    public bool canRotate;
+    public bool canMove = true;
+    public bool infiniteJump;
+    public bool screenWarp;
 
+    //private flags
+    private bool onGround = false;
+    private bool onClimbable = false;    
     private bool isWrappingX = false;
     private bool isWrappingY = false;
 
-    public bool canRotate;
-    public bool canMove = true;
-
+    private Rigidbody2D r;
+    private GameObject dummyModel;
     Renderer[] renderers;
 
 
@@ -34,6 +36,7 @@ public class Movement : MonoBehaviour
 
         /*  Tyler McPhee
          *      -Sets the players postion to spawn on the first checkpoint
+         *      
          *  Troy Walther
          *      -Store character renderer(s) in array
          */
@@ -51,8 +54,8 @@ public class Movement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         /*  Tyler McPhee
-         *  Checks if the player collided with an enemy
-         *  if true respawn enemy
+         *      Checks if the player collided with an enemy
+         *      if true respawn enemy
          */
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -68,7 +71,7 @@ public class Movement : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Glitchwall"))
         {
-            //if the player collides with a glitchwall, applies a sizeable force to help push them through
+            //if the player collides with a glitchwall, applies a sizeable force to help push them through (UNUSED)
             foreach (ContactPoint2D contact in collision.contacts)
             {
                 r.AddForce(magnitude * Time.deltaTime * 25 * -contact.normal, ForceMode2D.Impulse);
@@ -81,8 +84,9 @@ public class Movement : MonoBehaviour
         }
     }
 
+
     /*  Tyler McPhee
-     *  When the player enters an object that has trigger enabled
+     *      When the player enters an object that has trigger enabled
      */
     void OnTriggerEnter2D(Collider2D Collider)
     {
@@ -92,8 +96,9 @@ public class Movement : MonoBehaviour
         }
     }
 
+
     /*  Tyler McPhee
-     *  When the player is in an object that has trigger enabled
+     *      When the player is in an object that has trigger enabled
      */
     void OnTriggerStay2D(Collider2D Collider)
     { 
@@ -105,8 +110,9 @@ public class Movement : MonoBehaviour
     
     }
 
+
     /*  Tyler McPhee
-     *  When the player leaves an object that has trigger enabled
+     *      When the player leaves an object that has trigger enabled
      */
     void OnTriggerExit2D(Collider2D Collider)
     {
@@ -117,29 +123,30 @@ public class Movement : MonoBehaviour
         }
     }
 
+
+    // Andrew Greer: additional check to prevent a bug where jumping would stop working if the player collided with a non-ground object
     void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground") && !onGround && Mathf.Abs(collision.relativeVelocity.y) < 0.1)
         {
-            Debug.Log(collision.gameObject.name);
             onGround = true;
         }
     }
 
 
-    /*  Andrew Greer
+    /*  Andrew Greer:
      *   - called once every frame
      *   - handles jumping, movement, and player rotation
      *   
-     *   Troy Walther
+     *   Troy Walther:
      *   - rotation lock for certain levels
      *   - Fixed control after reaching max speed
      */
     void Update()
     {
         /* Tyler McPhee
-         * Check if the player is allowed to move
-         * in not exit
+         *      Check if the player is allowed to move
+         *      in not exit
          */
         if (!canMove)
         {
@@ -155,7 +162,7 @@ public class Movement : MonoBehaviour
             r.rotation = 0;
         }
 
-        //applies force if player hasn't exceeded top speed (or an instantaneous force if the player wants to change direction)
+        //applies force over time if player hasn't exceeded top speed (or an instantaneous force if the player wants to change direction)
         if (Mathf.Abs(r.velocity.x) < topSpeed)
         {
             r.AddForce(new Vector2((Input.GetAxis("Horizontal") * magnitude  * 120000f) * Time.deltaTime, 0f));
@@ -167,8 +174,8 @@ public class Movement : MonoBehaviour
 
 
         /*  Tyler McPhee
-         *  Apply force for climbable objects
-         *  Recycled and modified code from Andrew
+         *      Apply force for climbable objects
+         *      Recycled and modified code from Andrew
          */
         if (Mathf.Abs(r.velocity.y) < topclimbspeed && onClimbable && (Input.GetAxis("Vertical") != 0))
         {
@@ -210,9 +217,10 @@ public class Movement : MonoBehaviour
         }
     }
 
+
     /*Troy Walther
-     * -Check if character is on screen
-     * -Return: True if character is on screen, false if character is off screen
+     *  - Check if character is on screen
+     *  - Return: True if character is on screen, false if character is off screen
      */
     private bool onScreen() 
     {
@@ -236,8 +244,9 @@ public class Movement : MonoBehaviour
         return false;
     }
 
+
     /*Troy Walther
-     * -Teleport character to different region of screen
+     * - Teleport character to different region of screen
      */
     private void wrapScreen() 
     {
@@ -270,6 +279,8 @@ public class Movement : MonoBehaviour
         transform.position = newPos;
     }
 
+
+    // Andrew Greer: exposed method for other scripts to check if player is on the ground (UNUSED)
     public bool isOnGround()
     {
         return onGround;

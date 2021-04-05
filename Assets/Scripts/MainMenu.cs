@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
     private GameObject SoundPanel;
 
     /*  Tyler McPhee
-     *  Loads the values from the Player Save File and updates the value in the settings menu
+     *      Loads the values from the Player Save File and updates the value in the settings menu
      */
     private void initilize_settings()
     {
@@ -35,11 +35,13 @@ public class MainMenu : MonoBehaviour
         Fullscreentog.isOn = psave.getFullscreen();
     }
 
+
     private void loadscene()
     {
         //SceneManager.LoadScene("PatchNotes");
         Initiate.Fade("PatchNotes", Color.black, 1.5f);
     }
+
 
     /* MAIN MENU
      * 
@@ -49,11 +51,13 @@ public class MainMenu : MonoBehaviour
         loadscene();
     }
 
+
     public void NewGameBtn_Clicked()
     {
         psave.resetdata();
         loadscene();
     }
+
 
     public void SettingsBtn_Clicked()
     {
@@ -61,10 +65,12 @@ public class MainMenu : MonoBehaviour
         SettingsPanel.SetActive(true);
     }
 
+
     public void QuitBtn_Clicked()
     {
         Application.Quit();
     }
+
 
     /* Settings MENU
      * 
@@ -75,11 +81,13 @@ public class MainMenu : MonoBehaviour
         SettingsPanel.SetActive(false);
     }
 
+
     public void VideoBtn_Clicked()
     {
         SettingsPanel.SetActive(false);
         VideoPanel.SetActive(true);
     }
+
 
     public void SoundBtn_Clicked()
     {
@@ -87,33 +95,35 @@ public class MainMenu : MonoBehaviour
         SoundPanel.SetActive(true);
     }
 
+
     /*
      *Sound Menu
      */
-
     public void SoundBackBtn_Clicked()
     {
         SoundPanel.SetActive(false);
         SettingsPanel.SetActive(true);
     }
 
+
     /* Video MENU
      * 
      */
-
     public void VideoBackBtn_Clicked()
     {
         VideoPanel.SetActive(false);
         SettingsPanel.SetActive(true);
     }
 
+
     /*  Tyler McPhee
-     *  Saves the specified resulution selected in the dropdown to disk when changed
+     *      Saves the specified resulution selected in the dropdown to disk when changed
      */
     public void Resolution_Dropdown_OnValueChanged(Dropdown change)
     {
         psave.setResolution("" + change.captionText.text);
     }
+
 
     public void VSYNC_Toggle_OnValueChanged()
     {
@@ -121,11 +131,13 @@ public class MainMenu : MonoBehaviour
         psave.setVsync(vtog.isOn);
     }
 
+
     public void Fullscreen_Toggle_OnValueChanged()
     {
         Toggle vtog = GameObject.Find("VideoPanel/Fullscreen_Toggle").GetComponent<Toggle>();
         psave.setFullscreen(vtog.isOn);
     }
+
 
     void Start()
     {
@@ -151,6 +163,5 @@ public class MainMenu : MonoBehaviour
         SoundPanel.SetActive(false);
 
     }
-
 }
 
