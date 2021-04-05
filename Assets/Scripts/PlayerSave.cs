@@ -75,7 +75,9 @@ namespace PlayerSave
             save();
         }
 
-
+        /*  Tyler McPhee
+         *  Resets all world data back to the 1st level
+         */
         public void resetdata()
         {
             this.world = 1;
@@ -84,7 +86,9 @@ namespace PlayerSave
             save();
         }
 
-
+        /*  Tyler McPhee
+         *  Updates the resolution value
+         */
         public void setResolution(string Resolution)
         {
             this.Resolution = Resolution;
@@ -92,14 +96,18 @@ namespace PlayerSave
             save();
         }
 
-
+        /*  Tyler McPhee
+         *  Updates the vsync value
+         */
         public void setVsync(bool state)
         {
             this.VSync = state;
             save();
         }
 
-
+        /*  Tyler McPhee
+         *  Updates the fullscreen value
+         */
         public void setFullscreen(bool state)
         {
             this.Fullscreen = state;
@@ -139,6 +147,11 @@ namespace PlayerSave
         {
             return FindBestTime(this.world - 1, this.level);
         }
+
+        /*  Tyler McPhee
+         *  Find the Best time value for the last played level
+         *  If nothing found return an error of -1f
+         */
         public float getPreviousBestTime()
         {
             if(this.level -1 >= 0)
@@ -148,7 +161,10 @@ namespace PlayerSave
             return -1f;
         }
 
-
+        /*  Tyler McPhee
+         *  Find the Best time for the current level
+         *  If nothing found return an error of -1f
+         */
         private float FindBestTime(int world, int level)
         {
             if (world < BestTimes.GetLength(0) && level < BestTimes.GetLength(1))
@@ -172,7 +188,10 @@ namespace PlayerSave
             return Mathf.Round(time * roundBy) / roundBy;
         }
 
-
+        /*  Tyler McPhee
+         *  Generates a string of the the time float value as Munute:Second.Millisecond
+         *  If the time is not found (ie -1f) then output NA
+         */
         public string parseTime(float levelTime, int precision)
         {
             if (levelTime == -1)

@@ -19,6 +19,7 @@ public class InGameMenu : MonoBehaviour
      *      Called before the first frame update
      *      Finds the Player and In game menu GameObjects
      *      Finds and connects buttons to functions
+     *      Hides the in game menu on start
      */
     void Start()
     {

@@ -38,16 +38,16 @@ public class MainMenu : MonoBehaviour
         Fullscreentog.isOn = psave.getFullscreen();
     }
 
-
+    /*  Tyler McPhee
+     *  Loads Patch Notes Scene with the fader effect
+     */
     private void loadscene()
     {
-        //SceneManager.LoadScene("PatchNotes");
         Initiate.Fade("PatchNotes", Color.black, 1.5f);
     }
 
 
     /* MAIN MENU
-     * 
      */
     public void ContinueBtn_Clicked()
     {
@@ -76,7 +76,6 @@ public class MainMenu : MonoBehaviour
 
 
     /* Settings MENU
-     * 
      */
     public void SettingsBackBtn_Clicked()
     {
@@ -99,8 +98,7 @@ public class MainMenu : MonoBehaviour
     }
 
 
-    /*
-     *Sound Menu
+    /* Sound Menu
      */
     public void SoundBackBtn_Clicked()
     {
@@ -110,7 +108,6 @@ public class MainMenu : MonoBehaviour
 
 
     /* Video MENU
-     * 
      */
     public void VideoBackBtn_Clicked()
     {
@@ -120,39 +117,48 @@ public class MainMenu : MonoBehaviour
 
 
     /*  Tyler McPhee
-     *      Saves the specified resulution selected in the dropdown to disk when changed
+     *  Saves the specified resulution selected in the dropdown to disk when changed
      */
     public void Resolution_Dropdown_OnValueChanged(Dropdown change)
     {
         psave.setResolution("" + change.captionText.text);
     }
 
-
+    /*  Tyler McPhee
+     *  Saves the vsync value to disk when changed
+     */
     public void VSYNC_Toggle_OnValueChanged()
     {
         Toggle vtog = GameObject.Find("VideoPanel/VSYNC_Toggle").GetComponent<Toggle>();
         psave.setVsync(vtog.isOn);
     }
 
-
+    /*  Tyler McPhee
+     *  Saves the fullscreen value to disk when changed
+     */
     public void Fullscreen_Toggle_OnValueChanged()
     {
         Toggle vtog = GameObject.Find("VideoPanel/Fullscreen_Toggle").GetComponent<Toggle>();
         psave.setFullscreen(vtog.isOn);
     }
 
-
+    /*  Tyler McPhee
+     */
     void Start()
     {
+        /* Gets and sets gameobjects
+         * 
+         */
         MainPanel = GameObject.Find("MainPanel");
         SettingsPanel = GameObject.Find("SettingsPanel");
         VideoPanel = GameObject.Find("VideoPanel");
         SoundPanel = GameObject.Find("SoundPanel");
 
+        //Loads the player save
+        //If the player save does not exist. Then dont display the Continue button
         psave = new playersave();
         if (!psave.SaveExists())
         {
-
             GameObject.Find("MainPanel/ContinueGameBtn").SetActive(false);
         }
 

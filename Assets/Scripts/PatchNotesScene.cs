@@ -26,15 +26,22 @@ public class PatchNotesScene : MonoBehaviour
          */
         if (psave.getLevel() == 0)
         {
+            //Set text on Text labels
             GameObject.Find("PatchText").GetComponent<Text>().text = pnotes.getNote(psave.getWorld(), psave.getLevel());
             GameObject.Find("Version").GetComponent<Text>().text = psave.getWorld() + "." + psave.getLevel();
            
+            //Display level panel
             GameObject.Find("Canvas/LevelPanel").SetActive(false);
         }
         else
         {
+            //Display world panel
             GameObject.Find("Canvas/WorldPanel").SetActive(false);
+
+            //Set text on Text labels
             GameObject.Find("LevelText").GetComponent<Text>().text = "Level " + (psave.getLevel() + 1);
+
+            //Find best time then display the text on the text label
             string besttime = psave.parseTime(psave.getPreviousBestTime(), 3);
             if(besttime != "NA")
             {

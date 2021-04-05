@@ -9,6 +9,9 @@ namespace PatchNotesLog
     {
         string[] PatchNote = new string[3];
 
+        /*  Tyler McPhee
+         *  The patch notes are stored in a 1D array
+         */
         public notes()
         {
             PatchNote[0] =      "Example Note \n" +
@@ -24,7 +27,10 @@ namespace PatchNotesLog
                            "• Added some assets";
         }
 
-
+        /*  Tyler McPhee
+         *  If the patch notes exist then return the note
+         *  If not return an empty string
+         */
         public string getNote(int world, int level)
         {
             try
