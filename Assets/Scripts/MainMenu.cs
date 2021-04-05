@@ -161,7 +161,6 @@ public class MainMenu : MonoBehaviour
         SettingsPanel.SetActive(false);
         VideoPanel.SetActive(false);
         SoundPanel.SetActive(false);
-
     }
 }
 

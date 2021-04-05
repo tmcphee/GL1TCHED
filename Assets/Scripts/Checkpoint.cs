@@ -67,7 +67,6 @@ public class Checkpoint : MonoBehaviour
         {
             r.velocity = new Vector3(0, 0, 0);
         }
-        
     }
 
 
@@ -146,8 +145,7 @@ public class Checkpoint : MonoBehaviour
         if(BestTimeText != null)
         {
             BestTimeText.text = "Best Time:\t" + psave.parseTime(psave.getBestTime(), 1);
-        }
-        
+        }  
     }
 
 
@@ -229,8 +227,6 @@ public class Checkpoint : MonoBehaviour
                 timeText.text = "Elapsed Time:\t" + timeString;
             }
             else timeText.color = new Vector4(0f, 1.0f, 0f, 1.0f);
-        }
-
-        
+        }  
     }
 }

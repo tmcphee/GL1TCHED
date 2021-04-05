@@ -107,7 +107,6 @@ public class Movement : MonoBehaviour
         {
             onClimbable = true;
         }
-    
     }
 
 
@@ -152,6 +151,7 @@ public class Movement : MonoBehaviour
         {
             return;
         }
+
         //self-righting force; returns player to vertical by 0.75 degrees/frame
         if (r.rotation != 0)
         {

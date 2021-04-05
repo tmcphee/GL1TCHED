@@ -67,7 +67,6 @@ public class SkyboxColorChanger : MonoBehaviour
 
         //set Camera background color to colorOriginal
         cam.backgroundColor = colorOriginal;
-        
     }
 
 
@@ -84,7 +83,6 @@ public class SkyboxColorChanger : MonoBehaviour
 
         colorGoal = colors[randElement];
         mutating = true;
-
     }
 
 }

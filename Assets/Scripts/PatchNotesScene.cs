@@ -39,11 +39,7 @@ public class PatchNotesScene : MonoBehaviour
             {
                 GameObject.Find("BestTime").GetComponent<Text>().text = "Best Time:  " + besttime;
             }
-            
         }
-        
-
-        
     }
 
 
@@ -61,7 +57,6 @@ public class PatchNotesScene : MonoBehaviour
         {
             Initiate.Fade("MainMenu", Color.black, 1.5f);
         }
-
     }
 
 

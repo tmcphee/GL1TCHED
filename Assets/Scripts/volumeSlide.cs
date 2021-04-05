@@ -34,5 +34,4 @@ public class volumeSlide : MonoBehaviour
     {
         slider.value = PlayerPrefs.GetFloat(mixGroup.name, 1f);
     }
-
 }

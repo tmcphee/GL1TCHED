@@ -23,6 +23,7 @@ namespace PatchNotesLog
                            "• Added some assets";
         }
 
+
         public string getNote(int world, int level)
         {
             try
@@ -33,7 +34,6 @@ namespace PatchNotesLog
             {
                 return ""; 
             }
-            
         }
     }
 }
