@@ -17,13 +17,16 @@ public class GrabObject : MonoBehaviour
     private Rigidbody2D player;
     private Rigidbody2D box;
     private Camera cam;
+
     private Vector3 m;
     private Vector3 old_m;
     private Vector3 deltaV;
     private Vector3 cameraPos;
     private Vector3 originalPos;
+
     private float m_Angle;
     private float boxDistance;
+
     private bool GrabToggle;
 
 
@@ -44,6 +47,7 @@ public class GrabObject : MonoBehaviour
         box = GetComponent<Rigidbody2D>();
         originalPos = box.position;
         GrabToggle = false;
+
         m = Vector3.zero;
         deltaV = Vector3.zero;
     }

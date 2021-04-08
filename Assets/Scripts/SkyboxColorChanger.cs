@@ -13,8 +13,8 @@ public class SkyboxColorChanger : MonoBehaviour
     public float changeSpeed;
 
     private bool rand;
-    private Color mutator;
     private bool mutating = false;
+    private Color mutator;
     private Vector4 colorOriginal, colorGoal;
 
 
@@ -71,7 +71,9 @@ public class SkyboxColorChanger : MonoBehaviour
     }
 
 
-    // Andrew Greer: Random.Range() except it returns a random float between -0.5f and 0.5f (Works best with large values of max but not too large, i.e. 10000f)
+    /* Andrew Greer:
+     *  - Random.Range() except it returns a random float between -0.5f and 0.5f (Works best with large values of max but not too large, i.e. 10000f) 
+     */
     float RandomFloat(float max) { return ((Random.Range(0, max) - (0.5f * max)) / max); }
 
 

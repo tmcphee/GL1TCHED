@@ -27,6 +27,7 @@ public class Movement : MonoBehaviour
 
     private Rigidbody2D r;
     private GameObject dummyModel;
+    private float hAxis;
     Renderer[] renderers;
 
 
@@ -144,6 +145,9 @@ public class Movement : MonoBehaviour
      */
     void Update()
     {
+        // storing Horizontal axis as it would otherwise be a very frequent function call
+        hAxis = Input.GetAxis("Horizontal");
+
         /* Tyler McPhee
          *      Check if the player is allowed to move
          *      in not exit
@@ -166,11 +170,11 @@ public class Movement : MonoBehaviour
         //applies force over time if player hasn't exceeded top speed (or an instantaneous force if the player wants to change direction)
         if (Mathf.Abs(r.velocity.x) < topSpeed)
         {
-            r.AddForce(new Vector2((Input.GetAxis("Horizontal") * magnitude  * 120000f) * Time.deltaTime, 0f));
+            r.AddForce(new Vector2((hAxis * magnitude  * 120000f) * Time.deltaTime, 0f));
         } 
-        if (Input.GetAxis("Horizontal") != 0 && Mathf.Sign(r.velocity.x) != Mathf.Sign(Input.GetAxis("Horizontal")))
+        if (hAxis != 0 && Mathf.Sign(r.velocity.x) != Mathf.Sign(hAxis))
         {
-            r.AddForce(new Vector2(Input.GetAxis("Horizontal") * magnitude * 120000f * Time.deltaTime, 0f), ForceMode2D.Impulse);
+            r.AddForce(new Vector2(hAxis * magnitude * 120000f * Time.deltaTime, 0f), ForceMode2D.Impulse);
         }
 
 
