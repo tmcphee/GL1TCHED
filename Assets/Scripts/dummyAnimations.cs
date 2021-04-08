@@ -40,7 +40,8 @@ public class dummyAnimations : MonoBehaviour
         Vector3 rootBoneRotation = rootBone.rotation.eulerAngles;
 
 
-        //Andrew Greer: flips the character transform depending on direction of travel
+        /* Andrew Greer: 
+         *   - flips the character transform depending on direction of travel */
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             if (!facingRight)
@@ -60,7 +61,12 @@ public class dummyAnimations : MonoBehaviour
 
 
         /* Andrew Greer: 
-         * large block for setting animation based on speed 
+         * large block for setting animation based on speed:
+         * 
+         *      0 - 0.5: idle
+         *      0.5 - 6: walk
+         *      6 - 10:  run
+         *      10+:     sprint
          */
         if (Mathf.Abs(player.velocity.x) < 0.5f && dummy.runtimeAnimatorController != jump)
         {
@@ -79,6 +85,7 @@ public class dummyAnimations : MonoBehaviour
             dummy.runtimeAnimatorController = sprint;
         }
     }
+
 
     /* Andrew Greer: 
      *   - Exposed method for jumping animation that can be called from movement.cs (that way jump animation is synced with jump logic) */
