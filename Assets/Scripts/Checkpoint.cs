@@ -100,7 +100,7 @@ public class Checkpoint : MonoBehaviour
         }
 
         /*  Tyler McPhee
-         *      Loop though all the checkpoint objects in the cehckpoints array and add a BoxCollider2D with isTrigger set
+         *      Loop though all the checkpoint objects in the checkpoints array and add a BoxCollider2D with isTrigger set
          */
         foreach (GameObject obj in checkpoints)
         {

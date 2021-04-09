@@ -261,7 +261,7 @@ public class Movement : MonoBehaviour
             return;
         }
 
-        //get main camera Veiwport coordinate (0,0 - 1,1) and get current transform position
+        //get main camera Viewport coordinate (0,0 - 1,1) and get current transform position
         Camera cam = Camera.main;
         Vector3 viewPos = cam.WorldToViewportPoint(transform.position);
         Vector3 newPos  = transform.position;
