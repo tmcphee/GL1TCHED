@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
+
 /* Troy Walher
- *  change the value of an audio mixers group
+ *   - change the value of an audio mixers group
 */  
 public class volumeSlide : MonoBehaviour
 {
@@ -34,5 +35,4 @@ public class volumeSlide : MonoBehaviour
     {
         slider.value = PlayerPrefs.GetFloat(mixGroup.name, 1f);
     }
-
 }

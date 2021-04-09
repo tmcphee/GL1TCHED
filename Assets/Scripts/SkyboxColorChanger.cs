@@ -2,26 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 /* Troy Walther
- *  -slightly adjusts the color of the skybox over time between color ranges, if no Colors specified color change is random
+ *  - slightly adjusts the color of the skybox over time between color ranges, if no Colors specified color change is random
  */
 public class SkyboxColorChanger : MonoBehaviour
 {
     Camera cam;
     public Vector4[] colors;
     public float changeSpeed;
+
     private bool rand;
-    private Color mutator;
     private bool mutating = false;
+    private Color mutator;
     private Vector4 colorOriginal, colorGoal;
 
 
-    // Start is called before the first frame update
     void Start()
     {
-
         // if there are no colors supplied make the skybox random
-
         if ((colors.Length == 0))   //For some reason there is a weird type casting issue if you don't add == 0?
         {
             mutator = new Vector4(RandomFloat(10000), RandomFloat(10000), RandomFloat(10000), 1f);
@@ -40,7 +39,7 @@ public class SkyboxColorChanger : MonoBehaviour
         cam = GetComponent<Camera>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
 
@@ -69,16 +68,17 @@ public class SkyboxColorChanger : MonoBehaviour
 
         //set Camera background color to colorOriginal
         cam.backgroundColor = colorOriginal;
-        
     }
 
-    //Random.Range() except it returns a random float between -0.5f and 0.5f (Works best with large values of max but not too large)
+
+    /* Andrew Greer:
+     *  - Random.Range() except it returns a random float between -0.5f and 0.5f (Works best with large values of max but not too large, i.e. 10000f) 
+     */
     float RandomFloat(float max) { return ((Random.Range(0, max) - (0.5f * max)) / max); }
 
 
     /* Troy Walther 
-     *  -set the value of the color to mutate towards and set mutating to true 
-     *
+     *  - set the value of the color to mutate towards and set mutating to true 
     */
     private void mutate() 
     {
@@ -86,7 +86,6 @@ public class SkyboxColorChanger : MonoBehaviour
 
         colorGoal = colors[randElement];
         mutating = true;
-
     }
 
 }

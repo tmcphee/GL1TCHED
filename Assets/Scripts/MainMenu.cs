@@ -6,17 +6,20 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using playersave = PlayerSave.playersave;
 
+
 public class MainMenu : MonoBehaviour
 {
-    private playersave psave;
     public GameObject Canvas;
+
+    private playersave psave;
     private GameObject MainPanel;
     private GameObject SettingsPanel;
     private GameObject VideoPanel;
     private GameObject SoundPanel;
 
+
     /*  Tyler McPhee
-     *  Loads the values from the Player Save File and updates the value in the settings menu
+     *      Loads the values from the Player Save File and updates the value in the settings menu
      */
     private void initilize_settings()
     {
@@ -35,18 +38,22 @@ public class MainMenu : MonoBehaviour
         Fullscreentog.isOn = psave.getFullscreen();
     }
 
+    /*  Tyler McPhee
+     *  Loads Patch Notes Scene with the fader effect
+     */
     private void loadscene()
     {
-        SceneManager.LoadScene("PatchNotes");
+        Initiate.Fade("PatchNotes", Color.black, 1.5f);
     }
 
+
     /* MAIN MENU
-     * 
      */
     public void ContinueBtn_Clicked()
     {
         loadscene();
     }
+
 
     public void NewGameBtn_Clicked()
     {
@@ -54,19 +61,21 @@ public class MainMenu : MonoBehaviour
         loadscene();
     }
 
+
     public void SettingsBtn_Clicked()
     {
         MainPanel.SetActive(false);
         SettingsPanel.SetActive(true);
     }
 
+
     public void QuitBtn_Clicked()
     {
         Application.Quit();
     }
 
+
     /* Settings MENU
-     * 
      */
     public void SettingsBackBtn_Clicked()
     {
@@ -74,11 +83,13 @@ public class MainMenu : MonoBehaviour
         SettingsPanel.SetActive(false);
     }
 
+
     public void VideoBtn_Clicked()
     {
         SettingsPanel.SetActive(false);
         VideoPanel.SetActive(true);
     }
+
 
     public void SoundBtn_Clicked()
     {
@@ -86,25 +97,24 @@ public class MainMenu : MonoBehaviour
         SoundPanel.SetActive(true);
     }
 
-    /*
-     *Sound Menu
-     */
 
+    /* Sound Menu
+     */
     public void SoundBackBtn_Clicked()
     {
         SoundPanel.SetActive(false);
         SettingsPanel.SetActive(true);
     }
 
-    /* Video MENU
-     * 
-     */
 
+    /* Video MENU
+     */
     public void VideoBackBtn_Clicked()
     {
         VideoPanel.SetActive(false);
         SettingsPanel.SetActive(true);
     }
+
 
     /*  Tyler McPhee
      *  Saves the specified resulution selected in the dropdown to disk when changed
@@ -114,29 +124,41 @@ public class MainMenu : MonoBehaviour
         psave.setResolution("" + change.captionText.text);
     }
 
+    /*  Tyler McPhee
+     *  Saves the vsync value to disk when changed
+     */
     public void VSYNC_Toggle_OnValueChanged()
     {
         Toggle vtog = GameObject.Find("VideoPanel/VSYNC_Toggle").GetComponent<Toggle>();
         psave.setVsync(vtog.isOn);
     }
 
+    /*  Tyler McPhee
+     *  Saves the fullscreen value to disk when changed
+     */
     public void Fullscreen_Toggle_OnValueChanged()
     {
         Toggle vtog = GameObject.Find("VideoPanel/Fullscreen_Toggle").GetComponent<Toggle>();
         psave.setFullscreen(vtog.isOn);
     }
 
+    /*  Tyler McPhee
+     */
     void Start()
     {
+        /* Gets and sets gameobjects
+         * 
+         */
         MainPanel = GameObject.Find("MainPanel");
         SettingsPanel = GameObject.Find("SettingsPanel");
         VideoPanel = GameObject.Find("VideoPanel");
         SoundPanel = GameObject.Find("SoundPanel");
 
+        //Loads the player save
+        //If the player save does not exist. Then dont display the Continue button
         psave = new playersave();
         if (!psave.SaveExists())
         {
-
             GameObject.Find("MainPanel/ContinueGameBtn").SetActive(false);
         }
 
@@ -148,8 +170,6 @@ public class MainMenu : MonoBehaviour
         SettingsPanel.SetActive(false);
         VideoPanel.SetActive(false);
         SoundPanel.SetActive(false);
-
     }
-
 }
 

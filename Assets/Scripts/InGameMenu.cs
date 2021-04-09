@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class InGameMenu : MonoBehaviour
 {
     private Vector3 playervelocity = new Vector3(0, 0, 0);
@@ -13,10 +14,12 @@ public class InGameMenu : MonoBehaviour
     private GameObject r, box;
     private Button LastCheckpointBtn, BackBtn, MainMenuBtn;
 
+
     /*  Tyler McPhee
-     *  Called before the first frame update
-     *  Finds the Player and In game menu GameObjects
-     *  Finds and connects buttons to functions
+     *      Called before the first frame update
+     *      Finds the Player and In game menu GameObjects
+     *      Finds and connects buttons to functions
+     *      Hides the in game menu on start
      */
     void Start()
     {
@@ -37,19 +40,22 @@ public class InGameMenu : MonoBehaviour
         InGameMenuCanvas.SetActive(false);
     }
 
+
     /*  Tyler McPhee
-     *  Disable Movment of player by disableing the object
-     *  Saves player velocity and gravity
+     *      Disable Movment of player by disableing the object
+     *      Saves player velocity and gravity
      */
-    private void freezeplayer()
+    public void freezeplayer()
     {
         playervelocity = r.GetComponent<Rigidbody2D>().velocity;
         gravityscale = r.GetComponent<Rigidbody2D>().gravityScale;
         r.SetActive(false);
     }
+
+
     /*  Tyler McPhee
-     *  Enables Movment of player by enableing the object
-     *  Restores player velocity and gravity
+     *      Enables Movment of player by enableing the object
+     *      Restores player velocity and gravity
      */
     private void unfreezeplayer()
     {
@@ -59,8 +65,9 @@ public class InGameMenu : MonoBehaviour
         
     }
 
+
     /*  Tyler McPhee
-     *  Sets the player to its last checkpoint
+     *      Sets the player to its last checkpoint
      */
     public void RestartFromLastCheckpoint_Click()
     {
@@ -75,8 +82,9 @@ public class InGameMenu : MonoBehaviour
         InGameMenuCanvas.SetActive(false);
     }
 
+
     /*  Tyler McPhee
-     *  On Menu Enter freese player and show menu
+     *      On Menu Enter freese player and show menu
      */
     void OnEsc_Click()
     {
@@ -84,8 +92,9 @@ public class InGameMenu : MonoBehaviour
         InGameMenuCanvas.SetActive(true);
     }
 
+
     /*  Tyler McPhee
-     *  Closes the Menu
+     *      Closes the Menu
      */
     public void BackBtn_Click()
     {
@@ -93,14 +102,17 @@ public class InGameMenu : MonoBehaviour
         InGameMenuCanvas.SetActive(false);
     }
 
+
     public void mainMenuBtn_Click()
     {
-        SceneManager.LoadScene("MainMenu");
+        //SceneManager.LoadScene("MainMenu");
+        Initiate.Fade("MainMenu", Color.black, 1.5f);
     }
 
+
     /*  Tyler McPhee
-     *  Update is called once per frame
-     *  Checks if the esc key is pressed
+     *      Update is called once per frame
+     *      Checks if the esc key is pressed
      */
     void Update()
     {

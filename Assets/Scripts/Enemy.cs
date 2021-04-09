@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Enemy : MonoBehaviour
 {
     public float topSpeed;
@@ -28,10 +29,10 @@ public class Enemy : MonoBehaviour
     {
         float distance = Vector3.Distance(enemy.transform.position, player.transform.position);
 
-        //self-righting force; returns enemy to vertical by 0.75 degrees/frame
+        //returns enemy to upright position
         if (enemy.rotation != 0)
         {
-            enemy.MoveRotation(Mathf.Abs(enemy.rotation - 0.75f));
+            enemy.SetRotation(0);
         }
 
         //if player is within sight of the enemy and the enemy isn't going too fast
@@ -54,7 +55,7 @@ public class Enemy : MonoBehaviour
 
 
     /* Andrew Greer
-       - convenient method for resetting the enemy position (i.e. level restart or respawning) */
+       - convenient public method for resetting the enemy position (i.e. level restart or respawning) */
     public void ResetPosition()
     {
         enemy.transform.position = originalPos;

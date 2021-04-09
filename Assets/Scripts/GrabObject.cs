@@ -10,15 +10,23 @@ public class GrabObject : MonoBehaviour
 {
     public float GrabDistance;
     public bool GlitchMode;
+    public bool GrabEnemies;
+    public bool PreserveMomentum;
 
+    private GameObject[] Enemies;
     private Rigidbody2D player;
+    private Rigidbody2D box;
     private Camera cam;
+
     private Vector3 m;
+    private Vector3 old_m;
+    private Vector3 deltaV;
     private Vector3 cameraPos;
     private Vector3 originalPos;
-    private Rigidbody2D box;
+
     private float m_Angle;
     private float boxDistance;
+
     private bool GrabToggle;
 
 
@@ -31,9 +39,17 @@ public class GrabObject : MonoBehaviour
 
         player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
 
+        if (GrabEnemies)
+        {
+            Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        }
+
         box = GetComponent<Rigidbody2D>();
         originalPos = box.position;
         GrabToggle = false;
+
+        m = Vector3.zero;
+        deltaV = Vector3.zero;
     }
     
 
@@ -43,16 +59,45 @@ public class GrabObject : MonoBehaviour
      *      - normal mode attaches the box to the cursor
      *      - glitchmode snaps the box to a fixed radius circle around the player based on mouse angle (incredibly glitchy, but in a good way)
      *  - respawns the box if it falls below the map
+     *  - optional mode for grabbing an enemy as well as the box
      */
     void Update()
     {
         Vector3 playerPos = new Vector3(player.position.x, player.position.y, 0f);
+
+        // saves the old mouse position before updating to calculate an instaneous "mouse velocity vector"
+        old_m = m;
         m = ScreenSpaceToWorldSpace(Input.mousePosition);
+
+        // uses the previous mouse position for imparting 'momentum vector' on objects when thrown
+        if (PreserveMomentum)
+        {
+            deltaV = m - old_m;
+        }
+
         boxDistance = Vector2.Distance(new Vector2(playerPos[0], playerPos[1]), box.position);
 
         if (Input.GetKey(KeyCode.E))
         {
             GrabToggle = !GrabToggle;
+        }
+
+        /* Andrew Greer
+         *  - if grab enemies is enabled for the level and the array of all enemies is not empty, binds the enemy to the mouse position
+         *      (very similar to grabbing a box except there's no check if the player is close to the enemy)
+         */
+        if(GrabEnemies && Enemies != null)
+        {
+            foreach(GameObject enemy in Enemies)
+            {
+                if((Input.GetMouseButton(0) || GrabToggle) && Vector2.Distance(enemy.transform.position, m) < GrabDistance)
+                {
+                    Rigidbody2D e = enemy.GetComponent<Rigidbody2D>();
+                    enemy.transform.position = new Vector2(m[0], m[1]);
+                    e.velocity = (deltaV * 3f) + (deltaV  * e.mass * Time.deltaTime * 25f);
+                    Debug.Log(deltaV);
+                }
+            }
         }
 
 
@@ -75,7 +120,9 @@ public class GrabObject : MonoBehaviour
             } else if (Vector2.Distance(box.position, new Vector2(m[0], m[1])) < GrabDistance) { box.position = new Vector2(m[0], m[1]); }
             // ^ if box is close to the cursor
 
-            Debug.Log((m, box.position));
+
+            // apply momentum vector
+            box.velocity = (deltaV * 3f) + (deltaV * box.mass * Time.deltaTime * 25f);
         }
 
         // if box falls below the map
