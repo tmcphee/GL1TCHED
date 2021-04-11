@@ -9,6 +9,7 @@ public class InGameMenu : MonoBehaviour
 {
     private Vector3 playervelocity = new Vector3(0, 0, 0);
     private float gravityscale;
+    private float StoredLevelTime;
 
     private GameObject InGameMenuCanvas;
     private GameObject r, box;
@@ -43,26 +44,27 @@ public class InGameMenu : MonoBehaviour
 
     /*  Tyler McPhee
      *      Disable Movment of player by disableing the object
-     *      Saves player velocity and gravity
+     *      Saves player velocity, gravity, and LevelTime
      */
     public void FreezePlayer()
     {
         playervelocity = r.GetComponent<Rigidbody2D>().velocity;
         gravityscale = r.GetComponent<Rigidbody2D>().gravityScale;
+        StoredLevelTime = r.GetComponent<Checkpoint>().getLevelTime();
         r.SetActive(false);
     }
 
 
     /*  Tyler McPhee
      *      Enables Movment of player by enableing the object
-     *      Restores player velocity and gravity
+     *      Restores player velocity, gravity, and LevelTime
      */
     private void UnFreezePlayer()
     {
         r.SetActive(true);
         r.GetComponent<Rigidbody2D>().velocity = playervelocity;
         r.GetComponent<Rigidbody2D>().gravityScale = gravityscale;
-        
+        r.GetComponent<Checkpoint>().setLevelTime(StoredLevelTime);
     }
 
 

@@ -24,6 +24,22 @@ public class Checkpoint : MonoBehaviour
     private float levelTime;
     private bool finished = false;
 
+    /*  Tyler McPhee
+     *      Gets and returns the players leveltime
+     */
+    public float getLevelTime()
+    {
+        return levelTime;
+    }
+
+    /*  Tyler McPhee
+     *      Sets the players leveltime
+     */
+    public void setLevelTime(float LevelTime)
+    {
+        this.levelTime = LevelTime;
+    }
+
 
     /*  Tyler McPhee
      *      Sets the Player checkpoint to the first checkpoint, checkpoint 0
