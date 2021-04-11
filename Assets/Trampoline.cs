@@ -22,9 +22,9 @@ public class Trampoline : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("player hit");
             foreach (ContactPoint2D contact in collision.contacts)
             {
+                // assign force vector for the bounce
                 Vector2 bounceVector = new Vector2(bounciness * collision.relativeVelocity.magnitude * Time.deltaTime * -contact.normal[0],
                                                    bounciness * collision.relativeVelocity.magnitude * Time.deltaTime * -contact.normal[1]);
 
