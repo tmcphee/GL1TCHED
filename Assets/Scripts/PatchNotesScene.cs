@@ -42,7 +42,7 @@ public class PatchNotesScene : MonoBehaviour
             GameObject.Find("LevelText").GetComponent<Text>().text = "Level " + (psave.getLevel() + 1);
 
             //Find best time then display the text on the text label
-            string besttime = psave.parseTime(psave.getPreviousBestTime(), 3);
+            string besttime = psave.ParseTime(psave.getPreviousBestTime(), 3);
             if(besttime != "NA")
             {
                 GameObject.Find("BestTime").GetComponent<Text>().text = "Best Time:  " + besttime;
@@ -69,7 +69,7 @@ public class PatchNotesScene : MonoBehaviour
 
 
     /*  Tyler McPhee
-     *      On continue button click load the next level
+     *      On continue button click Load the next level
      */
     public void ContinueBtn_Clicked()
     {
@@ -78,7 +78,7 @@ public class PatchNotesScene : MonoBehaviour
 
 
     /*  Tyler McPhee
-     *      On quit button click load the Main Menu
+     *      On quit button click Load the Main Menu
      */
     public void QuitBtn_Clicked()
     {

@@ -35,7 +35,7 @@ public class InGameMenu : MonoBehaviour
         BackBtn.onClick.AddListener(BackBtn_Click);
 
         MainMenuBtn = GameObject.Find("InGameMenuCanvas/MainMenuBtn").GetComponent<Button>();
-        MainMenuBtn.onClick.AddListener(mainMenuBtn_Click);
+        MainMenuBtn.onClick.AddListener(MainMenuBtn_Click);
 
         InGameMenuCanvas.SetActive(false);
     }
@@ -45,7 +45,7 @@ public class InGameMenu : MonoBehaviour
      *      Disable Movment of player by disableing the object
      *      Saves player velocity and gravity
      */
-    public void freezeplayer()
+    public void FreezePlayer()
     {
         playervelocity = r.GetComponent<Rigidbody2D>().velocity;
         gravityscale = r.GetComponent<Rigidbody2D>().gravityScale;
@@ -57,7 +57,7 @@ public class InGameMenu : MonoBehaviour
      *      Enables Movment of player by enableing the object
      *      Restores player velocity and gravity
      */
-    private void unfreezeplayer()
+    private void UnFreezePlayer()
     {
         r.SetActive(true);
         r.GetComponent<Rigidbody2D>().velocity = playervelocity;
@@ -71,7 +71,7 @@ public class InGameMenu : MonoBehaviour
      */
     public void RestartFromLastCheckpoint_Click()
     {
-        unfreezeplayer();
+        UnFreezePlayer();
         GetComponent<Checkpoint>().SetPlayerLastCheckpoint();
 
         if(box != null)
@@ -88,7 +88,7 @@ public class InGameMenu : MonoBehaviour
      */
     void OnEsc_Click()
     {
-        freezeplayer();
+        FreezePlayer();
         InGameMenuCanvas.SetActive(true);
     }
 
@@ -98,12 +98,12 @@ public class InGameMenu : MonoBehaviour
      */
     public void BackBtn_Click()
     {
-        unfreezeplayer();
+        UnFreezePlayer();
         InGameMenuCanvas.SetActive(false);
     }
 
 
-    public void mainMenuBtn_Click()
+    public void MainMenuBtn_Click()
     {
         //SceneManager.LoadScene("MainMenu");
         Initiate.Fade("MainMenu", Color.black, 1.5f);

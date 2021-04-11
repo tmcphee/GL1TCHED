@@ -25,7 +25,7 @@ namespace PlayerSave
          */
         public playersave()
         {
-            load();
+            Load();
             readBestTime();
         }
 
@@ -37,53 +37,53 @@ namespace PlayerSave
         public void setWorld(int world)
         {
             this.world = world;
-            save();
+            Save();
         }
 
 
         public void setLevel(int level)
         {
             this.level = level;
-            save();
+            Save();
         }
 
 
         public void setCheckpoint(int checkpoint)
         {
             this.checkpoint = checkpoint;
-            save();
+            Save();
         }
 
 
         public void incrementCheckpoint()
         {
             this.checkpoint++;
-            save();
+            Save();
         }
 
 
         public void incrementLevel()
         {
             this.level++;
-            save();
+            Save();
         }
 
 
         public void incrementWorld()
         {
             this.world++;
-            save();
+            Save();
         }
 
         /*  Tyler McPhee
          *  Resets all world data back to the 1st level
          */
-        public void resetdata()
+        public void ResetData()
         {
             this.world = 1;
             this.level = 0;
             this.checkpoint = 0;
-            save();
+            Save();
         }
 
         /*  Tyler McPhee
@@ -93,7 +93,7 @@ namespace PlayerSave
         {
             this.Resolution = Resolution;
             ApplyResolution();
-            save();
+            Save();
         }
 
         /*  Tyler McPhee
@@ -102,7 +102,7 @@ namespace PlayerSave
         public void setVsync(bool state)
         {
             this.VSync = state;
-            save();
+            Save();
         }
 
         /*  Tyler McPhee
@@ -112,7 +112,7 @@ namespace PlayerSave
         {
             this.Fullscreen = state;
             ApplyResolution();
-            save();
+            Save();
         }
 
 
@@ -192,7 +192,7 @@ namespace PlayerSave
          *  Generates a string of the the time float value as Munute:Second.Millisecond
          *  If the time is not found (ie -1f) then output NA
          */
-        public string parseTime(float levelTime, int precision)
+        public string ParseTime(float levelTime, int precision)
         {
             if (levelTime == -1)
             {
@@ -253,9 +253,9 @@ namespace PlayerSave
 
         /*  Tyler McPhee
          *      Checks to see if the Player Save File exists.
-         *      If exists load the json file into the playersave class
+         *      If exists Load the json file into the playersave class
          */
-        public void load()
+        public void Load()
         {
             if (SaveExists())
             {
@@ -274,7 +274,7 @@ namespace PlayerSave
          *      Converts the playersave class into a json string. 
          *      Saves the file to disk overriding any existing file
          */
-        public void save()
+        public void Save()
         {
             string json = JsonUtility.ToJson(this);
 
