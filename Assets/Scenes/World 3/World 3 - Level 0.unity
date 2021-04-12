@@ -584,7 +584,7 @@ MonoBehaviour:
   colors:
   - {x: 0.99215686, y: 0.7647059, z: 0.5803922, w: 0}
   - {x: 0.87058824, y: 0.5568628, z: 0.30588236, w: 0}
-  changeSpeed: 0.1325
+  changeSpeed: 0.14
 --- !u!4 &518947310 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7646181260276320599, guid: 02044373054fdf248a78fb4ce784b33a,
@@ -885,6 +885,11 @@ PrefabInstance:
       propertyPath: BestTimeText
       value: 
       objectReference: {fileID: 1284223971}
+    - target: {fileID: 8795767904955713365, guid: 75a23abf4f2317548a0b408713970b67,
+        type: 3}
+      propertyPath: isEndofWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8795767904955713365, guid: 75a23abf4f2317548a0b408713970b67,
         type: 3}
       propertyPath: FinishCheckpoint
@@ -2031,7 +2036,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.20507297, g: 0.5188679, b: 0.20314167, a: 1}
+  m_Color: {r: 0.38127446, g: 0.5283019, b: 0.38127446, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
