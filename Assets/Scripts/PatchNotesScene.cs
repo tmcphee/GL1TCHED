@@ -20,6 +20,14 @@ public class PatchNotesScene : MonoBehaviour
         psave = new playersave();
         pnotes = new patchnotes();
 
+
+        if (psave.getWorld() == 1 && psave.getLevel() == 2)
+        {
+            Debug.Log("HERE");
+            GotoCredits();
+            return;
+        }
+
         /*  Tyler McPhee
          *      If the level is the first in the world then show the world panel
          *      else show the level panel
@@ -78,10 +86,20 @@ public class PatchNotesScene : MonoBehaviour
 
 
     /*  Tyler McPhee
+     *      Load the Credits
+     */
+    public void GotoCredits()
+    {
+        SceneManager.LoadScene("Credits");
+        //Initiate.Fade("Credits", Color.black, 1.5f);
+    }
+
+    /*  Tyler McPhee
      *      On quit button click Load the Main Menu
      */
     public void QuitBtn_Clicked()
     {
-        SceneManager.LoadScene("MainMenu");
+        //SceneManager.LoadScene("MainMenu");
+        Initiate.Fade("MainMenu", Color.black, 1.5f);
     }
 }
