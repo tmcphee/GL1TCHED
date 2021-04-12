@@ -7,7 +7,7 @@ namespace PatchNotesLog
 {
     public class notes
     {
-        string[] PatchNote = new string[4];
+        string[] PatchNote = new string[5];
 
         /*  Tyler McPhee
          *  The patch notes are stored in a 1D array
@@ -26,7 +26,11 @@ namespace PatchNotesLog
                            "• Added Boxes & Enemies\n"+
                            "• Added Boxes & Enemies\n" +
                            "• Added some assets";
-            PatchNote[3] = "Fixed all the bugs!\n" +
+            PatchNote[3] = "Fixed Some Bugs!\n" +
+                           "• Fixed box glitch \n" +
+                           "• Added Trampolines\n" +
+                           "• Improved Assets";
+            PatchNote[4] = "Fixed all the bugs!\n" +
                            "• Fixed the strange chekpoint glitch \n" +
                            "• fixed trampolines\n" +
                            "• Added credits";
