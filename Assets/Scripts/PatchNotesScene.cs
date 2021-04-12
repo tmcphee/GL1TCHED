@@ -23,7 +23,7 @@ public class PatchNotesScene : MonoBehaviour
         /*  Tyler McPhee
          *      If we are on world X and level y then load the credits
          */
-        if (psave.getWorld() == 1 && psave.getLevel() == 2)
+        if (psave.getWorld() == 4 && psave.getLevel() == 1)
         {
             GotoCredits();
             return;
