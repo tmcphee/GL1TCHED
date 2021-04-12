@@ -7,7 +7,7 @@ namespace PatchNotesLog
 {
     public class notes
     {
-        string[] PatchNote = new string[3];
+        string[] PatchNote = new string[4];
 
         /*  Tyler McPhee
          *  The patch notes are stored in a 1D array
