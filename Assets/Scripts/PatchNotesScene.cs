@@ -21,6 +21,15 @@ public class PatchNotesScene : MonoBehaviour
         pnotes = new patchnotes();
 
         /*  Tyler McPhee
+         *      If we are on world X and level y then load the credits
+         */
+        if (psave.getWorld() == 4 && psave.getLevel() == 1)
+        {
+            GotoCredits();
+            return;
+        }
+
+        /*  Tyler McPhee
          *      If the level is the first in the world then show the world panel
          *      else show the level panel
          */
@@ -42,7 +51,7 @@ public class PatchNotesScene : MonoBehaviour
             GameObject.Find("LevelText").GetComponent<Text>().text = "Level " + (psave.getLevel() + 1);
 
             //Find best time then display the text on the text label
-            string besttime = psave.parseTime(psave.getPreviousBestTime(), 3);
+            string besttime = psave.ParseTime(psave.getPreviousBestTime(), 3);
             if(besttime != "NA")
             {
                 GameObject.Find("BestTime").GetComponent<Text>().text = "Best Time:  " + besttime;
@@ -69,7 +78,7 @@ public class PatchNotesScene : MonoBehaviour
 
 
     /*  Tyler McPhee
-     *      On continue button click load the next level
+     *      On continue button click Load the next level
      */
     public void ContinueBtn_Clicked()
     {
@@ -78,10 +87,20 @@ public class PatchNotesScene : MonoBehaviour
 
 
     /*  Tyler McPhee
-     *      On quit button click load the Main Menu
+     *      Load the Credits
+     */
+    public void GotoCredits()
+    {
+        SceneManager.LoadScene("Credits");
+        //Initiate.Fade("Credits", Color.black, 1.5f);
+    }
+
+    /*  Tyler McPhee
+     *      On quit button click Load the Main Menu
      */
     public void QuitBtn_Clicked()
     {
-        SceneManager.LoadScene("MainMenu");
+        //SceneManager.LoadScene("MainMenu");
+        Initiate.Fade("MainMenu", Color.black, 1.5f);
     }
 }

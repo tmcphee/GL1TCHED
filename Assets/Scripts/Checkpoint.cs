@@ -24,6 +24,22 @@ public class Checkpoint : MonoBehaviour
     private float levelTime;
     private bool finished = false;
 
+    /*  Tyler McPhee
+     *      Gets and returns the players leveltime
+     */
+    public float getLevelTime()
+    {
+        return levelTime;
+    }
+
+    /*  Tyler McPhee
+     *      Sets the players leveltime
+     */
+    public void setLevelTime(float LevelTime)
+    {
+        this.levelTime = LevelTime;
+    }
+
 
     /*  Tyler McPhee
      *      Sets the Player checkpoint to the first checkpoint, checkpoint 0
@@ -41,7 +57,7 @@ public class Checkpoint : MonoBehaviour
      *      INPUT: GameObject checkpoint
      *      OUTPUT: Index value in checkpoints array
      */
-    public int find_checkpoint_index(GameObject checkpoint)
+    public int FindCheckpointIndex(GameObject checkpoint)
     {
         int index = 0;
         foreach (GameObject obj in checkpoints)
@@ -88,11 +104,11 @@ public class Checkpoint : MonoBehaviour
     }
 
 
-    //On Script load
+    //On Script Load
     void Awake()
     {
         psave = new playersave();
-        psave.load();
+        psave.Load();
 
         if(checkpoints.Length < 1)
         {
@@ -125,7 +141,7 @@ public class Checkpoint : MonoBehaviour
          */
         if (ResetCheckpointOnStart)
         {
-            psave.resetdata();
+            psave.ResetData();
         }
     }
 
@@ -145,7 +161,7 @@ public class Checkpoint : MonoBehaviour
         }
         if(BestTimeText != null)
         {
-            BestTimeText.text = "Best Time:\t" + psave.parseTime(psave.getBestTime(), 1);
+            BestTimeText.text = "Best Time:\t" + psave.ParseTime(psave.getBestTime(), 1);
         }  
     }
 
@@ -192,7 +208,7 @@ public class Checkpoint : MonoBehaviour
         {
             if (Collider.gameObject == obj)
             {
-                int hit_checkpoint = find_checkpoint_index(obj);
+                int hit_checkpoint = FindCheckpointIndex(obj);
                 int last_checkpoint = psave.getCheckpoint();
 
                 //If defined then increment checkpoint else only increment if checkpoint is the next
@@ -221,7 +237,7 @@ public class Checkpoint : MonoBehaviour
             if (!finished)
             {
                 levelTime += Time.deltaTime;
-                string timeString = psave.parseTime(levelTime, 1);
+                string timeString = psave.ParseTime(levelTime, 1);
                 timeText.text = "Elapsed Time:\t" + timeString;
             }
             else timeText.color = new Vector4(0f, 1.0f, 0f, 1.0f);

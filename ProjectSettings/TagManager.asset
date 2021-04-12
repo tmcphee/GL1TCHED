@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Music
   - dummy_mesh
+  - Player_2D
   layers:
   - Default
   - TransparentFX

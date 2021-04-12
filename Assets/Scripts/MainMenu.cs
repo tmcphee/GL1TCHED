@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
     /*  Tyler McPhee
      *      Loads the values from the Player Save File and updates the value in the settings menu
      */
-    private void initilize_settings()
+    private void InitilizeSettings()
     {
         Application.targetFrameRate = 144;
 
@@ -41,7 +41,7 @@ public class MainMenu : MonoBehaviour
     /*  Tyler McPhee
      *  Loads Patch Notes Scene with the fader effect
      */
-    private void loadscene()
+    private void LoadScene()
     {
         Initiate.Fade("PatchNotes", Color.black, 1.5f);
     }
@@ -51,14 +51,14 @@ public class MainMenu : MonoBehaviour
      */
     public void ContinueBtn_Clicked()
     {
-        loadscene();
+        LoadScene();
     }
 
 
     public void NewGameBtn_Clicked()
     {
-        psave.resetdata();
-        loadscene();
+        psave.ResetData();
+        LoadScene();
     }
 
 
@@ -154,15 +154,15 @@ public class MainMenu : MonoBehaviour
         VideoPanel = GameObject.Find("VideoPanel");
         SoundPanel = GameObject.Find("SoundPanel");
 
-        //Loads the player save
-        //If the player save does not exist. Then dont display the Continue button
+        //Loads the player Save
+        //If the player Save does not exist. Then dont display the Continue button
         psave = new playersave();
         if (!psave.SaveExists())
         {
             GameObject.Find("MainPanel/ContinueGameBtn").SetActive(false);
         }
 
-        initilize_settings();
+        InitilizeSettings();
 
         /* Andrew Greer - plays music when the game is loaded */
         GameObject.Find("VolumeController").GetComponent<AudioClass>().PlayMusic();

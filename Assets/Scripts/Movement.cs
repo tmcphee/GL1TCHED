@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 public class Movement : MonoBehaviour
@@ -27,8 +28,13 @@ public class Movement : MonoBehaviour
 
     private Rigidbody2D r;
     private GameObject dummyModel;
+    private GameObject sprite;
+    private Animator anim;
+    private SpriteRenderer sr;
     private float hAxis;
     Renderer[] renderers;
+    
+
 
 
     void Start()
@@ -36,16 +42,32 @@ public class Movement : MonoBehaviour
         r = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         dummyModel = GameObject.FindGameObjectWithTag("dummy_mesh");
 
-        /*  Tyler McPhee
-         *    - Sets the players postion to spawn on the first checkpoint
-         *      
-         *  Troy Walther
-         *    - Store character renderer(s) in array
-         */
+        sprite = GameObject.FindGameObjectWithTag("Player_2D");
+        try
+        {
+            anim = sprite.GetComponent<Animator>();
+            sr = sprite.GetComponent<SpriteRenderer>();
+            Debug.Log("Passed");
+            Debug.Log(anim.GetBool("idle"));
+        }
+        catch (Exception e)
+        {
+            anim = null;
+            Debug.Log("Failed");
 
-        r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
+        }
+
+            /*  Tyler McPhee
+             *    - Sets the players postion to spawn on the first checkpoint
+             *      
+             *  Troy Walther
+             *    - Store character renderer(s) in array
+             */
+
+            r.transform.position = r.GetComponent<Checkpoint>().GetLastCheckpointPosition();
 
         renderers = GetComponentsInChildren<Renderer>();
+        
     }
 
 
@@ -220,6 +242,11 @@ public class Movement : MonoBehaviour
             isWrappingY = false;
             isWrappingX = false;
         }
+
+        if (anim != null)
+        {
+            animate();
+        }
     }
 
 
@@ -230,6 +257,10 @@ public class Movement : MonoBehaviour
     private bool onScreen() 
     {
         //loop through all children components
+        if (renderers == null) 
+        {
+            return false;
+        }
         foreach (Renderer renderer in renderers)
         {
             if (renderer == null) 
@@ -290,4 +321,27 @@ public class Movement : MonoBehaviour
     {
         return onGround;
     }
+
+    /*Troy Walther
+     * -  Basic function to set values of animator transitions
+     */
+    private void animate() {
+
+        //Run or Idle
+        if (r.velocity.x > 1 || r.velocity.x < -1)
+        {
+            sr.flipX = (r.velocity.x < 0);
+            anim.SetBool("idle", false);
+        }
+        else 
+        {
+            anim.SetBool("idle", true);
+        }
+
+        anim.SetBool("Jumping", onGround ? false : true);
+    
+        return;
+    }
+
+
 }
