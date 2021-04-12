@@ -25,7 +25,7 @@ public class Trampoline : MonoBehaviour
             foreach (ContactPoint2D contact in collision.contacts)
             {
                 // assign force vector for the bounce
-                Vector2 bounceVector = new Vector2(bounciness * collision.relativeVelocity.magnitude * Time.deltaTime * -contact.normal[0],
+                Vector2 bounceVector = new Vector2((bounciness * collision.relativeVelocity.magnitude * Time.deltaTime * -contact.normal[0]),
                                                    bounciness * collision.relativeVelocity.magnitude * Time.deltaTime * -contact.normal[1]);
 
                 player.AddForce(bounceVector, ForceMode2D.Impulse);
