@@ -17,14 +17,19 @@ namespace PatchNotesLog
             PatchNote[0] =      "Example Note \n" +
                                 "• example example example";
 
-            PatchNote[1] =      "Added my new game to the store, ist new so it may have a fewe bugs :)\n"+
+            PatchNote[1] =      "Aded my n3w game to the stor, ist new so it may have a fewe bugs :)\n"+
                                 "• Added Jumping \n" +
                                 "• Added Player Movement";
 
             PatchNote[2] = "Squashed some bugs and other improvements!\n"+
                            "• Added ground check, so no more infinte jumping >:( \n" +
                            "• Added Boxes & Enemies\n"+
+                           "• Added Boxes & Enemies\n" +
                            "• Added some assets";
+            PatchNote[3] = "Fixed all the bugs!\n" +
+                           "• Fixed the strange chekpoint glitch \n" +
+                           "• fixed trampolines\n" +
+                           "• Added credits";
         }
 
         /*  Tyler McPhee
