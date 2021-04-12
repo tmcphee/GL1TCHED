@@ -20,10 +20,11 @@ public class PatchNotesScene : MonoBehaviour
         psave = new playersave();
         pnotes = new patchnotes();
 
-
+        /*  Tyler McPhee
+         *      If we are on world X and level y then load the credits
+         */
         if (psave.getWorld() == 1 && psave.getLevel() == 2)
         {
-            Debug.Log("HERE");
             GotoCredits();
             return;
         }
