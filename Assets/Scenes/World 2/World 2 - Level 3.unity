@@ -4096,7 +4096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b486f8ee56cd78e47a72122c06f361f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseCheckpointGlitch: 0
+  UseCheckpointGlitch: 1
   ResetCheckpointOnStart: 0
   CheckpointVelocityGlitch: 0
   isEndofWorld: 0
